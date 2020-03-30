@@ -38,7 +38,11 @@ class NewAccountActivity : Activity() {
 
                 if (task.isSuccessful) {
                     Log.d(Constants.LOG, "message")
-                    startActivity(Intent(this@NewAccountActivity, LoggedUserActivity::class.java))
+                    val loggedAct = Intent(this@NewAccountActivity, LoggedUserActivity::class.java)
+                    loggedAct.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_NO_HISTORY
+
+                    startActivity(loggedAct)
+                    finishAffinity()
                 } else {
                     Log.w(Constants.LOG, "createUserWithEmail:failure", task.exception)
                     Toast.makeText(
