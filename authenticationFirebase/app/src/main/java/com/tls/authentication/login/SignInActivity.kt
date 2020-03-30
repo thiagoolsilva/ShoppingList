@@ -39,8 +39,12 @@ class SignInActivity : Activity() {
             auth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener {
                     if (it.isSuccessful) {
-                        startActivity(Intent(this@SignInActivity, LoggedUserActivity::class.java))
-                        finish()
+                        val loggedAct = Intent(this@SignInActivity, LoggedUserActivity::class.java)
+                        loggedAct.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_NO_HISTORY
+                        startActivity(loggedAct)
+                        finishAffinity()
+
+
                     } else {
                         Log.w(Constants.LOG, "signIn:failure", it.exception)
 
