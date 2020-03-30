@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/mainActivity">
+
+    <fragment
+        android:id="@+id/loggedUserFragment"
+        android:name="com.tls.authentication.login.LoggedUserFragment"
+        android:label="LoggedUserFragment"
+        tools:layout="@layout/logged_user_activity" />
+    <fragment
+        android:id="@+id/newAccountFragment"
+        android:name="com.tls.authentication.login.NewAccountFragment"
+        android:label="NewAccountFragment"
+        tools:layout="@layout/new_account_activity" />
+    <fragment
+        android:id="@+id/signInFragment"
+        android:name="com.tls.authentication.login.SignInFragment"
+        android:label="SignInFragment"
+        tools:layout="@layout/sign_in_activity" />
+    <activity
+        android:id="@+id/mainActivity"
+        android:name="com.tls.authentication.MainActivity"
+        android:label="activity_main"
+        tools:layout="@layout/activity_main" />
+</navigation>
