@@ -1,11 +1,8 @@
 package com.tls.authentication
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
-import com.tls.authentication.login.LoggedUserFragment
-import com.tls.authentication.login.SignInFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
 
@@ -19,18 +16,6 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
 
         auth = FirebaseAuth.getInstance()
-    }
-
-    override fun onStart() {
-        super.onStart()
-
-        if (auth.currentUser == null) startActivity(
-            Intent(
-                this@MainActivity,
-                SignInFragment::class.java
-            )
-        )
-        else startActivity(Intent(this@MainActivity, LoggedUserFragment::class.java))
     }
 
 

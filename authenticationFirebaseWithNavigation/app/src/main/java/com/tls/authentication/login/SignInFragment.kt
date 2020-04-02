@@ -1,7 +1,5 @@
 package com.tls.authentication.login
 
-import android.app.Activity
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -9,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
 import com.tls.authentication.R
 import com.tls.authentication.shared.Constants
@@ -37,7 +36,8 @@ class SignInFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         btnSignOut.setOnClickListener {
-            startActivity(Intent(activity, NewAccountFragment::class.java))
+            val action = SignInFragmentDirections.actionSignInFragmentToNewAccountFragment()
+            findNavController().navigate(action)
         }
 
 
@@ -54,11 +54,9 @@ class SignInFragment : Fragment() {
             auth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener {
                     if (it.isSuccessful) {
-                        val loggedAct = Intent(activity, LoggedUserFragment::class.java)
-                        loggedAct.flags =
-                            Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_NO_HISTORY
-                        startActivity(loggedAct)
-
+                        val action =
+                            SignInFragmentDirections.actionSignInFragmentToLoggedUserFragment()
+                        findNavController().navigate(action)
                     } else {
                         Log.w(Constants.LOG, "signIn:failure", it.exception)
 

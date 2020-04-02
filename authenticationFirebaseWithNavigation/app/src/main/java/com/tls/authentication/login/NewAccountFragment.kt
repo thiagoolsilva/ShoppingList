@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.tls.authentication.R
 import com.google.firebase.auth.FirebaseAuth
 import com.tls.authentication.shared.Constants
@@ -51,10 +52,8 @@ class NewAccountFragment : Fragment() {
 
                 if (task.isSuccessful) {
                     Log.d(Constants.LOG, "message")
-                    val loggedAct = Intent(activity, LoggedUserFragment::class.java)
-                    loggedAct.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_NO_HISTORY
 
-                    startActivity(loggedAct)
+                    findNavController().popBackStack()
                 } else {
                     Log.w(Constants.LOG, "createUserWithEmail:failure", task.exception)
                     Toast.makeText(
