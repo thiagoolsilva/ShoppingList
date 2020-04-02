@@ -24,7 +24,7 @@ class SplashScreen : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.splash_screen_fragment, container, false)
+        return inflater.inflate(R.layout.splash_screen, container, false)
     }
 
 

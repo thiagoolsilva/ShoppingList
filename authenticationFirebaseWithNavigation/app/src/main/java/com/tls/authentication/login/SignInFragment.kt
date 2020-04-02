@@ -11,7 +11,7 @@ import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
 import com.tls.authentication.R
 import com.tls.authentication.shared.Constants
-import kotlinx.android.synthetic.main.sign_in_activity.*
+import kotlinx.android.synthetic.main.sign_in.*
 
 class SignInFragment : Fragment() {
 
@@ -29,7 +29,7 @@ class SignInFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.sign_in_activity, container, false)
+        return inflater.inflate(R.layout.sign_in, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

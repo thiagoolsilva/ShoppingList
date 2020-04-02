@@ -9,17 +9,17 @@
         android:id="@+id/loggedUserFragment"
         android:name="com.tls.authentication.login.LoggedUserFragment"
         android:label="LoggedUserFragment"
-        tools:layout="@layout/logged_user_activity" />
+        tools:layout="@layout/logged_user" />
     <fragment
         android:id="@+id/newAccountFragment"
         android:name="com.tls.authentication.login.NewAccountFragment"
         android:label="NewAccountFragment"
-        tools:layout="@layout/new_account_activity"/>
+        tools:layout="@layout/new_account" />
     <fragment
         android:id="@+id/signInFragment"
         android:name="com.tls.authentication.login.SignInFragment"
         android:label="SignInFragment"
-        tools:layout="@layout/sign_in_activity">
+        tools:layout="@layout/sign_in">
         <action
             android:id="@+id/action_signInFragment_to_loggedUserFragment"
             app:destination="@id/loggedUserFragment"
@@ -40,9 +40,9 @@
         tools:layout="@layout/activity_main" />
     <fragment
         android:id="@+id/splashScreen"
-        tools:layout="@layout/splash_screen_fragment"
         android:name="com.tls.authentication.splash.SplashScreen"
-        android:label="SplashScreen" >
+        android:label="SplashScreen"
+        tools:layout="@layout/splash_screen">
         <action
             android:id="@+id/action_splashScreen_to_signInFragment"
             app:destination="@id/signInFragment"

@@ -1,7 +1,5 @@
 package com.tls.authentication.login
 
-import android.app.Activity
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -13,7 +11,7 @@ import androidx.navigation.fragment.findNavController
 import com.tls.authentication.R
 import com.google.firebase.auth.FirebaseAuth
 import com.tls.authentication.shared.Constants
-import kotlinx.android.synthetic.main.new_account_activity.*
+import kotlinx.android.synthetic.main.new_account.*
 
 
 class NewAccountFragment : Fragment() {
@@ -31,7 +29,7 @@ class NewAccountFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.new_account_activity, container, false)
+        return inflater.inflate(R.layout.new_account, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
