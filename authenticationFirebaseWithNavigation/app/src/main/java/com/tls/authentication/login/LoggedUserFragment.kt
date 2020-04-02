@@ -12,7 +12,7 @@ import com.tls.authentication.MainActivity
 import com.tls.authentication.R
 import com.tls.authentication.shared.Constants
 import com.tls.authentication.shared.toEditable
-import kotlinx.android.synthetic.main.logged_user_activity.*
+import kotlinx.android.synthetic.main.logged_user.*
 
 
 class LoggedUserFragment : Fragment() {
@@ -30,7 +30,7 @@ class LoggedUserFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.logged_user_activity, container, false)
+        return inflater.inflate(R.layout.logged_user, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
