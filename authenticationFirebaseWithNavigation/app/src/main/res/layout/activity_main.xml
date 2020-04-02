@@ -17,8 +17,20 @@
         app:layout_constraintTop_toTopOf="parent"
         app:popupTheme="@style/AppTheme.PopupOverlay" />
 
+    <fragment
+        android:id="@+id/nav_host_fragment"
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:defaultNavHost="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:navGraph="@navigation/nav_graph" />
 
     <ProgressBar
+        android:visibility="invisible"
         android:id="@+id/loadingUserinformation"
         style="@android:style/Widget.ProgressBar.Large"
         android:layout_width="wrap_content"
@@ -27,13 +39,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-
-    <!--    <fragment-->
-    <!--        android:id="@+id/newAccountFragment"-->
-    <!--        class="com.tls.authentication.login.NewAccountActivity"-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="match_parent" />-->
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
