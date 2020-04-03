@@ -1,3 +1,10 @@
+/*
+ *
+ * Copyright (c) 2020  Thiago Lopes da Silva
+ * All Rights Reserved.
+ *
+ */
+
 package com.tls.authentication.splash
 
 import android.os.Bundle
