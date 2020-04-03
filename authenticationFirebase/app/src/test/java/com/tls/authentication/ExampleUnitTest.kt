@@ -1,8 +1,13 @@
+/*
+ * Copyright (c) 2020  Thiago Lopes da Silva
+ * All Rights Reserved.
+ *
+ */
+
 package com.tls.authentication
 
+import org.junit.Assert.assertEquals
 import org.junit.Test
-
-import org.junit.Assert.*
 
 /**
  * Example local unit test, which will execute on the development machine (host).
