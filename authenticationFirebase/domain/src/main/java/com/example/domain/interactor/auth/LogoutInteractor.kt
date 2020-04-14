@@ -6,13 +6,11 @@
 
 package com.example.domain.interactor.auth
 
-import com.example.domain.interactor.SimpleInteractor
 import com.example.domain.repository.AuthenticationRepository
 
-class LogoutInteractor constructor(val authenticationRepository: AuthenticationRepository<Void>) :
-    SimpleInteractor<Unit> {
+class LogoutInteractor constructor(private val authenticationRepository: AuthenticationRepository<Void>)   {
 
-    override fun execute() {
+    suspend fun execute() {
         authenticationRepository.logout()
     }
 

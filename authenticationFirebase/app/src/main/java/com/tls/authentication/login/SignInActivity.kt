@@ -6,63 +6,84 @@
 
 package com.tls.authentication.login
 
-import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
-import com.google.firebase.auth.FirebaseAuth
+import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
+import com.example.presentation.auth.SignInViewModel
+import com.example.presentation.model.ViewState
 import com.tls.authentication.R
-import com.tls.authentication.shared.Constants
 import kotlinx.android.synthetic.main.sign_in_activity.*
+import org.koin.android.ext.android.inject
 
-class SignInActivity : Activity() {
+class SignInActivity : AppCompatActivity() {
 
+    private val viewModel: SignInViewModel by inject()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         setContentView(R.layout.sign_in_activity)
 
+        configViews()
+        configViewModel()
+    }
+
+    /**
+     * Config views
+     */
+    private fun configViews() {
         btnSignOut.setOnClickListener {
             startActivity(Intent(this@SignInActivity, NewAccountActivity::class.java))
-         }
-
+        }
 
         btnSignIn.setOnClickListener {
             signIn()
         }
     }
 
-
-    private fun signIn() {
-        val auth = FirebaseAuth.getInstance()
-
-        val email = txtInputEmail.text?.toString()
-        val password = txtInputPassword.text?.toString()
-
-        if (email != null && password != null) {
-            auth.signInWithEmailAndPassword(email, password)
-                .addOnCompleteListener {
-                    if (it.isSuccessful) {
-                        val loggedAct = Intent(this@SignInActivity, LoggedUserActivity::class.java)
-                        loggedAct.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_NO_HISTORY
-                        startActivity(loggedAct)
-                        finishAffinity()
-
-
-                    } else {
-                        Log.w(Constants.LOG, "signIn:failure", it.exception)
-
-                        Toast.makeText(
-                            this@SignInActivity,
-                            "Failed to login in firebase. Try again!",
-                            Toast.LENGTH_LONG
-                        ).show()
-                    }
-                }
-        }
-
-
+    /**
+     * Config viewModel state
+     */
+    private fun configViewModel() {
+        viewModel.getState().observe(this, Observer {
+            if (it.status == ViewState.Status.ERROR) {
+                showSignErrorMessage()
+            } else if (it.status == ViewState.Status.SUCCESS) {
+                goToLoggedScreen()
+            }
+        })
     }
+
+    /**
+     * Show error message to user
+     */
+    private fun showSignErrorMessage() {
+        Toast.makeText(
+            this@SignInActivity,
+            "Failed to login in firebase. Try again!",
+            Toast.LENGTH_LONG
+        ).show()
+    }
+
+    /**
+     * Go to Logged Screen
+     */
+    private fun goToLoggedScreen() {
+        val loggedAct = Intent(this@SignInActivity, LoggedUserActivity::class.java)
+        loggedAct.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_NO_HISTORY
+        startActivity(loggedAct)
+        finishAffinity()
+    }
+
+    /**
+     * Sign In user
+     */
+    private fun signIn() {
+        val email = txtInputEmail.text?.toString() ?: ""
+        val password = txtInputPassword.text?.toString() ?: ""
+
+        viewModel.authenticateUser(email = email, password = password)
+    }
+
 }

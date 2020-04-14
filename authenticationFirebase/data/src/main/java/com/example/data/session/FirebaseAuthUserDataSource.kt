@@ -6,30 +6,66 @@
 
 package com.example.data.session
 
-import com.example.data.model.SessionInfo
+import com.example.data.util.toBasicUserInfo
+import com.example.domain.exception.UserNotFound
+import com.example.domain.exception.UserNotLogged
+import com.example.domain.models.BasicUserInfo
 import com.example.domain.repository.AuthenticationRepository
+import com.google.firebase.auth.FirebaseAuth
+import kotlin.coroutines.resume
+import kotlin.coroutines.resumeWithException
+import kotlin.coroutines.suspendCoroutine
+
 
 class FirebaseAuthUserDataSource :
-    AuthenticationRepository<SessionInfo> {
+    AuthenticationRepository<BasicUserInfo> {
 
-    override fun authenticateUser(name: String, password: String): SessionInfo? {
-        TODO("Not yet implemented")
+    private val auth: FirebaseAuth = FirebaseAuth.getInstance()
+
+    override suspend fun isLogged(): Boolean {
+        return auth.currentUser != null
     }
 
-    override fun isLogged(): Boolean {
-        TODO("Not yet implemented")
+    override suspend fun currentUser(): BasicUserInfo? {
+        return auth.currentUser?.toBasicUserInfo()
     }
 
-    override fun signUp(name: String, password: String): SessionInfo? {
-        TODO("Not yet implemented")
+    override suspend fun authenticateUser(email: String, password: String): BasicUserInfo {
+        return suspendCoroutine { continuation ->
+            auth.signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener {
+                    if (it.isSuccessful) {
+                        val sessionInfo = auth.currentUser?.toBasicUserInfo()
+
+                        if (sessionInfo != null) continuation.resume(sessionInfo) else continuation.resumeWithException(
+                            UserNotFound("User not found")
+                        )
+                    } else {
+                        continuation.resumeWithException(UserNotLogged("User not logged"))
+                    }
+                }
+        }
     }
 
-    override fun logout() {
-        TODO("Not yet implemented")
+    override suspend fun signUp(email: String, password: String): BasicUserInfo {
+        return suspendCoroutine { continuation ->
+            auth.createUserWithEmailAndPassword(email, password)
+                .addOnCompleteListener() { task ->
+                    if (task.isSuccessful) {
+                        val sessionInfo = auth.currentUser?.toBasicUserInfo()
+
+                        if (sessionInfo != null) continuation.resume(sessionInfo) else continuation.resumeWithException(
+                            UserNotFound("User not found")
+                        )
+                    } else {
+                        continuation.resumeWithException(UserNotLogged("User not logged"))
+                    }
+                }
+        }
     }
 
-    override fun currentUser(): SessionInfo? {
-        TODO("Not yet implemented")
+    override suspend fun logout() {
+        auth.signOut()
     }
 
 }

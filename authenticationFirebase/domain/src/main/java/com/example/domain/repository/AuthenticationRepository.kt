@@ -8,14 +8,14 @@ package com.example.domain.repository
 
 interface AuthenticationRepository<T> {
 
-    fun authenticateUser(name:String, password:String): T?
+    suspend fun isLogged(): Boolean
 
-    fun isLogged():Boolean
+    suspend fun currentUser(): T?
 
-    fun signUp(name:String, password:String) :T?
+    suspend fun authenticateUser(email: String, password: String):T
 
-    fun logout()
+    suspend fun signUp(email: String, password: String): T
 
-    fun currentUser() : T?
+    suspend fun logout()
 
 }

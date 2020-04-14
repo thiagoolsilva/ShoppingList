@@ -6,30 +6,15 @@
 
 package com.example.domain.interactor.auth
 
-import androidx.lifecycle.MutableLiveData
-import com.example.domain.interactor.BaseInteractor
 import com.example.domain.models.BasicUserInfo
 import com.example.domain.models.LoginParameter
 import com.example.domain.repository.AuthenticationRepository
 
-class SignInUserInteractor constructor(val authenticationRepository: AuthenticationRepository<BasicUserInfo>) :
-    BaseInteractor<LoginParameter, BasicUserInfo?> {
 
-    override fun execute(
-        parameter: LoginParameter,
-        result: MutableLiveData<Result<BasicUserInfo?>>
-    ) {
-        try {
-            val authenticatedUser =
-                authenticationRepository.authenticateUser(parameter.email, parameter.password)
+class SignInUserInteractor constructor(private val authenticationRepository: AuthenticationRepository<BasicUserInfo>) {
 
-            result.postValue(Result.success(authenticatedUser))
-
-        } catch (error: Exception) {
-            result.postValue(Result.failure(error))
-        }
+    suspend fun execute(parameter: LoginParameter): BasicUserInfo? {
+        return authenticationRepository.authenticateUser(parameter.email, parameter.password)
     }
 
-
 }
-
