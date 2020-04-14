@@ -4,7 +4,7 @@
  *
  */
 
-package com.tls.authentication.shared
+package com.tls.authentication.util
 
 import android.text.Editable
 

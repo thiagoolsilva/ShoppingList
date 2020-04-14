@@ -6,15 +6,14 @@
 
 package com.example.domain.interactor.auth
 
-import com.example.domain.interactor.SimpleInteractor
 import com.example.domain.models.BasicUserInfo
 import com.example.domain.repository.AuthenticationRepository
 
-class GetLoggedUserInteractor constructor(val authenticationRepository: AuthenticationRepository<BasicUserInfo>) :
-    SimpleInteractor<BasicUserInfo?> {
+class GetLoggedUserInteractor constructor(private val authenticationRepository: AuthenticationRepository<BasicUserInfo>) {
 
-    override fun execute(): BasicUserInfo? {
+    suspend fun execute(): BasicUserInfo? {
         return authenticationRepository.currentUser()
     }
 
 }
+

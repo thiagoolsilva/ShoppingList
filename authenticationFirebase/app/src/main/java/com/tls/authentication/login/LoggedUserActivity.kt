@@ -9,13 +9,10 @@ package com.tls.authentication.login
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.UserProfileChangeRequest
 import com.tls.authentication.MainActivity
 import com.tls.authentication.R
-import com.tls.authentication.shared.Constants
-import com.tls.authentication.shared.toEditable
+import com.tls.authentication.util.toEditable
 import kotlinx.android.synthetic.main.logged_user_activity.*
 
 
@@ -46,8 +43,6 @@ class LoggedUserActivity : Activity() {
         val currentUser = auth.currentUser
 
         currentUser?.let {
-            Log.d(Constants.LOG, "Logged")
-
             val userName = currentUser.displayName
             val email = currentUser.email
 
@@ -59,8 +54,6 @@ class LoggedUserActivity : Activity() {
             }
 
         } ?: let {
-            Log.d(Constants.LOG, "not logged")
-
             signOutUser()
         }
     }
