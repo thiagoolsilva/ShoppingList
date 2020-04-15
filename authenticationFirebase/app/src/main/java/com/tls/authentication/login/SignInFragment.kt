@@ -14,7 +14,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
-import com.example.presentation.auth.SignInViewModel
+import com.example.presentation.SignInViewModel
 import com.example.presentation.model.ViewState
 import com.tls.authentication.R
 import kotlinx.android.synthetic.main.sign_in_activity.*

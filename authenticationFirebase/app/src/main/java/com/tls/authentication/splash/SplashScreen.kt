@@ -12,18 +12,30 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
-import com.google.firebase.auth.FirebaseAuth
+import com.example.presentation.SplashViewModel
+import com.example.presentation.model.ViewState
 import com.tls.authentication.R
+import org.koin.android.ext.android.inject
 
 class SplashScreen : Fragment() {
 
-    private lateinit var auth: FirebaseAuth
+    private val slashViewModel: SplashViewModel by inject()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        configViewModel()
+    }
 
-        auth = FirebaseAuth.getInstance()
+    private fun configViewModel() {
+        slashViewModel.getUserState().observe(viewLifecycleOwner, Observer {
+            when (it.status) {
+                    ViewState.Status.SUCCESS
+                -> if (it.data != null) goToLoggedUserScreen() else goToSignInScreen()
+                ViewState.Status.ERROR -> findNavController().navigate(SplashScreenDirections.actionSplashScreenToSignInFragment())
+            }
+        })
     }
 
     override fun onCreateView(
@@ -34,17 +46,22 @@ class SplashScreen : Fragment() {
         return inflater.inflate(R.layout.splash_screen, container, false)
     }
 
-
     override fun onResume() {
         super.onResume()
-
-        if (isUserLogged()) {
-            findNavController().navigate(SplashScreenDirections.actionSplashScreenToLoggedUserFragment())
-        } else {
-            findNavController().navigate(SplashScreenDirections.actionSplashScreenToSignInFragment())
-        }
+        slashViewModel.fetchUserState()
     }
 
-    private fun isUserLogged() = auth.currentUser != null
+    /**
+     * Go to logged screen
+     */
+    private fun goToLoggedUserScreen() {
+        findNavController().navigate(SplashScreenDirections.actionSplashScreenToLoggedUserFragment())
+    }
 
+    /**
+     * Go to sign in screen
+     */
+    private fun goToSignInScreen() {
+        findNavController().navigate(SplashScreenDirections.actionSplashScreenToSignInFragment())
+    }
 }

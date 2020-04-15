@@ -4,7 +4,7 @@
  *
  */
 
-package com.example.presentation.auth
+package com.example.presentation
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
