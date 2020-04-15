@@ -6,24 +6,34 @@
 
 package com.tls.authentication.login
 
-import android.content.Intent
 import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import com.example.presentation.auth.SignInViewModel
 import com.example.presentation.model.ViewState
 import com.tls.authentication.R
 import kotlinx.android.synthetic.main.sign_in_activity.*
 import org.koin.android.ext.android.inject
 
-class SignInActivity : AppCompatActivity() {
+class SignInFragment : Fragment() {
 
     private val viewModel: SignInViewModel by inject()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.sign_in_activity)
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        return inflater.inflate(R.layout.sign_in, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         configViews()
         configViewModel()
@@ -34,7 +44,7 @@ class SignInActivity : AppCompatActivity() {
      */
     private fun configViews() {
         btnSignOut.setOnClickListener {
-            startActivity(Intent(this@SignInActivity, NewAccountActivity::class.java))
+            goToNewAccountScreen()
         }
 
         btnSignIn.setOnClickListener {
@@ -46,7 +56,7 @@ class SignInActivity : AppCompatActivity() {
      * Config viewModel state
      */
     private fun configViewModel() {
-        viewModel.getState().observe(this, Observer {
+        viewModel.getState().observe(viewLifecycleOwner, Observer {
             if (it.status == ViewState.Status.ERROR) {
                 showSignErrorMessage()
             } else if (it.status == ViewState.Status.SUCCESS) {
@@ -56,24 +66,31 @@ class SignInActivity : AppCompatActivity() {
     }
 
     /**
+     * Go to new Account Screen
+     */
+    private fun goToNewAccountScreen() {
+        val action = SignInFragmentDirections.actionSignInFragmentToNewAccountFragment()
+        findNavController().navigate(action)
+    }
+
+    /**
+     * Go to logged Screen
+     */
+    private fun goToLoggedScreen() {
+        val action =
+            SignInFragmentDirections.actionSignInFragmentToLoggedUserFragment()
+        findNavController().navigate(action)
+    }
+
+    /**
      * Show error message to user
      */
     private fun showSignErrorMessage() {
         Toast.makeText(
-            this@SignInActivity,
+            activity,
             "Failed to login in firebase. Try again!",
             Toast.LENGTH_LONG
         ).show()
-    }
-
-    /**
-     * Go to Logged Screen
-     */
-    private fun goToLoggedScreen() {
-        val loggedAct = Intent(this@SignInActivity, LoggedUserActivity::class.java)
-        loggedAct.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_NO_HISTORY
-        startActivity(loggedAct)
-        finishAffinity()
     }
 
     /**
