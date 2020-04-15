@@ -8,8 +8,10 @@ package com.example.presentation.di
 
 import com.example.data.session.FirebaseAuthUserDataSource
 import com.example.domain.interactor.auth.GetLoggedUserInteractor
+import com.example.domain.interactor.auth.LogoutInteractor
 import com.example.domain.interactor.auth.SignInUserInteractor
 import com.example.domain.repository.AuthenticationRepository
+import com.example.presentation.LoggedViewModel
 import com.example.presentation.SignInViewModel
 import com.example.presentation.SplashViewModel
 import org.koin.android.viewmodel.dsl.viewModel
@@ -30,12 +32,20 @@ val authenticationModule = module {
         SignInUserInteractor(authenticationRepository = get())
     }
 
+    factory {
+        LogoutInteractor(authenticationRepository = get())
+    }
+
     viewModel {
         SignInViewModel(signInUserInteractor = get())
     }
 
     viewModel {
-        SplashViewModel(getLoggedUserInteractor= get())
+        SplashViewModel(getLoggedUserInteractor = get())
+    }
+
+    viewModel {
+        LoggedViewModel(getLoggedUserInteractor = get(), logoutInteractor = get())
     }
 
 }

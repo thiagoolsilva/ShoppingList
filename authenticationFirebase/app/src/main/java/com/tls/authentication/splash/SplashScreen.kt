@@ -28,16 +28,6 @@ class SplashScreen : Fragment() {
         configViewModel()
     }
 
-    private fun configViewModel() {
-        slashViewModel.getUserState().observe(viewLifecycleOwner, Observer {
-            when (it.status) {
-                    ViewState.Status.SUCCESS
-                -> if (it.data != null) goToLoggedUserScreen() else goToSignInScreen()
-                ViewState.Status.ERROR -> findNavController().navigate(SplashScreenDirections.actionSplashScreenToSignInFragment())
-            }
-        })
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -49,6 +39,19 @@ class SplashScreen : Fragment() {
     override fun onResume() {
         super.onResume()
         slashViewModel.fetchUserState()
+    }
+
+    /**
+     * Config splash view model
+     */
+    private fun configViewModel() {
+        slashViewModel.getUserState().observe(viewLifecycleOwner, Observer {
+            when (it.status) {
+                ViewState.Status.SUCCESS
+                -> if (it.data != null) goToLoggedUserScreen() else goToSignInScreen()
+                ViewState.Status.ERROR -> findNavController().navigate(SplashScreenDirections.actionSplashScreenToSignInFragment())
+            }
+        })
     }
 
     /**
