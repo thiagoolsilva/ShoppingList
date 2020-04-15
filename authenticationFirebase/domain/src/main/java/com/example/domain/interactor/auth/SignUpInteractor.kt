@@ -14,8 +14,8 @@ class SignUpInteractor constructor(private val authenticationRepository: Authent
 
     suspend fun execute(parameter: LoginParameter): BasicUserInfo {
         return authenticationRepository.signUp(
-            password = parameter.email,
-            email = parameter.password
+            email = parameter.email,
+            password = parameter.password
         )
     }
 }
