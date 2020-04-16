@@ -1,2 +1,1 @@
-# thiagoolsilva-gmail.com
-firebaseKotlinSamples
+development in progress
