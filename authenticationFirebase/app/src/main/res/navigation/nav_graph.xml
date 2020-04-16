@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/splashScreen">
+    app:startDestination="@id/shoppingList2">
 
     <fragment
         android:id="@+id/loggedUserFragment"
@@ -54,4 +54,9 @@
             app:popUpTo="@id/splashScreen"
             app:popUpToInclusive="true" />
     </fragment>
+    <fragment
+        tools:layout="@layout/shopping_list"
+        android:id="@+id/shoppingList2"
+        android:name="com.tls.authentication.shoppinglist.ShoppingList"
+        android:label="ShoppingList" />
 </navigation>

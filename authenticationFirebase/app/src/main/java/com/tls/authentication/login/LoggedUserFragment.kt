@@ -20,7 +20,7 @@ import com.example.presentation.model.ViewState
 import com.tls.authentication.MainActivity
 import com.tls.authentication.R
 import com.tls.authentication.util.toEditable
-import kotlinx.android.synthetic.main.logged_user_activity.*
+import kotlinx.android.synthetic.main.logged_user.*
 import org.koin.android.ext.android.inject
 
 class LoggedUserFragment : Fragment() {
