@@ -17,7 +17,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.presentation.NewAccountViewModel
 import com.example.presentation.model.ViewState
 import com.tls.authentication.R
-import kotlinx.android.synthetic.main.new_account_activity.*
+import kotlinx.android.synthetic.main.new_account.*
 import org.koin.android.ext.android.inject
 
 class NewAccountFragment : Fragment() {

@@ -17,7 +17,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.presentation.SignInViewModel
 import com.example.presentation.model.ViewState
 import com.tls.authentication.R
-import kotlinx.android.synthetic.main.sign_in_activity.*
+import kotlinx.android.synthetic.main.sign_in.*
 import org.koin.android.ext.android.inject
 
 class SignInFragment : Fragment() {
