@@ -39,6 +39,16 @@ class ShoppingList : Fragment() {
 
         configRecyclerView()
         configViewModel()
+        configureSwipeRefreshLayout()
+    }
+
+    /**
+     * Config Swipe refresh layout
+     */
+    private fun configureSwipeRefreshLayout() {
+        swipeRefreshLayout.setOnRefreshListener {
+            fetchShoppingList()
+        }
     }
 
     /**
@@ -58,6 +68,7 @@ class ShoppingList : Fragment() {
      */
     private fun showListErrorMessage() {
         Toast.makeText(activity, "List not updated. Try Again!", Toast.LENGTH_SHORT).show()
+        swipeRefreshLayout.isRefreshing = false
     }
 
     /**
@@ -67,6 +78,7 @@ class ShoppingList : Fragment() {
         data?.let {
             adapter.submitList(data)
         }
+        swipeRefreshLayout.isRefreshing = false
     }
 
     /**
@@ -79,11 +91,18 @@ class ShoppingList : Fragment() {
         shoppingList.adapter = adapter
     }
 
+    /**
+     * Refresh shopping List data
+     */
+    private fun fetchShoppingList() {
+        shoppingListViewModel.fetchShoppingList()
+    }
+
     override fun onResume() {
         super.onResume()
 
         // always fetch new data from repository on onResume event
-        shoppingListViewModel.fetchShoppingList()
+       fetchShoppingList()
     }
 
 }

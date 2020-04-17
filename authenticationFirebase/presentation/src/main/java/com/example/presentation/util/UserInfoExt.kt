@@ -11,3 +11,4 @@ import com.example.presentation.model.UserInfoView
 
 fun BasicUserInfoEntity.toUserInfoView(): UserInfoView =
     UserInfoView(name = this.name ?: "", email = this.email)
+
