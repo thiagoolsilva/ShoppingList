@@ -6,12 +6,12 @@
 
 package com.example.domain.interactor.auth
 
-import com.example.domain.models.BasicUserInfo
+import com.example.domain.models.BasicUserInfoEntity
 import com.example.domain.repository.AuthenticationRepository
 
-class GetLoggedUserInteractor constructor(private val authenticationRepository: AuthenticationRepository<BasicUserInfo>) {
+class GetLoggedUserInteractor constructor(private val authenticationRepository: AuthenticationRepository<BasicUserInfoEntity>) {
 
-    suspend fun execute(): BasicUserInfo? {
+    suspend fun execute(): BasicUserInfoEntity? {
         return authenticationRepository.currentUser()
     }
 

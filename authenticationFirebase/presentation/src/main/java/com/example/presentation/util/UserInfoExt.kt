@@ -6,8 +6,8 @@
 
 package com.example.presentation.util
 
-import com.example.domain.models.BasicUserInfo
+import com.example.domain.models.BasicUserInfoEntity
 import com.example.presentation.model.UserInfoView
 
-fun BasicUserInfo.toUserInfoView(): UserInfoView =
+fun BasicUserInfoEntity.toUserInfoView(): UserInfoView =
     UserInfoView(name = this.name ?: "", email = this.email)

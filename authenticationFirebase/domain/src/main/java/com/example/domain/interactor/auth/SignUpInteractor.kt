@@ -6,16 +6,16 @@
 
 package com.example.domain.interactor.auth
 
-import com.example.domain.models.BasicUserInfo
-import com.example.domain.models.LoginParameter
+import com.example.domain.models.BasicUserInfoEntity
+import com.example.domain.models.LoginParameterEntity
 import com.example.domain.repository.AuthenticationRepository
 
-class SignUpInteractor constructor(private val authenticationRepository: AuthenticationRepository<BasicUserInfo>) {
+class SignUpInteractor constructor(private val authenticationRepository: AuthenticationRepository<BasicUserInfoEntity>) {
 
-    suspend fun execute(parameter: LoginParameter): BasicUserInfo {
+    suspend fun execute(parameterEntity: LoginParameterEntity): BasicUserInfoEntity {
         return authenticationRepository.signUp(
-            email = parameter.email,
-            password = parameter.password
+            email = parameterEntity.email,
+            password = parameterEntity.password
         )
     }
 }
