@@ -13,25 +13,25 @@ import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.presentation.model.BasicShoppingListView
+import com.example.presentation.model.ShoppingListView
 import com.tls.authentication.R
 
 class ShoppingListAdapter :
-    ListAdapter<BasicShoppingListView, ShoppingListAdapter.BasicShoppingListViewHolder>(
+    ListAdapter<ShoppingListView, ShoppingListAdapter.BasicShoppingListViewHolder>(
         DIFF_CALLBACK
     ) {
 
     companion object {
-        val DIFF_CALLBACK = object : DiffUtil.ItemCallback<BasicShoppingListView>() {
+        val DIFF_CALLBACK = object : DiffUtil.ItemCallback<ShoppingListView>() {
 
             override fun areItemsTheSame(
-                oldItem: BasicShoppingListView,
-                newItem: BasicShoppingListView
+                oldItem: ShoppingListView,
+                newItem: ShoppingListView
             ): Boolean = oldItem.shoppingListId == newItem.shoppingListId
 
             override fun areContentsTheSame(
-                oldItem: BasicShoppingListView,
-                newItem: BasicShoppingListView
+                oldItem: ShoppingListView,
+                newItem: ShoppingListView
             ): Boolean = oldItem.shoppingListId == newItem.shoppingListId
 
         }
@@ -50,9 +50,9 @@ class ShoppingListAdapter :
 
     class BasicShoppingListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        fun bindTo(basicShoppingListView: BasicShoppingListView) {
+        fun bindTo(shoppingListView: ShoppingListView) {
             val cardView = itemView.findViewById(R.id.itemName) as TextView
-            cardView.text = basicShoppingListView.name
+            cardView.text = shoppingListView.name
         }
 
     }

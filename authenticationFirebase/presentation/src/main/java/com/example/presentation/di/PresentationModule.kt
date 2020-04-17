@@ -7,15 +7,15 @@
 package com.example.presentation.di
 
 import com.example.data.session.FirebaseAuthUserDataSource
+import com.example.data.shoppinglist.FirebaseShoppingListDataSource
 import com.example.domain.interactor.auth.GetLoggedUserInteractor
 import com.example.domain.interactor.auth.LogoutInteractor
 import com.example.domain.interactor.auth.SignInUserInteractor
 import com.example.domain.interactor.auth.SignUpInteractor
 import com.example.domain.repository.AuthenticationRepository
-import com.example.presentation.LoggedViewModel
-import com.example.presentation.NewAccountViewModel
-import com.example.presentation.SignInViewModel
-import com.example.presentation.SplashViewModel
+import com.example.domain.repository.ShoppingListRepository
+import com.example.domain.shoppinglist.GetShoppingListsInteractor
+import com.example.presentation.*
 import org.koin.android.viewmodel.dsl.viewModel
 import org.koin.dsl.bind
 import org.koin.dsl.module
@@ -25,6 +25,10 @@ val authenticationModule = module {
     single {
         FirebaseAuthUserDataSource()
     } bind AuthenticationRepository::class
+
+    single {
+        FirebaseShoppingListDataSource()
+    } bind ShoppingListRepository::class
 
     factory {
         GetLoggedUserInteractor(authenticationRepository = get())
@@ -42,6 +46,10 @@ val authenticationModule = module {
         SignUpInteractor(authenticationRepository = get())
     }
 
+    factory {
+        GetShoppingListsInteractor(shoppingListRepository = get())
+    }
+
     viewModel {
         SignInViewModel(signInUserInteractor = get())
     }
@@ -56,6 +64,9 @@ val authenticationModule = module {
 
     viewModel {
         NewAccountViewModel(signUpInteractor = get())
+    }
+    viewModel {
+        ShoppingListViewModel(getShoppingListsInteractor = get())
     }
 
 }
