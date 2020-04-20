@@ -40,7 +40,7 @@ class ShoppingListAdapter :
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BasicShoppingListViewHolder {
         return BasicShoppingListViewHolder(
             LayoutInflater.from(parent.context)
-                .inflate(R.layout.item_shopping_list, parent, false)
+                .inflate(R.layout.shopping_list_item, parent, false)
         )
     }
 
