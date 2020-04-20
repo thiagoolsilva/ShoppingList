@@ -6,8 +6,13 @@
 
 package com.example.domain.repository
 
+import com.example.domain.models.BasicShoppingListEntity
+import com.example.domain.models.ShoppingListEntity
+
 interface ShoppingListRepository<T> {
 
     suspend fun getShoppingLists(): List<T>
+
+    suspend fun saveShoppingList(BasicShoppingListEntity: BasicShoppingListEntity) : String
 
 }
