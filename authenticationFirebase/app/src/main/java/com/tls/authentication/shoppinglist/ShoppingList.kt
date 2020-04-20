@@ -14,6 +14,8 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.NavigationUI
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.presentation.ShoppingListViewModel
 import com.example.presentation.model.ShoppingListView
@@ -49,7 +51,7 @@ class ShoppingList : Fragment() {
      */
     private fun configViews() {
         fb.setOnClickListener {
-            val action = ShoppingListDirections.actionShoppingListToShoppingListDetails()
+            val action = ShoppingListDirections.actionShoppingListToNewShoppingList()
             findNavController().navigate(action)
         }
     }
@@ -114,7 +116,7 @@ class ShoppingList : Fragment() {
         super.onResume()
 
         // always fetch new data from repository on onResume event
-       fetchShoppingList()
+        fetchShoppingList()
     }
 
 }

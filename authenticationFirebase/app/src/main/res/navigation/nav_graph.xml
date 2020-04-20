@@ -57,7 +57,7 @@
     <fragment
         android:id="@+id/shoppingList"
         android:name="com.tls.authentication.shoppinglist.ShoppingList"
-        android:label="ShoppingList"
+        android:label="Minha Lista"
         tools:layout="@layout/shopping_list">
         <action
             android:id="@+id/action_shoppingList_to_shoppingListDetails"
@@ -66,10 +66,18 @@
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@android:anim/slide_in_left"
             app:popExitAnim="@android:anim/slide_out_right" />
+        <action
+            android:id="@+id/action_shoppingList_to_newShoppingList"
+            app:destination="@id/newShoppingList" />
     </fragment>
     <fragment
         android:id="@+id/shoppingListDetails"
         android:name="com.tls.authentication.shoppinglistdetails.ShoppingListDetails"
         android:label="ShoppingListDetails"
         tools:layout="@layout/shoppint_list_details" />
+    <fragment
+        tools:layout="@layout/new_shopping_list"
+        android:id="@+id/newShoppingList"
+        android:name="com.tls.authentication.newshoppinglist.NewShoppingList"
+        android:label="Nova Lista" />
 </navigation>
