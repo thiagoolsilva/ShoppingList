@@ -13,6 +13,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.presentation.ShoppingListViewModel
 import com.example.presentation.model.ShoppingListView
@@ -40,6 +41,17 @@ class ShoppingList : Fragment() {
         configRecyclerView()
         configViewModel()
         configureSwipeRefreshLayout()
+        configViews()
+    }
+
+    /**
+     * Config views
+     */
+    private fun configViews() {
+        fb.setOnClickListener {
+            val action = ShoppingListDirections.actionShoppingListToShoppingListDetails()
+            findNavController().navigate(action)
+        }
     }
 
     /**

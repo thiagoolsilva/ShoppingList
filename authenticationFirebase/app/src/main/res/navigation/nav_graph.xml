@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/shoppingList2">
+    app:startDestination="@id/shoppingList">
 
     <fragment
         android:id="@+id/loggedUserFragment"
@@ -55,8 +55,21 @@
             app:popUpToInclusive="true" />
     </fragment>
     <fragment
-        tools:layout="@layout/shopping_list"
-        android:id="@+id/shoppingList2"
+        android:id="@+id/shoppingList"
         android:name="com.tls.authentication.shoppinglist.ShoppingList"
-        android:label="ShoppingList" />
+        android:label="ShoppingList"
+        tools:layout="@layout/shopping_list">
+        <action
+            android:id="@+id/action_shoppingList_to_shoppingListDetails"
+            app:destination="@id/shoppingListDetails"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/shoppingListDetails"
+        android:name="com.tls.authentication.shoppinglistdetails.ShoppingListDetails"
+        android:label="ShoppingListDetails"
+        tools:layout="@layout/shoppint_list_details" />
 </navigation>
