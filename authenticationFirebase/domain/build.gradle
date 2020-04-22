@@ -32,7 +32,8 @@ dependencies {
     implementation 'androidx.core:core-ktx:1.2.0'
     api project(path : ':shared')
 
-//    implementation 'com.jakewharton.timber:timber:4.7.1'
+    implementation "com.jakewharton.timber:timber:$timber_version"
+
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
