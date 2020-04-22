@@ -6,16 +6,15 @@
 
 package com.example.domain.shoppinglist
 
-import com.example.domain.models.BasicShoppingListEntity
+import com.example.domain.models.InputShoppingListEntity
 import com.example.domain.models.BasicUserInfoEntity
-import com.example.domain.models.ShoppingListEntity
 import com.example.domain.repository.AuthenticationRepository
 import com.example.domain.repository.ShoppingListRepository
 import com.example.shared.exception.UserNotLogged
 import java.util.*
 
 class SaveShoppingListNameInteractor constructor(
-    private val shoppingListRepository: ShoppingListRepository<ShoppingListEntity>,
+    private val shoppingListRepository: ShoppingListRepository,
     private val authenticationRepository: AuthenticationRepository<BasicUserInfoEntity>
 ) {
 
@@ -29,7 +28,11 @@ class SaveShoppingListNameInteractor constructor(
 
             val shoppingListId = UUID.randomUUID().toString()
             val basicShoppingListEntity =
-                BasicShoppingListEntity(name = shoppingListName, owner = currentUser.id, uuid = shoppingListId)
+                InputShoppingListEntity(
+                    name = shoppingListName,
+                    owner = currentUser.id,
+                    uuid = shoppingListId
+                )
 
             return shoppingListRepository.saveShoppingList(basicShoppingListEntity)
         } else {

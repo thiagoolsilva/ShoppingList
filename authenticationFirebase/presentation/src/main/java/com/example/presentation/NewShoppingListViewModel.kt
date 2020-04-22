@@ -13,7 +13,6 @@ import com.example.domain.shoppinglist.SaveShoppingListNameInteractor
 import com.example.presentation.model.ViewState
 import com.example.shared.exception.UserNotLogged
 import kotlinx.coroutines.launch
-import timber.log.Timber
 
 class NewShoppingListViewModel constructor(private val saveShoppingListNameInteractor: SaveShoppingListNameInteractor) :
     ViewModel() {

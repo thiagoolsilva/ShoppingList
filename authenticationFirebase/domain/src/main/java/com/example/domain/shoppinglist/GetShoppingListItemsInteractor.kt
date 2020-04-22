@@ -7,24 +7,23 @@
 package com.example.domain.shoppinglist
 
 import com.example.domain.models.BasicUserInfoEntity
-import com.example.domain.models.ShoppingListEntity
+import com.example.domain.models.ShoppingListItemEntity
 import com.example.domain.repository.AuthenticationRepository
 import com.example.domain.repository.ShoppingListRepository
 import com.example.shared.exception.UserNotLogged
 
-class GetShoppingListsInteractor constructor(
+class GetShoppingListItemsInteractor constructor(
     private val shoppingListRepository: ShoppingListRepository,
     private val authenticationRepository: AuthenticationRepository<BasicUserInfoEntity>
 ) {
 
-    /**
-     * Gets all items from provided shopping id
-     */
-    suspend fun execute(): List<ShoppingListEntity> {
-        // get logged user
+    suspend fun execute(shoppingListId: String): List<ShoppingListItemEntity> {
         val currentUser = authenticationRepository.currentUser()
         if (currentUser != null) {
-            return shoppingListRepository.getShoppingLists(currentUser.id)
+            return shoppingListRepository.getShoppingListItems(
+                shoppingListId = shoppingListId,
+                owner = currentUser.id
+            )
         } else {
             throw UserNotLogged("user not logged.")
         }

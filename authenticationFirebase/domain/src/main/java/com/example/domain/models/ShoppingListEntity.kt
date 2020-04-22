@@ -7,12 +7,19 @@
 package com.example.domain.models
 
 // in
-data class BasicShoppingListEntity constructor(
+data class InputShoppingListEntity constructor(
     var name: String,
     var owner: String,
     var creationDate: Any? = null,
-    var uuid:String
+    var uuid: String
 )
+
+data class InputShoppingListItemEntity constructor(
+    var description: String = "",
+    var check: Boolean = false,
+    var uuid:String
+) {}
+
 
 // out
 data class ShoppingListEntity constructor(
@@ -20,3 +27,10 @@ data class ShoppingListEntity constructor(
     val owner: String = "",
     val uuid: String = ""
 ) {}
+
+data class ShoppingListItemEntity constructor(
+    val shoppingListId: String = "",
+    val item: String = "",
+    val check:Boolean = false,
+    var uuid:String = ""
+)
