@@ -15,5 +15,5 @@ import com.example.presentation.model.ShoppingListView
 fun ShoppingListEntity.toShoppingListView(): ShoppingListView =
     ShoppingListView(name = this.name, shoppingListId = this.uuid)
 
-fun ShoppingListItemEntity.toShoppingListItemView() : ShoppingListItemView =
-    ShoppingListItemView(description = this.item, shoppingId = this.shoppingListId, check = this.check)
+fun ShoppingListItemEntity.toShoppingListItemView(): ShoppingListItemView =
+    ShoppingListItemView(description = this.description, check = this.check, uuid = this.uuid)

@@ -24,9 +24,11 @@ class FirebaseShoppingListDataSource : ShoppingListRepository {
     private val db = Firebase.firestore
 
     companion object ShoppingList {
+        const val SHOPPING_LIST_ITEM = "shoppingItem"
         const val SHOPPING_LIST_NODE = "shoppingList"
         const val FIELD_OWNER_FIELD = "owner"
         const val FIELD_SHOPPING_UUID = "uuid"
+        const val FIELD_SHOPPING_LIST_ID = "shoppingListId"
         const val SHOPPING_ITEM_NODE = "items"
     }
 
@@ -85,8 +87,8 @@ class FirebaseShoppingListDataSource : ShoppingListRepository {
         owner: String
     ): List<ShoppingListItemEntity> {
         return suspendCoroutine { continuation ->
-            db.collection(SHOPPING_LIST_NODE)
-                .whereEqualTo(FIELD_SHOPPING_UUID, shoppingListId)
+            db.collection(SHOPPING_LIST_ITEM)
+                .whereEqualTo(FIELD_SHOPPING_LIST_ID, shoppingListId)
                 .whereEqualTo(FIELD_OWNER_FIELD, owner)
                 .get()
                 .addOnSuccessListener { result ->
@@ -101,11 +103,10 @@ class FirebaseShoppingListDataSource : ShoppingListRepository {
 
     override suspend fun saveShoppingListItem(inputShoppingListItemEntity: InputShoppingListItemEntity): String {
         return suspendCoroutine { continuation ->
-            db.collection(SHOPPING_LIST_NODE)
-                .document(SHOPPING_ITEM_NODE)
-                .set(inputShoppingListItemEntity, SetOptions.merge())
+            db.collection(SHOPPING_LIST_ITEM)
+                .add(inputShoppingListItemEntity)
                 .addOnSuccessListener {
-                    continuation.resume("Success")
+                    continuation.resume(it.id)
                 }.addOnFailureListener {
                     continuation.resumeWithException(it)
                 }

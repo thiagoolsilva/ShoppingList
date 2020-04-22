@@ -43,11 +43,34 @@ class ShoppingListDetails : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        configViews()
         configReceivedShoppingId()
         configViewModel()
         configRecyclerView()
     }
 
+    /**
+     * config views
+     */
+    private fun configViews() {
+        addShoppingItem.setOnClickListener {
+
+            val itemDescription = txtInputEdtText.text.toString()
+            shoppingListItemViewModel.saveShoppingListItem(itemDescription, shoppingListId)
+
+            txtInputEdtText.text?.clear()
+            txtInputEdtText.clearFocus()
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        fetchNewShoppingItems()
+    }
+
+    /**
+     * Config recycler view
+     */
     private fun configRecyclerView() {
         adapter = ShoppingListItemAdapter()
 
@@ -55,11 +78,17 @@ class ShoppingListDetails : Fragment() {
         shoppingListItems.adapter = adapter
     }
 
+    /**
+     * config received shopping id
+     */
     private fun configReceivedShoppingId() {
         shoppingListId = arguments?.getString(ARGUMENT_SHOPPING_ID) ?: ""
         Timber.d("Received item %s", shoppingListId)
     }
 
+    /**
+     * Config view models
+     */
     private fun configViewModel() {
         shoppingListItemViewModel.saveShoppingListItemState.observe(viewLifecycleOwner, Observer {
             when (it.status) {
@@ -76,18 +105,30 @@ class ShoppingListDetails : Fragment() {
         })
     }
 
+    /**
+     * Show save error message
+     */
     private fun showSaveErrorMessage() {
         Toast.makeText(activity, "Try again.", Toast.LENGTH_SHORT).show()
     }
 
+    /**
+     * Show get item error message
+     */
     private fun showGetItemsErrorMessage() {
         Toast.makeText(activity, "Error. Try Again.", Toast.LENGTH_SHORT).show()
     }
 
+    /**
+     * Fetch new shopping items
+     */
     private fun fetchNewShoppingItems() {
         shoppingListItemViewModel.getShoppingItems(shoppingListId = shoppingListId)
     }
 
+    /**
+     * reload adapter
+     */
     private fun reloadAdapter(data: List<ShoppingListItemView>?) {
         adapter.submitList(data)
     }

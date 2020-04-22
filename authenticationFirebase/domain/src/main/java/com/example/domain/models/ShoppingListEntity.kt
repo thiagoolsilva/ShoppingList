@@ -17,20 +17,20 @@ data class InputShoppingListEntity constructor(
 data class InputShoppingListItemEntity constructor(
     var description: String = "",
     var check: Boolean = false,
-    var uuid:String
-) {}
-
+    var uuid:String,
+    var owner: String,
+    var shoppingListId:String
+)
 
 // out
 data class ShoppingListEntity constructor(
     val name: String = "",
     val owner: String = "",
     val uuid: String = ""
-) {}
+)
 
 data class ShoppingListItemEntity constructor(
-    val shoppingListId: String = "",
-    val item: String = "",
-    val check:Boolean = false,
+    var description: String = "",
+    var check: Boolean = false,
     var uuid:String = ""
 )
