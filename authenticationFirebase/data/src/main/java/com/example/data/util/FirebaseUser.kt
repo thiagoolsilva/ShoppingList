@@ -10,4 +10,4 @@ import com.example.domain.models.BasicUserInfoEntity
 import com.google.firebase.auth.FirebaseUser
 
 fun FirebaseUser.toBasicUserInfo(): BasicUserInfoEntity =
-    BasicUserInfoEntity(name = this.displayName ?: "", email = this.email ?: "")
+    BasicUserInfoEntity(name = this.displayName ?: "", email = this.email ?: "", id = this.uid)

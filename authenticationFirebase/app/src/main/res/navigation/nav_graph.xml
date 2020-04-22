@@ -68,7 +68,11 @@
             app:popExitAnim="@android:anim/slide_out_right" />
         <action
             android:id="@+id/action_shoppingList_to_newShoppingList"
-            app:destination="@id/newShoppingList" />
+            app:destination="@id/newShoppingList"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/shoppingListDetails"
@@ -76,8 +80,8 @@
         android:label="ShoppingListDetails"
         tools:layout="@layout/shoppint_list_details" />
     <fragment
-        tools:layout="@layout/new_shopping_list"
         android:id="@+id/newShoppingList"
         android:name="com.tls.authentication.newshoppinglist.NewShoppingList"
-        android:label="Nova Lista" />
+        android:label="Nova Lista"
+        tools:layout="@layout/new_shopping_list" />
 </navigation>
