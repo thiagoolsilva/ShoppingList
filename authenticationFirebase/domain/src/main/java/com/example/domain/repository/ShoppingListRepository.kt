@@ -10,7 +10,7 @@ import com.example.domain.models.BasicShoppingListEntity
 
 interface ShoppingListRepository<T> {
 
-    suspend fun getShoppingLists(): List<T>
+    suspend fun getShoppingLists(owner:String): List<T>
 
     suspend fun saveShoppingList(BasicShoppingListEntity: BasicShoppingListEntity) : String
 

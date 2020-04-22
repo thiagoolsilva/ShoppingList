@@ -7,6 +7,7 @@
 package com.tls.authentication.shoppinglist
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,12 +15,11 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.NavigationUI
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.presentation.ShoppingListViewModel
 import com.example.presentation.model.ShoppingListView
 import com.example.presentation.model.ViewState
+import com.example.shared.exception.UserNotLogged
 import com.tls.authentication.R
 import kotlinx.android.synthetic.main.shopping_list.*
 import org.koin.android.ext.android.inject
@@ -72,7 +72,7 @@ class ShoppingList : Fragment() {
         shoppingListViewModel.shoppingListState.observe(viewLifecycleOwner, Observer {
             when (it.status) {
                 ViewState.Status.SUCCESS -> updateList(it.data)
-                ViewState.Status.ERROR -> showListErrorMessage()
+                ViewState.Status.ERROR -> showListErrorMessage(it.error)
             }
         })
     }
@@ -80,8 +80,14 @@ class ShoppingList : Fragment() {
     /**
      * Show list error message
      */
-    private fun showListErrorMessage() {
-        Toast.makeText(activity, "List not updated. Try Again!", Toast.LENGTH_SHORT).show()
+    private fun showListErrorMessage(error: Throwable?) {
+        if (error is UserNotLogged) {
+            // TODO go to not logged screen
+            Toast.makeText(activity, "User not logged", Toast.LENGTH_SHORT).show()
+        } else {
+            Toast.makeText(activity, "List not updated. Try Again!", Toast.LENGTH_SHORT).show()
+        }
+        // hide swipe refresh layout
         swipeRefreshLayout.isRefreshing = false
     }
 

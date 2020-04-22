@@ -48,7 +48,7 @@ val authenticationModule = module {
     }
 
     factory {
-        GetShoppingListsInteractor(shoppingListRepository = get())
+        GetShoppingListsInteractor(shoppingListRepository = get(), authenticationRepository = get())
     }
 
     factory {

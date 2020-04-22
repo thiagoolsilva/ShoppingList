@@ -14,7 +14,6 @@ import com.example.presentation.model.ShoppingListView
 import com.example.presentation.model.ViewState
 import com.example.presentation.util.toShoppingListView
 import kotlinx.coroutines.launch
-import java.lang.Exception
 
 class ShoppingListViewModel constructor(private val getShoppingListsInteractor: GetShoppingListsInteractor) :
     ViewModel() {
