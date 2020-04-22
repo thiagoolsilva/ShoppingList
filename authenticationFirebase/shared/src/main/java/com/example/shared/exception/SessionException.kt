@@ -4,7 +4,7 @@
  *
  */
 
-package com.example.domain.exception
+package com.example.shared.exception
 
 class UserNotLogged constructor(message:String): Exception(message) {}
 

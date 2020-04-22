@@ -14,6 +14,7 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.example.presentation.NewShoppingListViewModel
 import com.example.presentation.model.ViewState
+import com.example.shared.exception.UserNotLogged
 import com.tls.authentication.R
 import kotlinx.android.synthetic.main.new_shopping_list.*
 import org.koin.android.ext.android.inject
@@ -58,7 +59,7 @@ class NewShoppingList : Fragment() {
         newShoppingListViewModel.shoppingListState.observe(viewLifecycleOwner, Observer {
             when (it.status) {
                 ViewState.Status.SUCCESS -> goToShoppingListScreen()
-                ViewState.Status.ERROR -> showErrorMessage()
+                ViewState.Status.ERROR -> showErrorMessage(it.error)
             }
         })
     }
@@ -69,16 +70,23 @@ class NewShoppingList : Fragment() {
     private fun saveShoppingList() {
         val shoppingListName = newShoppingList.text.toString()
         if (!shoppingListName.isEmpty()) newShoppingListViewModel.saveShoppingListName(
-            name = shoppingListName,
-            owner = "fake"
+            name = shoppingListName
         ) else Toast.makeText(activity, "Empty shoppping list name", Toast.LENGTH_SHORT).show()
     }
 
     /**
      * Show error message
      */
-    private fun showErrorMessage() {
-        Toast.makeText(activity, "Shopping list not saved. Try again", Toast.LENGTH_SHORT).show()
+    private fun showErrorMessage(error: Throwable?) {
+        error?.let {
+            if (it is UserNotLogged) {
+                // TODO go to not logged screen
+                findNavController().popBackStack()
+            } else {
+                Toast.makeText(activity, "Shopping list not saved. Try again", Toast.LENGTH_SHORT)
+                    .show()
+            }
+        }
     }
 
     /**

@@ -30,6 +30,7 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'androidx.core:core-ktx:1.2.0'
+    api project(path : ':shared')
 
 //    implementation 'com.jakewharton.timber:timber:4.7.1'
 

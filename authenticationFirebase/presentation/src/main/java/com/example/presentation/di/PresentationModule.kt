@@ -52,7 +52,7 @@ val authenticationModule = module {
     }
 
     factory {
-        SaveShoppingListNameInteractor(shoppingListRepository = get())
+        SaveShoppingListNameInteractor(shoppingListRepository = get(), authenticationRepository = get())
     }
 
     viewModel {

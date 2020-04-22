@@ -6,4 +6,4 @@
 
 package com.example.presentation.model
 
-data class ShoppingListView constructor(val name:String, val shoppingListId:String, val id:String) {}
+data class ShoppingListView constructor(val name:String, val shoppingListId:String) {}

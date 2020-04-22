@@ -10,4 +10,4 @@ package com.example.domain.models
 data class LoginParameterEntity constructor(val email: String, val password: String)
 
 // out
-data class BasicUserInfoEntity constructor(val email:String, val name:String?)
+data class BasicUserInfoEntity constructor(val email:String, val name:String?, val id:String)
