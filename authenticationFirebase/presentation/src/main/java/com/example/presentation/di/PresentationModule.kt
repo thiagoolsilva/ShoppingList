@@ -14,7 +14,9 @@ import com.example.domain.interactor.auth.SignInUserInteractor
 import com.example.domain.interactor.auth.SignUpInteractor
 import com.example.domain.repository.AuthenticationRepository
 import com.example.domain.repository.ShoppingListRepository
+import com.example.domain.shoppinglist.GetShoppingListItemsInteractor
 import com.example.domain.shoppinglist.GetShoppingListsInteractor
+import com.example.domain.shoppinglist.SaveShoppingListItemInteractor
 import com.example.domain.shoppinglist.SaveShoppingListNameInteractor
 import com.example.presentation.*
 import org.koin.android.viewmodel.dsl.viewModel
@@ -53,6 +55,18 @@ val authenticationModule = module {
 
     factory {
         SaveShoppingListNameInteractor(shoppingListRepository = get(), authenticationRepository = get())
+    }
+
+    factory {
+        GetShoppingListItemsInteractor(authenticationRepository = get(), shoppingListRepository = get())
+    }
+
+    factory {
+        SaveShoppingListItemInteractor(shoppingListRepository = get(), authenticationRepository = get())
+    }
+
+    viewModel {
+        ShoppingListItemViewModel(getShoppingListItemsInteractor = get(), saveShoppingListItemInteractor = get())
     }
 
     viewModel {

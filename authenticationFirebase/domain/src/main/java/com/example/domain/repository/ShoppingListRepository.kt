@@ -6,12 +6,24 @@
 
 package com.example.domain.repository
 
-import com.example.domain.models.BasicShoppingListEntity
+import com.example.domain.models.InputShoppingListEntity
+import com.example.domain.models.InputShoppingListItemEntity
+import com.example.domain.models.ShoppingListEntity
+import com.example.domain.models.ShoppingListItemEntity
 
-interface ShoppingListRepository<T> {
+interface ShoppingListRepository {
 
-    suspend fun getShoppingLists(owner:String): List<T>
+    suspend fun isShoppingListOwner(shoppingListId: String, owner: String) : Boolean
 
-    suspend fun saveShoppingList(BasicShoppingListEntity: BasicShoppingListEntity) : String
+    suspend fun getShoppingLists(owner: String): List<ShoppingListEntity>
+
+    suspend fun saveShoppingList(InputShoppingListEntity: InputShoppingListEntity): String
+
+    suspend fun getShoppingListItems(
+        shoppingListId: String,
+        owner: String
+    ): List<ShoppingListItemEntity>
+
+    suspend fun saveShoppingListItem(inputShoppingListItemEntity: InputShoppingListItemEntity): String
 
 }
