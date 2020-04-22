@@ -7,10 +7,10 @@
 package com.example.data.session
 
 import com.example.data.util.toBasicUserInfo
-import com.example.shared.exception.UserNotFound
-import com.example.shared.exception.UserNotLogged
 import com.example.domain.models.BasicUserInfoEntity
 import com.example.domain.repository.AuthenticationRepository
+import com.example.shared.exception.UserNotFound
+import com.example.shared.exception.UserNotLogged
 import com.google.firebase.auth.FirebaseAuth
 import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException

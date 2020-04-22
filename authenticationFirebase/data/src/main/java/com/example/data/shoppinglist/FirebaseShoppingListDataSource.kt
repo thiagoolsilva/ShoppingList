@@ -4,7 +4,7 @@
  *
  */
 
-package com.example.data .shoppinglist
+package com.example.data.shoppinglist
 
 import com.example.domain.models.BasicShoppingListEntity
 import com.example.domain.models.ShoppingListEntity
@@ -20,13 +20,18 @@ class FirebaseShoppingListDataSource : ShoppingListRepository<ShoppingListEntity
 
     private val db = Firebase.firestore
 
-    companion object {
-        private const val SHOPPING_LIST_NODE = "shoppingList"
+    companion object ShoppingList {
+
+        const val SHOPPING_LIST_NODE = "shoppingList"
+        const val FIELD_FIELD_OWNER_FIELD = "owner"
+
     }
 
-    override suspend fun getShoppingLists(): List<ShoppingListEntity> {
+
+    override suspend fun getShoppingLists(owner: String): List<ShoppingListEntity> {
         return suspendCoroutine { continuation ->
             db.collection(SHOPPING_LIST_NODE)
+                .whereEqualTo(FIELD_FIELD_OWNER_FIELD, owner)
                 .get()
                 .addOnSuccessListener { result ->
                     val shoppingListNames = result.toObjects(ShoppingListEntity::class.java)
