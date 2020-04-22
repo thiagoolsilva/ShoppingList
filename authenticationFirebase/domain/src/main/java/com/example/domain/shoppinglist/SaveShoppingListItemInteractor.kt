@@ -32,7 +32,9 @@ class SaveShoppingListItemInteractor constructor(
                 return shoppingListRepository.saveShoppingListItem(
                     InputShoppingListItemEntity(
                         description = itemDescription,
-                        uuid = UUID.randomUUID().toString()
+                        uuid = UUID.randomUUID().toString(),
+                        owner = currentUser.id,
+                        shoppingListId = shoppingListId
                     )
                 )
             } else {
