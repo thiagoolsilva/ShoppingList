@@ -13,6 +13,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.tls.authentication.R
+import timber.log.Timber
 
 class ShoppingListDetails : Fragment() {
 
@@ -31,8 +32,7 @@ class ShoppingListDetails : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val shoppingId = arguments?.getString(ARGUMENT_SHOPPING_ID)
-        Log.d("lopes-shoppingDetails", shoppingId ?: "")
-
+        Timber.d("Received item %s", shoppingId ?: "")
     }
 
 }

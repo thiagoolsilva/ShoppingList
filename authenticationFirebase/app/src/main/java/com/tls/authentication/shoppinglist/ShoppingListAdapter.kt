@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.presentation.model.ShoppingListView
 import com.tls.authentication.R
+import timber.log.Timber
 
 class ShoppingListAdapter constructor(private val navController: NavController) :
     ListAdapter<ShoppingListView, ShoppingListAdapter.BasicShoppingListViewHolder>(
@@ -57,8 +58,12 @@ class ShoppingListAdapter constructor(private val navController: NavController) 
 
             itemView.setOnClickListener {
                 val selectedShoppingId = shoppingListView.shoppingListId
+                Timber.d("Selected item %s", selectedShoppingId)
+
                 val direction =
-                    ShoppingListDirections.actionShoppingListToShoppingListDetails(selectedShoppingId)
+                    ShoppingListDirections.actionShoppingListToShoppingListDetails(
+                        selectedShoppingId
+                    )
                 navController.navigate(direction)
             }
 
