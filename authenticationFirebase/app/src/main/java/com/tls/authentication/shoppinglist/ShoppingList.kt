@@ -99,7 +99,7 @@ class ShoppingList : Fragment() {
      * config recycler view
      */
     private fun configRecyclerView() {
-        adapter = ShoppingListAdapter()
+        adapter = ShoppingListAdapter(findNavController())
 
         shoppingList.layoutManager = LinearLayoutManager(activity)
         shoppingList.adapter = adapter

@@ -10,13 +10,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.navigation.NavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.presentation.model.ShoppingListView
 import com.tls.authentication.R
 
-class ShoppingListAdapter :
+class ShoppingListAdapter constructor(private val navController: NavController) :
     ListAdapter<ShoppingListView, ShoppingListAdapter.BasicShoppingListViewHolder>(
         DIFF_CALLBACK
     ) {
@@ -45,14 +46,22 @@ class ShoppingListAdapter :
     }
 
     override fun onBindViewHolder(holder: BasicShoppingListViewHolder, position: Int) {
-        holder.bindTo(getItem(position))
+        holder.bindTo(getItem(position), navController)
     }
 
     class BasicShoppingListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        fun bindTo(shoppingListView: ShoppingListView) {
+        fun bindTo(shoppingListView: ShoppingListView, navController: NavController) {
             val cardView = itemView.findViewById(R.id.itemName) as TextView
             cardView.text = shoppingListView.name
+
+            itemView.setOnClickListener {
+                val selectedShoppingId = shoppingListView.shoppingListId
+                val direction =
+                    ShoppingListDirections.actionShoppingListToShoppingListDetails(selectedShoppingId)
+                navController.navigate(direction)
+            }
+
         }
 
     }

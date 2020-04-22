@@ -78,7 +78,11 @@
         android:id="@+id/shoppingListDetails"
         android:name="com.tls.authentication.shoppinglistdetails.ShoppingListDetails"
         android:label="ShoppingListDetails"
-        tools:layout="@layout/shoppint_list_details" />
+        tools:layout="@layout/shopping_list_details">
+        <argument
+            android:name="shoppingId"
+            app:argType="string" />
+    </fragment>
     <fragment
         android:id="@+id/newShoppingList"
         android:name="com.tls.authentication.newshoppinglist.NewShoppingList"
