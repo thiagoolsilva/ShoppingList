@@ -15,6 +15,7 @@ import com.example.presentation.model.UserInfoView
 import com.example.presentation.model.ViewState
 import com.example.presentation.util.toUserInfoView
 import kotlinx.coroutines.launch
+import timber.log.Timber
 
 class LoggedViewModel constructor(
     private val getLoggedUserInteractor: GetLoggedUserInteractor,
@@ -64,6 +65,8 @@ class LoggedViewModel constructor(
 
                 logoutState.postValue(ViewState(ViewState.Status.SUCCESS))
             } catch (error:Exception) {
+                Timber.e(error)
+
                 logoutState.postValue(ViewState(ViewState.Status.ERROR, error = error))
             }
         }

@@ -16,6 +16,7 @@ import com.example.presentation.model.UserInfoView
 import com.example.presentation.model.ViewState
 import com.example.presentation.util.toUserInfoView
 import kotlinx.coroutines.launch
+import timber.log.Timber
 
 class SignInViewModel constructor(private val signInUserInteractor: SignInUserInteractor) :
     ViewModel() {
@@ -43,6 +44,8 @@ class SignInViewModel constructor(private val signInUserInteractor: SignInUserIn
                 currentLiveState.postValue(ViewState(ViewState.Status.SUCCESS, authenticatedUser))
 
             } catch (error: Exception) {
+                Timber.e(error)
+
                 currentLiveState.postValue(ViewState(ViewState.Status.ERROR, error = error))
             }
         }

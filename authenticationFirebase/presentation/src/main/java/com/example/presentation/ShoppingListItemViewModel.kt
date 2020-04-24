@@ -17,7 +17,6 @@ import com.example.presentation.model.ViewState
 import com.example.presentation.util.toShoppingListItemView
 import kotlinx.coroutines.launch
 import timber.log.Timber
-import java.lang.Exception
 
 class ShoppingListItemViewModel constructor(
     private val getShoppingListItemsInteractor: GetShoppingListItemsInteractor,
@@ -53,6 +52,8 @@ class ShoppingListItemViewModel constructor(
                     )
                 )
             } catch (error: Exception) {
+                Timber.e(error)
+
                 updateShoppingListItemState.postValue(
                     ViewState(
                         ViewState.Status.ERROR,
