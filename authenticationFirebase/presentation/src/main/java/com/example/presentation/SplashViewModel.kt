@@ -14,6 +14,7 @@ import com.example.presentation.model.UserInfoView
 import com.example.presentation.model.ViewState
 import com.example.presentation.util.toUserInfoView
 import kotlinx.coroutines.launch
+import timber.log.Timber
 
 class SplashViewModel constructor(private val getLoggedUserInteractor: GetLoggedUserInteractor): ViewModel() {
 
@@ -35,6 +36,8 @@ class SplashViewModel constructor(private val getLoggedUserInteractor: GetLogged
                 val userState = getLoggedUserInteractor.execute()?.toUserInfoView()
                 currentUserState.postValue(ViewState(ViewState.Status.SUCCESS, userState))
             } catch (error:Exception) {
+                Timber.e(error)
+
                 currentUserState.postValue(ViewState(ViewState.Status.ERROR, error = error))
             }
         }

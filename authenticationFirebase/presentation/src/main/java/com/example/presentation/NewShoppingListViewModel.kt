@@ -13,6 +13,7 @@ import com.example.domain.shoppinglist.SaveShoppingListNameInteractor
 import com.example.presentation.model.ViewState
 import com.example.shared.exception.UserNotLogged
 import kotlinx.coroutines.launch
+import timber.log.Timber
 
 class NewShoppingListViewModel constructor(private val saveShoppingListNameInteractor: SaveShoppingListNameInteractor) :
     ViewModel() {
@@ -25,12 +26,14 @@ class NewShoppingListViewModel constructor(private val saveShoppingListNameInter
     fun saveShoppingListName(name: String) {
         viewModelScope.launch {
             try {
+                shoppingListState.postValue(ViewState(ViewState.Status.LOADING)
+                )
                 val documentID = saveShoppingListNameInteractor.saveShoppingListName(name)
 
                 shoppingListState.postValue(ViewState(ViewState.Status.SUCCESS, documentID))
-            } catch (error: UserNotLogged) {
-                shoppingListState.postValue(ViewState(ViewState.Status.ERROR, error = error))
-            } catch (error: Exception) {
+            }  catch (error: Exception) {
+                Timber.e(error)
+
                 shoppingListState.postValue(ViewState(ViewState.Status.ERROR, error = error))
             }
         }

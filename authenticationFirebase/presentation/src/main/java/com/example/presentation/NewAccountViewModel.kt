@@ -14,6 +14,7 @@ import com.example.domain.models.BasicUserInfoEntity
 import com.example.domain.models.LoginParameterEntity
 import com.example.presentation.model.ViewState
 import kotlinx.coroutines.launch
+import timber.log.Timber
 
 class NewAccountViewModel constructor(private val signUpInteractor: SignUpInteractor) :
     ViewModel() {
@@ -38,6 +39,8 @@ class NewAccountViewModel constructor(private val signUpInteractor: SignUpIntera
 
                 signUpState.postValue(ViewState(ViewState.Status.SUCCESS, loggedUser))
             } catch (error: Exception) {
+                Timber.e(error)
+
                 signUpState.postValue(ViewState(ViewState.Status.ERROR, error = error))
             }
         }

@@ -9,7 +9,7 @@ package com.example.presentation.model
 data class ShoppingListView constructor(val name: String, val shoppingListId: String) {}
 
 data class ShoppingListItemView constructor(
-    val description: String,
+    var description: String,
     var check: Boolean = false,
     var uuid: String = ""
 ) {}
