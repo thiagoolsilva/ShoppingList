@@ -21,6 +21,7 @@ import com.example.presentation.model.ShoppingListView
 import com.example.presentation.model.ViewState
 import com.example.shared.exception.UserNotLogged
 import com.tls.authentication.R
+import com.tls.authentication.util.hideKeyboard
 import kotlinx.android.synthetic.main.shopping_list.*
 import org.koin.android.ext.android.inject
 
@@ -44,6 +45,7 @@ class ShoppingList : Fragment() {
         configViewModel()
         configureSwipeRefreshLayout()
         configViews()
+        hideKeyboard()
     }
 
     /**
@@ -120,7 +122,6 @@ class ShoppingList : Fragment() {
 
     override fun onResume() {
         super.onResume()
-
         // always fetch new data from repository on onResume event
         fetchShoppingList()
     }

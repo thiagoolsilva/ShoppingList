@@ -6,21 +6,29 @@
 
 package com.tls.authentication.shoppinglistdetails
 
+import android.content.Context
 import android.os.Bundle
+import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.EditorInfo
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
+import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.presentation.ShoppingListItemViewModel
 import com.example.presentation.model.ShoppingListItemView
 import com.example.presentation.model.ViewState
+import com.google.android.material.snackbar.Snackbar
 import com.tls.authentication.R
+import com.tls.authentication.util.hideKeyboard
 import kotlinx.android.synthetic.main.shopping_list_details.*
 import org.koin.android.ext.android.inject
 import timber.log.Timber
+
 
 class ShoppingListDetails : Fragment() {
 
@@ -53,13 +61,17 @@ class ShoppingListDetails : Fragment() {
      * config views
      */
     private fun configViews() {
+        txtInputEdtText.setOnEditorActionListener { v, actionId, event ->
+            if ((actionId == EditorInfo.IME_ACTION_DONE)
+                || ((event.keyCode == KeyEvent.KEYCODE_ENTER)
+                        && (event.action == KeyEvent.ACTION_DOWN))
+            ) {
+                handleInsertItemEvent()
+            }
+            return@setOnEditorActionListener false
+        }
         addShoppingItem.setOnClickListener {
-
-            val itemDescription = txtInputEdtText.text.toString()
-            shoppingListItemViewModel.saveShoppingListItem(itemDescription, shoppingListId)
-
-            txtInputEdtText.text?.clear()
-            txtInputEdtText.clearFocus()
+            handleInsertItemEvent()
         }
     }
 
@@ -124,10 +136,30 @@ class ShoppingListDetails : Fragment() {
     }
 
     /**
+     * Show a snackbar displaying a error message for empty text
+     */
+    private fun showSnackEmptyText() {
+        Snackbar.make(parent, "You must add a no empty text", Snackbar.LENGTH_SHORT).show()
+    }
+
+    /**
      * Show get item error message
      */
     private fun showGetItemsErrorMessage() {
         Toast.makeText(activity, "Error. Try Again.", Toast.LENGTH_SHORT).show()
+    }
+
+    private fun handleInsertItemEvent() {
+        val itemDescription = txtInputEdtText.text.toString()
+        if (itemDescription.isEmpty()) {
+            showSnackEmptyText()
+        } else {
+            shoppingListItemViewModel.saveShoppingListItem(itemDescription, shoppingListId)
+        }
+        txtInputEdtText.text?.clear()
+
+        // Close soft keyboard by extension function
+        hideKeyboard()
     }
 
     /**
