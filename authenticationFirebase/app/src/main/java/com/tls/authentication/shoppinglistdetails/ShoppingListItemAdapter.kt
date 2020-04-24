@@ -17,7 +17,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.presentation.model.ShoppingListItemView
 import com.tls.authentication.R
 
-class ShoppingListItemAdapter :
+class ShoppingListItemAdapter constructor(private val checkBoxEvent: (item: ShoppingListItemView) -> Unit) :
     ListAdapter<ShoppingListItemView, ShoppingListItemAdapter.ShoppingListItemViewHolder>(
         DIFF_CALLBACK
     ) {
@@ -46,17 +46,33 @@ class ShoppingListItemAdapter :
     }
 
     override fun onBindViewHolder(holder: ShoppingListItemViewHolder, position: Int) {
-        holder.bindTo(getItem(position))
+        holder.bindTo(getItem(position), checkBoxEvent)
     }
 
     class ShoppingListItemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun bindTo(item: ShoppingListItemView) {
 
+        /**
+         * Bind received view
+         */
+        fun bindTo(
+            item: ShoppingListItemView,
+            updateCheckBoxEvent: (item: ShoppingListItemView) -> Unit
+        ) {
+            // bind all view components
             val itemName = itemView.findViewById(R.id.itemName) as TextView
             val checkBox = itemView.findViewById(R.id.itemCheckState) as CheckBox
 
+            // set text description from repository
             itemName.text = item.description
+
+            // set checkbox check from repository
             checkBox.isChecked = item.check
+            checkBox.setOnClickListener {
+                // change data from checked event
+                item.check = checkBox.isChecked
+                // send event to fragment
+                updateCheckBoxEvent(item)
+            }
         }
     }
 }

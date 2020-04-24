@@ -52,6 +52,9 @@ class ShoppingListAdapter constructor(private val navController: NavController) 
 
     class BasicShoppingListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
+        /**
+         * Bind received view
+         */
         fun bindTo(shoppingListView: ShoppingListView, navController: NavController) {
             val cardView = itemView.findViewById(R.id.itemName) as TextView
             cardView.text = shoppingListView.name
