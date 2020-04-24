@@ -78,7 +78,7 @@ class SignInFragment : Fragment() {
      */
     private fun goToLoggedScreen() {
         val action =
-            SignInFragmentDirections.actionSignInFragmentToLoggedUserFragment()
+            SignInFragmentDirections.actionSignInFragmentToShoppingList()
         findNavController().navigate(action)
     }
 

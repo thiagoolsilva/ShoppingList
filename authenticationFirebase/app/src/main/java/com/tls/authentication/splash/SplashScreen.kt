@@ -48,7 +48,7 @@ class SplashScreen : Fragment() {
         slashViewModel.getUserState().observe(viewLifecycleOwner, Observer {
             when (it.status) {
                 ViewState.Status.SUCCESS
-                -> if (it.data != null) goToLoggedUserScreen() else goToSignInScreen()
+                -> if (it.data != null) gotoShoppingList() else goToSignInScreen()
                 ViewState.Status.ERROR -> findNavController().navigate(SplashScreenDirections.actionSplashScreenToSignInFragment())
             }
         })
@@ -57,8 +57,8 @@ class SplashScreen : Fragment() {
     /**
      * Go to logged screen
      */
-    private fun goToLoggedUserScreen() {
-        findNavController().navigate(SplashScreenDirections.actionSplashScreenToLoggedUserFragment())
+    private fun gotoShoppingList() {
+        findNavController().navigate(SplashScreenDirections.actionSplashScreenToShoppingList())
     }
 
     /**
