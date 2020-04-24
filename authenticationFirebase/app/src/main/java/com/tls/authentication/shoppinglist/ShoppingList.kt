@@ -48,6 +48,12 @@ class ShoppingList : Fragment() {
         hideKeyboard()
     }
 
+    override fun onResume() {
+        super.onResume()
+        // always fetch new data from repository on onResume event
+        fetchShoppingList()
+    }
+
     /**
      * Config views
      */
@@ -100,6 +106,7 @@ class ShoppingList : Fragment() {
         data?.let {
             adapter.submitList(data)
         }
+        // hide swipe refresh layout
         swipeRefreshLayout.isRefreshing = false
     }
 
@@ -118,12 +125,6 @@ class ShoppingList : Fragment() {
      */
     private fun fetchShoppingList() {
         shoppingListViewModel.fetchShoppingList()
-    }
-
-    override fun onResume() {
-        super.onResume()
-        // always fetch new data from repository on onResume event
-        fetchShoppingList()
     }
 
 }
