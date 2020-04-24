@@ -10,7 +10,7 @@ import com.example.domain.models.BasicUserInfoEntity
 import com.example.domain.models.InputShoppingListItemEntity
 import com.example.domain.repository.AuthenticationRepository
 import com.example.domain.repository.ShoppingListRepository
-import com.example.shared.exception.NotShoppingListOwner
+import com.example.shared.exception.ShoppingOnwerError
 import com.example.shared.exception.UserNotLogged
 import java.util.*
 
@@ -38,7 +38,7 @@ class SaveShoppingListItemInteractor constructor(
                     )
                 )
             } else {
-                throw NotShoppingListOwner("current user is not owner of provided shopping id.")
+                throw ShoppingOnwerError("current user is not owner of provided shopping id.")
             }
         } else {
             throw UserNotLogged("user not logged.")

@@ -57,7 +57,7 @@
     <fragment
         android:id="@+id/shoppingList"
         android:name="com.tls.authentication.shoppinglist.ShoppingList"
-        android:label="Minha Lista"
+        android:label="Minhas Listas"
         tools:layout="@layout/shopping_list">
         <action
             android:id="@+id/action_shoppingList_to_shoppingListDetails"

@@ -72,8 +72,12 @@ class ShoppingListDetails : Fragment() {
      * Config recycler view
      */
     private fun configRecyclerView() {
-        adapter = ShoppingListItemAdapter()
-
+        adapter = ShoppingListItemAdapter {
+            shoppingListItemViewModel.updateShoppingListItem(
+                ItemDescription = it.description,
+                uuid = it.uuid, shoppingListId = shoppingListId, checkStatus = it.check
+            )
+        }
         shoppingListItems.layoutManager = LinearLayoutManager(activity)
         shoppingListItems.adapter = adapter
     }
@@ -100,6 +104,13 @@ class ShoppingListDetails : Fragment() {
         shoppingListItemViewModel.shoppingListItemsState.observe(viewLifecycleOwner, Observer {
             when (it.status) {
                 ViewState.Status.SUCCESS -> reloadAdapter(it.data)
+                ViewState.Status.ERROR -> showGetItemsErrorMessage()
+            }
+        })
+
+        shoppingListItemViewModel.updateShoppingListItemState.observe(viewLifecycleOwner, Observer {
+            when (it.status) {
+                ViewState.Status.SUCCESS -> fetchNewShoppingItems()
                 ViewState.Status.ERROR -> showGetItemsErrorMessage()
             }
         })

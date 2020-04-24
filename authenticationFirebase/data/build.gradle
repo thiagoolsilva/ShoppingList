@@ -32,6 +32,7 @@ dependencies {
     implementation 'androidx.core:core-ktx:1.2.0'
     testImplementation 'junit:junit:4.12'
 
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.1.1'
     implementation "com.google.firebase:firebase-auth:19.3.0"
     implementation 'com.google.firebase:firebase-firestore-ktx:21.4.2'
 

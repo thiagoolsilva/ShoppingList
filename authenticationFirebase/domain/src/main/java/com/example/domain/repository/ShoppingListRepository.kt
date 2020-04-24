@@ -26,4 +26,6 @@ interface ShoppingListRepository {
 
     suspend fun saveShoppingListItem(inputShoppingListItemEntity: InputShoppingListItemEntity): String
 
+    suspend fun updateShoppingListItem(inputShoppingListItemEntity: InputShoppingListItemEntity)
+
 }
