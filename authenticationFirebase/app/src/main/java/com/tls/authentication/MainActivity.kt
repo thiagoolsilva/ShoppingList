@@ -33,7 +33,7 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
 
         navController = findNavController(R.id.nav_host_fragment)
-        appBarConfiguration = AppBarConfiguration(navController.graph)
+        appBarConfiguration= AppBarConfiguration(setOf(R.id.shoppingList, R.id.signInFragment))
 
         setupActionBarWithNavController(navController, appBarConfiguration)
     }

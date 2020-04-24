@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/shoppingList">
+    app:startDestination="@id/splashScreen">
 
     <fragment
         android:id="@+id/loggedUserFragment"
@@ -21,8 +21,8 @@
         android:label="SignInFragment"
         tools:layout="@layout/sign_in">
         <action
-            android:id="@+id/action_signInFragment_to_loggedUserFragment"
-            app:destination="@id/loggedUserFragment"
+            android:id="@+id/action_signInFragment_to_shoppingList"
+            app:destination="@id/shoppingList"
             app:popUpTo="@id/signInFragment"
             app:popUpToInclusive="true" />
         <action
@@ -33,11 +33,6 @@
             app:popEnterAnim="@android:anim/slide_in_left"
             app:popExitAnim="@android:anim/slide_out_right" />
     </fragment>
-    <activity
-        android:id="@+id/mainActivity"
-        android:name="com.tls.authentication.MainActivity"
-        android:label="activity_main"
-        tools:layout="@layout/activity_main" />
     <fragment
         android:id="@+id/splashScreen"
         android:name="com.tls.authentication.splash.SplashScreen"
@@ -49,8 +44,8 @@
             app:popUpTo="@id/splashScreen"
             app:popUpToInclusive="true" />
         <action
-            android:id="@+id/action_splashScreen_to_loggedUserFragment"
-            app:destination="@id/loggedUserFragment"
+            android:id="@+id/action_splashScreen_to_shoppingList"
+            app:destination="@id/shoppingList"
             app:popUpTo="@id/splashScreen"
             app:popUpToInclusive="true" />
     </fragment>
