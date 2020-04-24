@@ -61,16 +61,19 @@ class ShoppingListAdapter constructor(private val navController: NavController) 
 
             itemView.setOnClickListener {
                 val selectedShoppingId = shoppingListView.shoppingListId
-                Timber.d("Selected item %s", selectedShoppingId)
+                val selectedShoppingName = shoppingListView.name
+                Timber.d(
+                    "Selected item id %s with name %s",
+                    selectedShoppingId,
+                    selectedShoppingName
+                )
 
-                val direction =
-                    ShoppingListDirections.actionShoppingListToShoppingListDetails(
-                        selectedShoppingId
-                    )
+                val direction = ShoppingListDirections.actionShoppingListToShoppingListDetails(
+                    selectedShoppingId,
+                    selectedShoppingName
+                )
                 navController.navigate(direction)
             }
-
         }
-
     }
 }
