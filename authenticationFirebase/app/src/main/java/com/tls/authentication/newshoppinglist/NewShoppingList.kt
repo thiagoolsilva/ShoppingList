@@ -8,6 +8,7 @@ package com.tls.authentication.newshoppinglist
 
 import android.os.Bundle
 import android.view.*
+import android.view.inputmethod.EditorInfo
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -16,6 +17,7 @@ import com.example.presentation.NewShoppingListViewModel
 import com.example.presentation.model.ViewState
 import com.example.shared.exception.UserNotLogged
 import com.tls.authentication.R
+import com.tls.authentication.util.hideKeyboard
 import kotlinx.android.synthetic.main.new_shopping_list.*
 import org.koin.android.ext.android.inject
 
@@ -39,6 +41,22 @@ class NewShoppingList : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         configViewModel()
+        configViews()
+    }
+
+    /**
+     * Config view event
+     */
+    private fun configViews() {
+        newShoppingList.setOnEditorActionListener { v, actionId, event ->
+            if ((actionId == EditorInfo.IME_ACTION_DONE)
+                || ((event.keyCode == KeyEvent.KEYCODE_ENTER)
+                        && (event.action == KeyEvent.ACTION_DOWN))
+            ) {
+                saveShoppingList()
+            }
+            return@setOnEditorActionListener false
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -69,9 +87,12 @@ class NewShoppingList : Fragment() {
      */
     private fun saveShoppingList() {
         val shoppingListName = newShoppingList.text.toString()
-        if (!shoppingListName.isEmpty()) newShoppingListViewModel.saveShoppingListName(
-            name = shoppingListName
-        ) else Toast.makeText(activity, "Empty shoppping list name", Toast.LENGTH_SHORT).show()
+        if (!shoppingListName.isEmpty()) {
+            newShoppingListViewModel.saveShoppingListName(name = shoppingListName)
+            hideKeyboard()
+        } else {
+            Toast.makeText(activity, "Empty shoppping list name", Toast.LENGTH_SHORT).show()
+        }
     }
 
     /**
