@@ -18,12 +18,7 @@ import timber.log.Timber
 
 class SplashViewModel constructor(private val getLoggedUserInteractor: GetLoggedUserInteractor): ViewModel() {
 
-    private val currentUserState = MutableLiveData<ViewState<UserInfoView?>>()
-
-    /**
-     * Get user state
-     */
-    fun getUserState() = currentUserState
+   val currentUserState = MutableLiveData<ViewState<UserInfoView?>>()
 
     /**
      * Fetch user State

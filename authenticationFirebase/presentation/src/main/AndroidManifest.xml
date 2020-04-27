@@ -4,4 +4,6 @@
   ~
   -->
 
-<manifest package="com.example.presentation" />
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.presentation">
+</manifest>

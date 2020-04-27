@@ -7,27 +7,17 @@
 
     <fragment
         android:id="@+id/loggedUserFragment"
-        android:name="com.tls.authentication.login.LoggedUserFragment"
+        android:name="com.tls.authentication.authentication.LoggedUserFragment"
         android:label="LoggedUserFragment"
         tools:layout="@layout/logged_user" />
     <fragment
-        android:id="@+id/newAccountFragment"
-        android:name="com.tls.authentication.login.NewAccountFragment"
-        android:label="NewAccountFragment"
-        tools:layout="@layout/new_account" />
-    <fragment
-        android:id="@+id/signInFragment"
-        android:name="com.tls.authentication.login.SignInFragment"
-        android:label="SignInFragment"
+        android:id="@+id/LoginFragment"
+        android:name="com.tls.authentication.authentication.login.LoginUserFragment"
+        android:label="Login"
         tools:layout="@layout/sign_in">
         <action
-            android:id="@+id/action_signInFragment_to_shoppingList"
-            app:destination="@id/shoppingList"
-            app:popUpTo="@id/signInFragment"
-            app:popUpToInclusive="true" />
-        <action
-            android:id="@+id/action_signInFragment_to_newAccountFragment"
-            app:destination="@id/newAccountFragment"
+            android:id="@+id/action_signInFragment_to_registrationFragment"
+            app:destination="@id/registrationGraph"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@android:anim/slide_in_left"
@@ -35,19 +25,16 @@
     </fragment>
     <fragment
         android:id="@+id/splashScreen"
-        android:name="com.tls.authentication.splash.SplashScreen"
+        android:name="com.tls.authentication.splash.MainScreen"
         android:label="SplashScreen"
         tools:layout="@layout/splash_screen">
         <action
-            android:id="@+id/action_splashScreen_to_signInFragment"
-            app:destination="@id/signInFragment"
-            app:popUpTo="@id/splashScreen"
-            app:popUpToInclusive="true" />
-        <action
             android:id="@+id/action_splashScreen_to_shoppingList"
             app:destination="@id/shoppingList"
-            app:popUpTo="@id/splashScreen"
-            app:popUpToInclusive="true" />
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/shoppingList"
@@ -86,4 +73,13 @@
         android:name="com.tls.authentication.newshoppinglist.NewShoppingList"
         android:label="Nova Lista"
         tools:layout="@layout/new_shopping_list" />
+    <navigation
+        android:id="@+id/registrationGraph"
+        app:startDestination="@id/registrationFragment">
+        <fragment
+            android:id="@+id/registrationFragment"
+            android:name="com.tls.authentication.authentication.registration.RegistrationUserFragment"
+            android:label="Registrar novo usuário"
+            tools:layout="@layout/new_account" />
+    </navigation>
 </navigation>

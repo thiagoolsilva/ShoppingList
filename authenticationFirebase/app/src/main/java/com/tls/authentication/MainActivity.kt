@@ -8,6 +8,7 @@ package com.tls.authentication
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.FragmentTransaction
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -33,7 +34,7 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
 
         navController = findNavController(R.id.nav_host_fragment)
-        appBarConfiguration= AppBarConfiguration(setOf(R.id.shoppingList, R.id.signInFragment))
+        appBarConfiguration= AppBarConfiguration(setOf(R.id.splashScreen))
 
         setupActionBarWithNavController(navController, appBarConfiguration)
     }

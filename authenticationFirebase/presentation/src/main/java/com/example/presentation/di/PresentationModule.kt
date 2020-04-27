@@ -71,7 +71,7 @@ val authenticationModule = module {
     }
 
     viewModel {
-        SignInViewModel(signInUserInteractor = get())
+        LoginViewModel(signInUserInteractor = get())
     }
 
     viewModel {
@@ -83,7 +83,7 @@ val authenticationModule = module {
     }
 
     viewModel {
-        NewAccountViewModel(signUpInteractor = get())
+        RegistrationViewModel(signUpInteractor = get())
     }
 
     viewModel {
