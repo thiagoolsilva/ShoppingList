@@ -9,12 +9,13 @@ package com.example.data.session
 import com.example.data.util.toBasicUserInfo
 import com.example.domain.models.BasicUserInfoEntity
 import com.example.domain.repository.AuthenticationRepository
-import com.example.shared.exception.UserNotFound
-import com.example.shared.exception.UserNotLogged
+import com.example.shared.exception.*
 import com.google.firebase.auth.FirebaseAuth
-import kotlin.coroutines.resume
-import kotlin.coroutines.resumeWithException
-import kotlin.coroutines.suspendCoroutine
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
+import com.google.firebase.auth.FirebaseAuthInvalidUserException
+import com.google.firebase.auth.FirebaseAuthWeakPasswordException
+import kotlinx.coroutines.tasks.await
+import java.lang.Exception
 
 
 class FirebaseAuthUserDataSource :
@@ -31,36 +32,35 @@ class FirebaseAuthUserDataSource :
     }
 
     override suspend fun authenticateUser(email: String, password: String): BasicUserInfoEntity {
-        return suspendCoroutine { continuation ->
-            auth.signInWithEmailAndPassword(email, password)
-                .addOnCompleteListener {
-                    if (it.isSuccessful) {
-                        val sessionInfo = auth.currentUser?.toBasicUserInfo()
+        try {
+            val userInfo = auth.signInWithEmailAndPassword(email, password)
+                .await()
+                .user?.toBasicUserInfo()
 
-                        if (sessionInfo != null) continuation.resume(sessionInfo) else continuation.resumeWithException(
-                            UserNotFound("User not found")
-                        )
-                    } else {
-                        continuation.resumeWithException(UserNotLogged("User not logged"))
-                    }
-                }
+            if (userInfo != null) return userInfo else throw InvalidUserPassword("invalid user or password")
+
+        } catch (error: Exception) {
+            when (error) {
+                is FirebaseAuthInvalidUserException -> throw UserNotFound("user not found.")
+                is FirebaseAuthInvalidCredentialsException -> throw InvalidUserPassword("invalid password")
+                else -> throw error
+            }
         }
     }
 
     override suspend fun signUp(email: String, password: String): BasicUserInfoEntity {
-        return suspendCoroutine { continuation ->
-            auth.createUserWithEmailAndPassword(email, password)
-                .addOnCompleteListener() { task ->
-                    if (task.isSuccessful) {
-                        val basicUserInfo = auth.currentUser?.toBasicUserInfo()
+        try {
+            val userInfo = auth.createUserWithEmailAndPassword(email, password)
+                .await()
+                .user?.toBasicUserInfo()
 
-                        if (basicUserInfo != null) continuation.resume(basicUserInfo) else continuation.resumeWithException(
-                            UserNotFound("User not found")
-                        )
-                    } else {
-                        continuation.resumeWithException(UserNotLogged("User not logged"))
-                    }
-                }
+            if (userInfo != null) return userInfo else throw RegistrationNotCompleted("user not created")
+        } catch (error: Exception) {
+            when(error) {
+                is FirebaseAuthWeakPasswordException -> throw RegistrationWithBadPassword("Bad password provided")
+                is FirebaseAuthInvalidCredentialsException -> throw RegistrationWithBadEmail("bad email provided")
+                else -> throw error
+            }
         }
     }
 

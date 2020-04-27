@@ -7,10 +7,7 @@
 package com.tls.authentication.shoppinglist
 
 import android.os.Bundle
-import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -21,9 +18,12 @@ import com.example.presentation.model.ShoppingListView
 import com.example.presentation.model.ViewState
 import com.example.shared.exception.UserNotLogged
 import com.tls.authentication.R
+import com.tls.authentication.util.disableLoading
 import com.tls.authentication.util.hideKeyboard
+import com.tls.authentication.util.navigateWithAnimation
 import kotlinx.android.synthetic.main.shopping_list.*
 import org.koin.android.ext.android.inject
+import timber.log.Timber
 
 class ShoppingList : Fragment() {
 
@@ -45,13 +45,32 @@ class ShoppingList : Fragment() {
         configViewModel()
         configureSwipeRefreshLayout()
         configViews()
-        hideKeyboard()
+        configMenu()
     }
 
     override fun onResume() {
         super.onResume()
         // always fetch new data from repository on onResume event
         fetchShoppingList()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.shopping_list, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.logout -> Timber.d("logout")//saveShoppingList()
+            R.id.profile -> Timber.d("profile")
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
+    /**
+     * Config fragment to handle menu events
+     */
+    private fun configMenu() {
+        setHasOptionsMenu(true)
     }
 
     /**
@@ -62,6 +81,7 @@ class ShoppingList : Fragment() {
             val action = ShoppingListDirections.actionShoppingListToNewShoppingList()
             findNavController().navigate(action)
         }
+        hideKeyboard()
     }
 
     /**
@@ -77,7 +97,7 @@ class ShoppingList : Fragment() {
      * Config viewModel
      */
     private fun configViewModel() {
-        shoppingListViewModel.shoppingListState.observe(viewLifecycleOwner, Observer {
+        shoppingListViewModel.shoppingListState.observe(this, Observer {
             when (it.status) {
                 ViewState.Status.SUCCESS -> updateList(it.data)
                 ViewState.Status.ERROR -> showListErrorMessage(it.error)
@@ -89,14 +109,14 @@ class ShoppingList : Fragment() {
      * Show list error message
      */
     private fun showListErrorMessage(error: Throwable?) {
-        if (error is UserNotLogged) {
-            // TODO go to not logged screen
-            Toast.makeText(activity, "User not logged", Toast.LENGTH_SHORT).show()
-        } else {
-            Toast.makeText(activity, "List not updated. Try Again!", Toast.LENGTH_SHORT).show()
+        error?.let {
+            when (it) {
+                is UserNotLogged ->  navigateWithAnimation(R.id.LoginFragment) //findNavController().navigate(R.id.signInFragment)
+                else -> Toast.makeText(activity, "List not updated. Try Again!", Toast.LENGTH_SHORT).show()
+            }
         }
         // hide swipe refresh layout
-        swipeRefreshLayout.isRefreshing = false
+        swipeRefreshLayout.disableLoading()
     }
 
     /**
@@ -107,7 +127,7 @@ class ShoppingList : Fragment() {
             adapter.submitList(data)
         }
         // hide swipe refresh layout
-        swipeRefreshLayout.isRefreshing = false
+        swipeRefreshLayout.disableLoading()
     }
 
     /**
