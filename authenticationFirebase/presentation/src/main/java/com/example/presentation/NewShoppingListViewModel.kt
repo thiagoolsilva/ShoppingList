@@ -6,6 +6,7 @@
 
 package com.example.presentation
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -18,7 +19,9 @@ import timber.log.Timber
 class NewShoppingListViewModel constructor(private val saveShoppingListNameInteractor: SaveShoppingListNameInteractor) :
     ViewModel() {
 
-    val shoppingListState = MutableLiveData<ViewState<String>>()
+    private val _shoppingListState = MutableLiveData<ViewState<String>>()
+    val shoppingListState: LiveData<ViewState<String>>
+        get() = _shoppingListState
 
     /**
      * Save provided Shopping list name
@@ -26,16 +29,16 @@ class NewShoppingListViewModel constructor(private val saveShoppingListNameInter
     fun saveShoppingListName(name: String) {
         viewModelScope.launch {
             try {
-                shoppingListState.postValue(
+                _shoppingListState.postValue(
                     ViewState(ViewState.Status.LOADING)
                 )
                 val documentID = saveShoppingListNameInteractor.saveShoppingListName(name)
 
-                shoppingListState.postValue(ViewState(ViewState.Status.SUCCESS, documentID))
+                _shoppingListState.postValue(ViewState(ViewState.Status.SUCCESS, documentID))
             } catch (error: Exception) {
                 Timber.e(error)
 
-                shoppingListState.postValue(ViewState(ViewState.Status.ERROR, error = error))
+                _shoppingListState.postValue(ViewState(ViewState.Status.ERROR, error = error))
             }
         }
     }

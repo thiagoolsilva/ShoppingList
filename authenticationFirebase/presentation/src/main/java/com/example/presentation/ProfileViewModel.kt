@@ -6,6 +6,7 @@
 
 package com.example.presentation
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -14,27 +15,30 @@ import com.example.presentation.model.UserInfoView
 import com.example.presentation.model.ViewState
 import com.example.presentation.util.toUserInfoView
 import kotlinx.coroutines.launch
-import timber.log.Timber
 
-class SplashViewModel constructor(private val getLoggedUserInteractor: GetLoggedUserInteractor): ViewModel() {
+class ProfileViewModel constructor(
+    private val getLoggedUserInteractor: GetLoggedUserInteractor
+) :
+    ViewModel() {
 
-   val currentUserState = MutableLiveData<ViewState<UserInfoView?>>()
+    private val _currentUserState = MutableLiveData<ViewState<UserInfoView?>>()
+    val currentUserState: LiveData<ViewState<UserInfoView?>>
+        get() = _currentUserState
 
     /**
-     * Fetch user State
+     * Fetch user state
      */
     fun fetchUserState() {
         viewModelScope.launch {
             try {
-                currentUserState.postValue(ViewState(ViewState.Status.LOADING))
+                _currentUserState.postValue(ViewState(ViewState.Status.LOADING))
 
                 val userState = getLoggedUserInteractor.execute()?.toUserInfoView()
-                currentUserState.postValue(ViewState(ViewState.Status.SUCCESS, userState))
-            } catch (error:Exception) {
-                Timber.e(error)
-
-                currentUserState.postValue(ViewState(ViewState.Status.ERROR, error = error))
+                _currentUserState.postValue(ViewState(ViewState.Status.SUCCESS, userState))
+            } catch (error: Exception) {
+                _currentUserState.postValue(ViewState(ViewState.Status.ERROR, error = error))
             }
         }
     }
+
 }

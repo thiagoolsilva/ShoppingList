@@ -6,7 +6,6 @@
 
 package com.tls.authentication.authentication
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -14,18 +13,17 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import com.example.presentation.LoggedViewModel
+import com.example.presentation.ProfileViewModel
 import com.example.presentation.model.UserInfoView
 import com.example.presentation.model.ViewState
-import com.tls.authentication.MainActivity
 import com.tls.authentication.R
 import com.tls.authentication.util.toEditable
 import kotlinx.android.synthetic.main.logged_user.*
 import org.koin.android.ext.android.inject
 
-class LoggedUserFragment : Fragment() {
+class ProfileFragment : Fragment() {
 
-    private val loggedViewModel: LoggedViewModel by inject()
+    private val profileViewModel: ProfileViewModel by inject()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -45,24 +43,16 @@ class LoggedUserFragment : Fragment() {
     override fun onResume() {
         super.onResume()
 
-        loggedViewModel.fetchUserState()
+        profileViewModel.fetchUserState()
     }
 
     /**
      * Config View Models
      */
     private fun configViewModels() {
-        loggedViewModel.getUserState().observe(viewLifecycleOwner, Observer {
+        profileViewModel.currentUserState.observe(viewLifecycleOwner, Observer {
             when (it.status) {
                 ViewState.Status.SUCCESS -> updateUI(it.data)
-                ViewState.Status.ERROR -> signOutUser()
-            }
-        })
-
-        loggedViewModel.getLogoutState().observe(viewLifecycleOwner, Observer {
-            when (it.status) {
-                ViewState.Status.SUCCESS -> goToMainScreen()
-                ViewState.Status.ERROR -> showErrorMessage()
             }
         })
     }
@@ -71,9 +61,7 @@ class LoggedUserFragment : Fragment() {
      * Config views events
      */
     private fun configViews() {
-        btnSignOut.setOnClickListener {
-            signOutUser()
-        }
+        // TBD
     }
 
     /**
@@ -86,8 +74,6 @@ class LoggedUserFragment : Fragment() {
 
             TxtInputUsername.text = userName.toEditable()
             txtInputEmail.text = email.toEditable()
-        } else {
-            signOutUser()
         }
     }
 
@@ -98,17 +84,4 @@ class LoggedUserFragment : Fragment() {
         Toast.makeText(activity, "Try again", Toast.LENGTH_SHORT).show()
     }
 
-    /**
-     * Go to main screen
-     */
-    private fun goToMainScreen() {
-        startActivity(Intent(activity, MainActivity::class.java))
-    }
-
-    /**
-     * Sign out logged user
-     */
-    private fun signOutUser() {
-        loggedViewModel.logout()
-    }
 }
