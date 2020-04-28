@@ -6,6 +6,7 @@
 
 package com.example.presentation
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -25,10 +26,22 @@ class ShoppingListItemViewModel constructor(
 ) :
     ViewModel() {
 
-    val shoppingListItemsState = MutableLiveData<ViewState<List<ShoppingListItemView>>>()
-    val saveShoppingListItemState = MutableLiveData<ViewState<String>>()
-    val updateShoppingListItemState = MutableLiveData<ViewState<Number>>()
+    private val _shoppingListItemsState = MutableLiveData<ViewState<List<ShoppingListItemView>>>()
+    val shoppingListItemsState: LiveData<ViewState<List<ShoppingListItemView>>>
+        get() = _shoppingListItemsState
 
+    private val _saveShoppingListItemState = MutableLiveData<ViewState<String>>()
+    val saveShoppingListItemState: LiveData<ViewState<String>>
+        get() = _saveShoppingListItemState
+
+    private val _updateShoppingListItemState = MutableLiveData<ViewState<Number>>()
+    val updateShoppingListItemState: LiveData<ViewState<Number>>
+        get() = _updateShoppingListItemState
+
+
+    /**
+     * Update shopping list item
+     */
     fun updateShoppingListItem(
         ItemDescription: String,
         shoppingListId: String,
@@ -37,7 +50,7 @@ class ShoppingListItemViewModel constructor(
     ) {
         viewModelScope.launch {
             try {
-                updateShoppingListItemState.postValue(ViewState(ViewState.Status.LOADING))
+                _updateShoppingListItemState.postValue(ViewState(ViewState.Status.LOADING))
 
                 updateShoppingListItemInteractor.updateShoppingItem(
                     description = ItemDescription,
@@ -46,7 +59,7 @@ class ShoppingListItemViewModel constructor(
                     uuid = uuid
                 )
 
-                updateShoppingListItemState.postValue(
+                _updateShoppingListItemState.postValue(
                     ViewState(
                         ViewState.Status.SUCCESS
                     )
@@ -54,7 +67,7 @@ class ShoppingListItemViewModel constructor(
             } catch (error: Exception) {
                 Timber.e(error)
 
-                updateShoppingListItemState.postValue(
+                _updateShoppingListItemState.postValue(
                     ViewState(
                         ViewState.Status.ERROR,
                         error = error
@@ -70,19 +83,19 @@ class ShoppingListItemViewModel constructor(
     fun saveShoppingListItem(itemDescription: String, shoppingListId: String) {
         viewModelScope.launch {
             try {
-                saveShoppingListItemState.postValue(ViewState(ViewState.Status.LOADING))
+                _saveShoppingListItemState.postValue(ViewState(ViewState.Status.LOADING))
                 val resultSet = saveShoppingListItemInteractor.execute(
                     itemDescription = itemDescription,
                     shoppingListId = shoppingListId
                 )
-                saveShoppingListItemState.postValue(
+                _saveShoppingListItemState.postValue(
                     ViewState(
                         ViewState.Status.SUCCESS,
                         data = resultSet
                     )
                 )
             } catch (error: Exception) {
-                saveShoppingListItemState.postValue(
+                _saveShoppingListItemState.postValue(
                     ViewState(
                         ViewState.Status.ERROR,
                         error = error
@@ -99,14 +112,14 @@ class ShoppingListItemViewModel constructor(
         viewModelScope.launch {
             try {
                 Timber.d("shopping list id = %s", shoppingListId)
-                shoppingListItemsState.postValue(ViewState(ViewState.Status.LOADING))
+                _shoppingListItemsState.postValue(ViewState(ViewState.Status.LOADING))
 
                 val shoppingListItems =
                     getShoppingListItemsInteractor.execute(shoppingListId = shoppingListId).map {
                         it.toShoppingListItemView()
                     }
 
-                shoppingListItemsState.postValue(
+                _shoppingListItemsState.postValue(
                     ViewState(
                         ViewState.Status.SUCCESS,
                         shoppingListItems
@@ -114,7 +127,7 @@ class ShoppingListItemViewModel constructor(
                 )
             } catch (error: Exception) {
                 Timber.e(error)
-                shoppingListItemsState.postValue(ViewState(ViewState.Status.ERROR, error = error))
+                _shoppingListItemsState.postValue(ViewState(ViewState.Status.ERROR, error = error))
             }
         }
     }

@@ -75,11 +75,7 @@ val authenticationModule = module {
     }
 
     viewModel {
-        SplashViewModel(getLoggedUserInteractor = get())
-    }
-
-    viewModel {
-        LoggedViewModel(getLoggedUserInteractor = get(), logoutInteractor = get())
+        ProfileViewModel(getLoggedUserInteractor = get())
     }
 
     viewModel {

@@ -6,6 +6,7 @@
 
 package com.example.presentation
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -40,7 +41,9 @@ class LoginViewModel constructor(private val signInUserInteractor: SignInUserInt
         val INPUT_PASSWORD = "INPUT_PASSWORD" to "empty password"
     }
 
-    val currentLiveState = MutableLiveData<ViewState<AuthenticationState>>()
+    private val _currentLiveState = MutableLiveData<ViewState<AuthenticationState>>()
+    val currentLiveState:LiveData<ViewState<AuthenticationState>>
+        get() = _currentLiveState
 
     /**
      * Gets authenticate user
@@ -52,23 +55,23 @@ class LoginViewModel constructor(private val signInUserInteractor: SignInUserInt
             try {
                 if(validateFields(email, password)) {
                     // send loading information to view
-                    currentLiveState.value = ViewState(ViewState.Status.LOADING)
+                    _currentLiveState.value = ViewState(ViewState.Status.LOADING)
 
                     // authenticate provided user
                     val authenticatedUser = signInUserInteractor.execute(LoginParameterEntity(email, password))?.toUserInfoView()
                     val authenticationState = AuthenticationState.AuthenticatedUser(authenticatedUser)
 
                     // send userInfo feedback to view
-                    currentLiveState.value = ViewState(ViewState.Status.SUCCESS, authenticationState)
+                    _currentLiveState.value = ViewState(ViewState.Status.SUCCESS, authenticationState)
                 }
             } catch (error: Exception) {
                 Timber.e(error)
 
                 when (error) {
-                    is UserNotLogged -> currentLiveState.value = ViewState(ViewState.Status.SUCCESS, data = AuthenticationState.UnauthorizedUser)
-                    is UserNotFound -> currentLiveState.value = ViewState(ViewState.Status.SUCCESS, data = AuthenticationState.UserNotFound)
-                    is InvalidUserPassword -> currentLiveState.value = ViewState(ViewState.Status.SUCCESS,data = AuthenticationState.InvalidUserPassword)
-                    else -> currentLiveState.value = ViewState(ViewState.Status.ERROR, error = error)
+                    is UserNotLogged -> _currentLiveState.value = ViewState(ViewState.Status.SUCCESS, data = AuthenticationState.UnauthorizedUser)
+                    is UserNotFound -> _currentLiveState.value = ViewState(ViewState.Status.SUCCESS, data = AuthenticationState.UserNotFound)
+                    is InvalidUserPassword -> _currentLiveState.value = ViewState(ViewState.Status.SUCCESS,data = AuthenticationState.InvalidUserPassword)
+                    else -> _currentLiveState.value = ViewState(ViewState.Status.ERROR, error = error)
                 }
             }
         }
@@ -81,13 +84,13 @@ class LoginViewModel constructor(private val signInUserInteractor: SignInUserInt
         viewModelScope.launch {
             try {
                 // send loading information to view
-                currentLiveState.value = ViewState(ViewState.Status.LOADING)
+                _currentLiveState.value = ViewState(ViewState.Status.LOADING)
 
                 logoutInteractor.execute()
 
-                currentLiveState.value = ViewState(ViewState.Status.SUCCESS, AuthenticationState.UserDisconnected)
+                _currentLiveState.value = ViewState(ViewState.Status.SUCCESS, AuthenticationState.UserDisconnected)
             } catch (error:Exception) {
-                currentLiveState.value = ViewState(ViewState.Status.ERROR, error = error)
+                _currentLiveState.value = ViewState(ViewState.Status.ERROR, error = error)
             }
         }
     }
@@ -107,7 +110,7 @@ class LoginViewModel constructor(private val signInUserInteractor: SignInUserInt
         }
 
         if(invalidFields.isNotEmpty()) {
-            currentLiveState.value = ViewState(ViewState.Status.ERROR, data = AuthenticationState.InvalidFields(invalidFields))
+            _currentLiveState.value = ViewState(ViewState.Status.ERROR, data = AuthenticationState.InvalidFields(invalidFields))
             return false
         }
 

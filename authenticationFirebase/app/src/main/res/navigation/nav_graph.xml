@@ -6,9 +6,9 @@
     app:startDestination="@id/splashScreen">
 
     <fragment
-        android:id="@+id/loggedUserFragment"
-        android:name="com.tls.authentication.authentication.LoggedUserFragment"
-        android:label="LoggedUserFragment"
+        android:id="@+id/ProfileFragment"
+        android:name="com.tls.authentication.authentication.ProfileFragment"
+        android:label="Dados do usuário"
         tools:layout="@layout/logged_user" />
     <fragment
         android:id="@+id/LoginFragment"
@@ -55,6 +55,13 @@
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@android:anim/slide_in_left"
             app:popExitAnim="@android:anim/slide_out_right" />
+        <action
+            android:id="@+id/action_shoppingList_to_profileFragment"
+            app:destination="@id/ProfileFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right"/>
     </fragment>
     <fragment
         android:id="@+id/shoppingListDetails"

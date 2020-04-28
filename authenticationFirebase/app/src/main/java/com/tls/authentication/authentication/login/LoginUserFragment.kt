@@ -173,7 +173,6 @@ class LoginUserFragment : Fragment() {
         findNavController().navigate(action)
     }
 
-
     /**
      * Go to logged screen
      */

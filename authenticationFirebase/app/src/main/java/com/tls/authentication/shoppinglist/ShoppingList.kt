@@ -64,7 +64,7 @@ class ShoppingList : Fragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.logout -> disconnectUser()
-            R.id.profile -> Timber.d("profile")
+            R.id.profile -> goToProfileScreen()
         }
         return super.onOptionsItemSelected(item)
     }
@@ -155,6 +155,15 @@ class ShoppingList : Fragment() {
         Timber.d("fire disconnect user event")
         loginViewModel.disconnect()
         findNavController().popBackStack()
+    }
+
+    /**
+     * Go to profile screen
+     */
+    private fun goToProfileScreen() {
+        Timber.d("fired profile screen event")
+        val direction = ShoppingListDirections.actionShoppingListToProfileFragment()
+        findNavController().navigate(direction)
     }
 
 }
