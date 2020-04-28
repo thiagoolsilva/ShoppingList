@@ -4,7 +4,7 @@
  *
  */
 
-package com.tls.authentication
+package com.tls.firebase
 
 import org.junit.Assert.assertEquals
 import org.junit.Test

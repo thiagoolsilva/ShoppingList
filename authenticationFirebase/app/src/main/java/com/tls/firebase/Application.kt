@@ -4,7 +4,7 @@
  *
  */
 
-package com.tls.authentication
+package com.tls.firebase
 
 import android.app.Application
 import com.example.presentation.di.authenticationModule

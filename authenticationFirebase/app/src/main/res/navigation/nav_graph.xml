@@ -7,12 +7,12 @@
 
     <fragment
         android:id="@+id/ProfileFragment"
-        android:name="com.tls.authentication.authentication.profile.ProfileFragment"
+        android:name="com.tls.firebase.authentication.profile.ProfileFragment"
         android:label="Dados do usuário"
         tools:layout="@layout/logged_user" />
     <fragment
         android:id="@+id/LoginFragment"
-        android:name="com.tls.authentication.authentication.login.LoginUserFragment"
+        android:name="com.tls.firebase.authentication.login.LoginUserFragment"
         android:label="Login"
         tools:layout="@layout/sign_in">
         <action
@@ -25,7 +25,7 @@
     </fragment>
     <fragment
         android:id="@+id/splashScreen"
-        android:name="com.tls.authentication.mainscreen.MainScreen"
+        android:name="com.tls.firebase.MainScreen"
         android:label="Tela inicial"
         tools:layout="@layout/splash_screen">
         <action
@@ -38,7 +38,7 @@
     </fragment>
     <fragment
         android:id="@+id/shoppingList"
-        android:name="com.tls.shopping.shoppinglist.ShoppingList"
+        android:name="com.tls.firebase.shopping.shoppinglist.ShoppingList"
         android:label="Minhas Listas"
         tools:layout="@layout/shopping_list">
         <action
@@ -65,7 +65,7 @@
     </fragment>
     <fragment
         android:id="@+id/shoppingListDetails"
-        android:name="com.tls.shopping.shoppinglistdetails.ShoppingListDetails"
+        android:name="com.tls.firebase.shopping.shoppinglistdetails.ShoppingListDetails"
         android:label="{shoppingListName}"
         tools:layout="@layout/shopping_list_details">
         <argument
@@ -77,7 +77,7 @@
     </fragment>
     <fragment
         android:id="@+id/newShoppingList"
-        android:name="com.tls.shopping.newshoppinglist.NewShoppingList"
+        android:name="com.tls.firebase.shopping.newshoppinglist.NewShoppingList"
         android:label="Nova Lista"
         tools:layout="@layout/new_shopping_list" />
     <navigation
@@ -85,7 +85,7 @@
         app:startDestination="@id/registrationFragment">
         <fragment
             android:id="@+id/registrationFragment"
-            android:name="com.tls.authentication.authentication.registration.RegistrationUserFragment"
+            android:name="com.tls.firebase.authentication.registration.RegistrationUserFragment"
             android:label="Registrar novo usuário"
             tools:layout="@layout/new_account" />
     </navigation>

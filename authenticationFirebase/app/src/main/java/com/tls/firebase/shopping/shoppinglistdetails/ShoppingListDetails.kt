@@ -4,7 +4,7 @@
  *
  */
 
-package com.tls.shopping.shoppinglistdetails
+package com.tls.firebase.shopping.shoppinglistdetails
 
 import android.os.Bundle
 import android.view.KeyEvent
@@ -20,8 +20,8 @@ import com.example.presentation.ShoppingListItemViewModel
 import com.example.presentation.model.ShoppingListItemView
 import com.example.presentation.model.ViewState
 import com.google.android.material.snackbar.Snackbar
-import com.tls.authentication.R
-import com.tls.authentication.util.hideKeyboard
+import com.tls.firebase.R
+import com.tls.firebase.util.hideKeyboard
 import kotlinx.android.synthetic.main.shopping_list_details.*
 import org.koin.android.ext.android.inject
 import timber.log.Timber

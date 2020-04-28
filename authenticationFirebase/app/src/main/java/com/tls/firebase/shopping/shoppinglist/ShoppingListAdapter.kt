@@ -4,7 +4,7 @@
  *
  */
 
-package com.tls.shopping.shoppinglist
+package com.tls.firebase.shopping.shoppinglist
 
 import android.view.LayoutInflater
 import android.view.View
@@ -15,7 +15,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.presentation.model.ShoppingListView
-import com.tls.authentication.R
+import com.tls.firebase.R
 import timber.log.Timber
 
 class ShoppingListAdapter constructor(private val navController: NavController) :

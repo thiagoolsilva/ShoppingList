@@ -8,10 +8,7 @@ package com.example.presentation.di
 
 import com.example.data.session.FirebaseAuthUserDataSource
 import com.example.data.shoppinglist.FirebaseShoppingListDataSource
-import com.example.domain.interactor.auth.GetLoggedUserInteractor
-import com.example.domain.interactor.auth.LogoutInteractor
-import com.example.domain.interactor.auth.SignInUserInteractor
-import com.example.domain.interactor.auth.SignUpInteractor
+import com.example.domain.interactor.auth.*
 import com.example.domain.repository.AuthenticationRepository
 import com.example.domain.repository.ShoppingListRepository
 import com.example.domain.shoppinglist.*
@@ -66,6 +63,10 @@ val authenticationModule = module {
         UpdateShoppingListItemInteractor(authenticationRepository = get(), shoppingListRepository = get())
     }
 
+    factory {
+        UpdateProfileInfoInteractor(authenticationRepository = get())
+    }
+
     viewModel {
         ShoppingListItemViewModel(getShoppingListItemsInteractor = get(), saveShoppingListItemInteractor = get(), updateShoppingListItemInteractor = get())
     }
@@ -75,7 +76,7 @@ val authenticationModule = module {
     }
 
     viewModel {
-        ProfileViewModel(getLoggedUserInteractor = get())
+        ProfileViewModel(getLoggedUserInteractor = get(), updateProfileInfoInteractor = get())
     }
 
     viewModel {

@@ -4,7 +4,7 @@
  *
  */
 
-package com.tls.shopping.newshoppinglist
+package com.tls.firebase.shopping.newshoppinglist
 
 import android.os.Bundle
 import android.view.*
@@ -16,8 +16,9 @@ import androidx.navigation.fragment.findNavController
 import com.example.presentation.NewShoppingListViewModel
 import com.example.presentation.model.ViewState
 import com.example.shared.exception.UserNotLogged
-import com.tls.authentication.R
-import com.tls.authentication.util.hideKeyboard
+import com.google.android.material.snackbar.Snackbar
+import com.tls.firebase.R
+import com.tls.firebase.util.hideKeyboard
 import kotlinx.android.synthetic.main.new_shopping_list.*
 import org.koin.android.ext.android.inject
 
@@ -77,9 +78,16 @@ class NewShoppingList : Fragment() {
         newShoppingListViewModel.shoppingListState.observe(viewLifecycleOwner, Observer {
             when (it.status) {
                 ViewState.Status.SUCCESS -> goToShoppingListScreen()
-                ViewState.Status.ERROR -> showErrorMessage(it.error)
+                ViewState.Status.ERROR -> handleErrorStatus(it.error)
             }
         })
+    }
+
+    /**
+     * Show generic error message
+     */
+    private fun showGenericErrorMessage() {
+        Snackbar.make(parent, "Action not performed. Try again!", Snackbar.LENGTH_SHORT ).show()
     }
 
     /**
@@ -91,21 +99,18 @@ class NewShoppingList : Fragment() {
             newShoppingListViewModel.saveShoppingListName(name = shoppingListName)
             hideKeyboard()
         } else {
-            Toast.makeText(activity, "Empty shoppping list name", Toast.LENGTH_SHORT).show()
+            Snackbar.make(parent, "Empty shoppping list name", Snackbar.LENGTH_SHORT ).show()
         }
     }
 
     /**
      * Show error message
      */
-    private fun showErrorMessage(error: Throwable?) {
+    private fun handleErrorStatus(error: Throwable?) {
         error?.let {
-            if (it is UserNotLogged) {
-                // TODO go to not logged screen
-                findNavController().popBackStack()
-            } else {
-                Toast.makeText(activity, "Shopping list not saved. Try again", Toast.LENGTH_SHORT)
-                    .show()
+            when (it) {
+                is UserNotLogged -> goToMainScreen()
+                else -> showGenericErrorMessage()
             }
         }
     }
@@ -115,6 +120,13 @@ class NewShoppingList : Fragment() {
      */
     private fun goToShoppingListScreen() {
         findNavController().popBackStack()
+    }
+
+    /**
+     * Go to main screen
+     */
+    private fun goToMainScreen() {
+        findNavController().popBackStack(R.id.splashScreen, false)
     }
 
 }

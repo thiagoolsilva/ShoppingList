@@ -4,7 +4,7 @@
  *
  */
 
-package com.tls.authentication.util
+package com.tls.firebase.util
 
 import android.R
 import android.app.Activity
@@ -31,8 +31,8 @@ fun Context.hideKeyboard(view: View) {
 
 fun Fragment.navigateWithAnimation(@IdRes resId: Int) {
     val navOptions = NavOptions.Builder()
-        .setEnterAnim(com.tls.authentication.R.anim.slide_in_right)
-        .setExitAnim(com.tls.authentication.R.anim.slide_out_left)
+        .setEnterAnim(com.tls.firebase.R.anim.slide_in_right)
+        .setExitAnim(com.tls.firebase.R.anim.slide_out_left)
         .setPopEnterAnim(R.anim.slide_in_left)
         .setPopExitAnim(R.anim.slide_out_right)
         .build()

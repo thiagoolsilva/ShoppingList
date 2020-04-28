@@ -4,14 +4,13 @@
  *
  */
 
-package com.tls.authentication.authentication.login
+package com.tls.firebase.authentication.login
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.activity.addCallback
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
@@ -20,10 +19,9 @@ import androidx.navigation.fragment.findNavController
 import com.example.presentation.LoginViewModel
 import com.example.presentation.model.ViewState
 import com.google.android.material.snackbar.Snackbar
-import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
-import com.tls.authentication.R
-import com.tls.authentication.util.disableErrorMessage
+import com.tls.firebase.R
+import com.tls.firebase.util.disableErrorMessage
 import kotlinx.android.synthetic.main.sign_in.*
 import org.koin.android.ext.android.inject
 import timber.log.Timber
