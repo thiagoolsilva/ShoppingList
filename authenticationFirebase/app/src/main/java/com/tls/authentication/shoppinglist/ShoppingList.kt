@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.presentation.LoginViewModel
 import com.example.presentation.ShoppingListViewModel
 import com.example.presentation.model.ShoppingListView
 import com.example.presentation.model.ViewState
@@ -27,6 +28,8 @@ import timber.log.Timber
 
 class ShoppingList : Fragment() {
 
+    // To get a refreshed LoginViewModel instance I don't used sharedViewModel
+    private val loginViewModel: LoginViewModel by inject()
     private val shoppingListViewModel: ShoppingListViewModel by inject()
     private lateinit var adapter: ShoppingListAdapter
 
@@ -60,7 +63,7 @@ class ShoppingList : Fragment() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.logout -> Timber.d("logout")//saveShoppingList()
+            R.id.logout -> disconnectUser()
             R.id.profile -> Timber.d("profile")
         }
         return super.onOptionsItemSelected(item)
@@ -143,8 +146,15 @@ class ShoppingList : Fragment() {
     /**
      * Refresh shopping List data
      */
-    private fun fetchShoppingList() {
-        shoppingListViewModel.fetchShoppingList()
+    private fun fetchShoppingList() = shoppingListViewModel.fetchShoppingList()
+
+    /**
+     * Disconnect current user
+     */
+    private fun disconnectUser() {
+        Timber.d("fire disconnect user event")
+        loginViewModel.disconnect()
+        findNavController().popBackStack()
     }
 
 }

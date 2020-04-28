@@ -71,7 +71,7 @@ val authenticationModule = module {
     }
 
     viewModel {
-        LoginViewModel(signInUserInteractor = get())
+        LoginViewModel(signInUserInteractor = get(), logoutInteractor = get())
     }
 
     viewModel {

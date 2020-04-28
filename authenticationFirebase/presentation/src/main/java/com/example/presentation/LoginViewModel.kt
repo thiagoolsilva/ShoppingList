@@ -6,10 +6,10 @@
 
 package com.example.presentation
 
-import androidx.core.content.ContextCompat
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.domain.interactor.auth.LogoutInteractor
 import com.example.domain.interactor.auth.SignInUserInteractor
 import com.example.domain.models.LoginParameterEntity
 import com.example.presentation.model.UserInfoView
@@ -21,12 +21,15 @@ import com.example.shared.exception.UserNotLogged
 import kotlinx.coroutines.launch
 import timber.log.Timber
 
-class LoginViewModel constructor(private val signInUserInteractor: SignInUserInteractor) :
+class LoginViewModel constructor(private val signInUserInteractor: SignInUserInteractor,
+                                 private val logoutInteractor: LogoutInteractor
+) :
     ViewModel() {
 
     sealed class AuthenticationState {
-        class AuthenticatedUser(userInfoView: UserInfoView?) : AuthenticationState()
+        class AuthenticatedUser(val userInfoView: UserInfoView?) : AuthenticationState()
         class InvalidFields(val fields: List<Pair<String, String>>) : AuthenticationState()
+        object UserDisconnected: AuthenticationState()
         object UnauthorizedUser : AuthenticationState()
         object UserNotFound : AuthenticationState()
         object InvalidUserPassword : AuthenticationState()
@@ -67,6 +70,24 @@ class LoginViewModel constructor(private val signInUserInteractor: SignInUserInt
                     is InvalidUserPassword -> currentLiveState.value = ViewState(ViewState.Status.SUCCESS,data = AuthenticationState.InvalidUserPassword)
                     else -> currentLiveState.value = ViewState(ViewState.Status.ERROR, error = error)
                 }
+            }
+        }
+    }
+
+    /**
+     * Disconnect current User
+     */
+    fun disconnect() {
+        viewModelScope.launch {
+            try {
+                // send loading information to view
+                currentLiveState.value = ViewState(ViewState.Status.LOADING)
+
+                logoutInteractor.execute()
+
+                currentLiveState.value = ViewState(ViewState.Status.SUCCESS, AuthenticationState.UserDisconnected)
+            } catch (error:Exception) {
+                currentLiveState.value = ViewState(ViewState.Status.ERROR, error = error)
             }
         }
     }
