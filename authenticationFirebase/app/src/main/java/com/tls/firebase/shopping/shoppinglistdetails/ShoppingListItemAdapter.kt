@@ -4,7 +4,7 @@
  *
  */
 
-package com.tls.shopping.shoppinglistdetails
+package com.tls.firebase.shopping.shoppinglistdetails
 
 import android.view.KeyEvent
 import android.view.LayoutInflater
@@ -17,8 +17,8 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.presentation.model.ShoppingListItemView
-import com.tls.authentication.R
-import com.tls.authentication.util.toEditable
+import com.tls.firebase.R
+import com.tls.firebase.util.toEditable
 
 class ShoppingListItemAdapter constructor(private val itemChangedEvent: (item: ShoppingListItemView) -> Unit) :
     ListAdapter<ShoppingListItemView, ShoppingListItemAdapter.ShoppingListItemViewHolder>(

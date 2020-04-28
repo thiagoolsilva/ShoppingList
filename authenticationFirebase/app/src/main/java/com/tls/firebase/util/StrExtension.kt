@@ -4,7 +4,7 @@
  *
  */
 
-package com.tls.authentication.util
+package com.tls.firebase.util
 
 import android.text.Editable
 

@@ -4,7 +4,7 @@
  *
  */
 
-package com.tls.authentication.authentication.registration
+package com.tls.firebase.authentication.registration
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -18,8 +18,8 @@ import com.example.presentation.RegistrationViewModel
 import com.example.presentation.model.ViewState
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputLayout
-import com.tls.authentication.R
-import com.tls.authentication.util.disableErrorMessage
+import com.tls.firebase.R
+import com.tls.firebase.util.disableErrorMessage
 import kotlinx.android.synthetic.main.new_account.*
 import org.koin.android.ext.android.inject
 import timber.log.Timber

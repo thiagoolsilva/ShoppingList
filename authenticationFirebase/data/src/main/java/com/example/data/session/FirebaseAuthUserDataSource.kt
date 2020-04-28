@@ -10,10 +10,7 @@ import com.example.data.util.toBasicUserInfo
 import com.example.domain.models.BasicUserInfoEntity
 import com.example.domain.repository.AuthenticationRepository
 import com.example.shared.exception.*
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
-import com.google.firebase.auth.FirebaseAuthInvalidUserException
-import com.google.firebase.auth.FirebaseAuthWeakPasswordException
+import com.google.firebase.auth.*
 import kotlinx.coroutines.tasks.await
 import java.lang.Exception
 
@@ -56,10 +53,22 @@ class FirebaseAuthUserDataSource :
 
             if (userInfo != null) return userInfo else throw RegistrationNotCompleted("user not created")
         } catch (error: Exception) {
-            when(error) {
+            when (error) {
                 is FirebaseAuthWeakPasswordException -> throw RegistrationWithBadPassword("Bad password provided")
                 is FirebaseAuthInvalidCredentialsException -> throw RegistrationWithBadEmail("bad email provided")
                 else -> throw error
+            }
+        }
+    }
+
+    override suspend fun updateProfile(name: String) {
+        if (name.isNotEmpty()) {
+            auth.currentUser?.let {
+                val userProfileChangeRequest =
+                    UserProfileChangeRequest.Builder().setDisplayName(name).build()
+
+                it.updateProfile(userProfileChangeRequest)
+                    .await()
             }
         }
     }

@@ -4,7 +4,7 @@
  *
  */
 
-package com.tls.shopping.shoppinglist
+package com.tls.firebase.shopping.shoppinglist
 
 import android.os.Bundle
 import android.view.*
@@ -18,10 +18,10 @@ import com.example.presentation.ShoppingListViewModel
 import com.example.presentation.model.ShoppingListView
 import com.example.presentation.model.ViewState
 import com.example.shared.exception.UserNotLogged
-import com.tls.authentication.R
-import com.tls.authentication.util.disableLoading
-import com.tls.authentication.util.hideKeyboard
-import com.tls.authentication.util.navigateWithAnimation
+import com.tls.firebase.R
+import com.tls.firebase.util.disableLoading
+import com.tls.firebase.util.hideKeyboard
+import com.tls.firebase.util.navigateWithAnimation
 import kotlinx.android.synthetic.main.shopping_list.*
 import org.koin.android.ext.android.inject
 import timber.log.Timber
