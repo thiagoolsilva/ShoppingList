@@ -4,7 +4,7 @@
  *
  */
 
-package com.tls.authentication.newshoppinglist
+package com.tls.shopping.newshoppinglist
 
 import android.os.Bundle
 import android.view.*

@@ -4,7 +4,7 @@
  *
  */
 
-package com.tls.authentication.authentication
+package com.tls.authentication.authentication.profile
 
 import android.os.Bundle
 import android.view.LayoutInflater
