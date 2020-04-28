@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/ProfileFragment"
-        android:name="com.tls.authentication.authentication.ProfileFragment"
+        android:name="com.tls.authentication.authentication.profile.ProfileFragment"
         android:label="Dados do usuário"
         tools:layout="@layout/logged_user" />
     <fragment
@@ -25,8 +25,8 @@
     </fragment>
     <fragment
         android:id="@+id/splashScreen"
-        android:name="com.tls.authentication.splash.MainScreen"
-        android:label="SplashScreen"
+        android:name="com.tls.authentication.mainscreen.MainScreen"
+        android:label="Tela inicial"
         tools:layout="@layout/splash_screen">
         <action
             android:id="@+id/action_splashScreen_to_shoppingList"
@@ -38,7 +38,7 @@
     </fragment>
     <fragment
         android:id="@+id/shoppingList"
-        android:name="com.tls.authentication.shoppinglist.ShoppingList"
+        android:name="com.tls.shopping.shoppinglist.ShoppingList"
         android:label="Minhas Listas"
         tools:layout="@layout/shopping_list">
         <action
@@ -65,7 +65,7 @@
     </fragment>
     <fragment
         android:id="@+id/shoppingListDetails"
-        android:name="com.tls.authentication.shoppinglistdetails.ShoppingListDetails"
+        android:name="com.tls.shopping.shoppinglistdetails.ShoppingListDetails"
         android:label="{shoppingListName}"
         tools:layout="@layout/shopping_list_details">
         <argument
@@ -77,7 +77,7 @@
     </fragment>
     <fragment
         android:id="@+id/newShoppingList"
-        android:name="com.tls.authentication.newshoppinglist.NewShoppingList"
+        android:name="com.tls.shopping.newshoppinglist.NewShoppingList"
         android:label="Nova Lista"
         tools:layout="@layout/new_shopping_list" />
     <navigation

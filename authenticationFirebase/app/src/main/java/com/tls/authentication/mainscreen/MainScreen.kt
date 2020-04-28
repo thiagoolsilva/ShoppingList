@@ -5,7 +5,7 @@
  *
  */
 
-package com.tls.authentication.splash
+package com.tls.authentication.mainscreen
 
 import android.os.Bundle
 import android.view.LayoutInflater

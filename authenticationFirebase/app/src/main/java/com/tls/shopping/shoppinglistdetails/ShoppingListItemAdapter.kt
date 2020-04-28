@@ -4,7 +4,7 @@
  *
  */
 
-package com.tls.authentication.shoppinglistdetails
+package com.tls.shopping.shoppinglistdetails
 
 import android.view.KeyEvent
 import android.view.LayoutInflater

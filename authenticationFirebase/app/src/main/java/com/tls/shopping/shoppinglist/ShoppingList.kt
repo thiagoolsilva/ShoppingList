@@ -4,7 +4,7 @@
  *
  */
 
-package com.tls.authentication.shoppinglist
+package com.tls.shopping.shoppinglist
 
 import android.os.Bundle
 import android.view.*
