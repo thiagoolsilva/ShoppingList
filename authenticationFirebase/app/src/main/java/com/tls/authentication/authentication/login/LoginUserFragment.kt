@@ -78,6 +78,8 @@ class LoginUserFragment : Fragment() {
             txtFieldPassword.disableErrorMessage()
         }
 
+
+
         // configure back press event
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
             findNavController().popBackStack(R.id.splashScreen, false)
@@ -176,7 +178,7 @@ class LoginUserFragment : Fragment() {
      * Go to logged screen
      */
     private fun goToLoggedScreen() {
-        findNavController().popBackStack()
+        findNavController().popBackStack(R.id.splashScreen, false)
     }
 
 }
