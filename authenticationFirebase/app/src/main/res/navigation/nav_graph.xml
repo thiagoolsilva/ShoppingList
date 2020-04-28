@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/splashScreen">
+
+    <fragment
+        android:id="@+id/ProfileFragment"
+        android:name="com.tls.firebase.authentication.profile.ProfileFragment"
+        android:label="Dados do usuário"
+        tools:layout="@layout/logged_user" />
+    <fragment
+        android:id="@+id/LoginFragment"
+        android:name="com.tls.firebase.authentication.login.LoginUserFragment"
+        android:label="Login"
+        tools:layout="@layout/sign_in">
+        <action
+            android:id="@+id/action_signInFragment_to_registrationFragment"
+            app:destination="@id/registrationGraph"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/splashScreen"
+        android:name="com.tls.firebase.MainScreen"
+        android:label="Tela inicial"
+        tools:layout="@layout/splash_screen">
+        <action
+            android:id="@+id/action_splashScreen_to_shoppingList"
+            app:destination="@id/shoppingList"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/shoppingList"
+        android:name="com.tls.firebase.shopping.shoppinglist.ShoppingList"
+        android:label="Minhas Listas"
+        tools:layout="@layout/shopping_list">
+        <action
+            android:id="@+id/action_shoppingList_to_shoppingListDetails"
+            app:destination="@id/shoppingListDetails"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right" />
+        <action
+            android:id="@+id/action_shoppingList_to_newShoppingList"
+            app:destination="@id/newShoppingList"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right" />
+        <action
+            android:id="@+id/action_shoppingList_to_profileFragment"
+            app:destination="@id/ProfileFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right"/>
+    </fragment>
+    <fragment
+        android:id="@+id/shoppingListDetails"
+        android:name="com.tls.firebase.shopping.shoppinglistdetails.ShoppingListDetails"
+        android:label="{shoppingListName}"
+        tools:layout="@layout/shopping_list_details">
+        <argument
+            android:name="shoppingId"
+            app:argType="string" />
+        <argument
+            android:name="shoppingListName"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/newShoppingList"
+        android:name="com.tls.firebase.shopping.newshoppinglist.NewShoppingList"
+        android:label="Nova Lista"
+        tools:layout="@layout/new_shopping_list" />
+    <navigation
+        android:id="@+id/registrationGraph"
+        app:startDestination="@id/registrationFragment">
+        <fragment
+            android:id="@+id/registrationFragment"
+            android:name="com.tls.firebase.authentication.registration.RegistrationUserFragment"
+            android:label="Registrar novo usuário"
+            tools:layout="@layout/new_account" />
+    </navigation>
+</navigation>

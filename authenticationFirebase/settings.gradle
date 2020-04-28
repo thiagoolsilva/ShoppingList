@@ -1,2 +1,6 @@
 rootProject.name='PocAuthenticationFirebase'
 include ':app'
+include ':presentation'
+include ':domain'
+include ':data'
+include ':shared'
