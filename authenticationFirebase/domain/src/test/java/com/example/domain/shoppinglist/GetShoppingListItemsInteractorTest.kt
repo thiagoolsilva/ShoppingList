@@ -32,7 +32,7 @@ class GetShoppingListItemsInteractorTest {
         MockKAnnotations.init(this, relaxUnitFun = true)
     }
 
-    // The no stateless class makes this test more fast
+    // The use of no stateless class make this test more fast
     private val getShoppingListsInteractor =
         GetShoppingListsInteractor(mockShoppingListRepository, mockAuthenticationRepository)
 
