@@ -24,10 +24,6 @@ class UpdateShoppingListItemInteractor constructor(
         uuid: String,
         shoppingListId: String
     ) {
-        if (uuid.isEmpty() || description.isEmpty()) {
-            throw IllegalArgumentException("The description and uuid must be not null.")
-        }
-
         val currentUser = authenticationRepository.currentUser()
         if (currentUser != null) {
             val shoopingListItem = InputShoppingListItemEntity(
