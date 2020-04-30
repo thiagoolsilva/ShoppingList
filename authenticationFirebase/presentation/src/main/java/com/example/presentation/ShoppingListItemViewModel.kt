@@ -83,7 +83,7 @@ class ShoppingListItemViewModel constructor(
     fun saveShoppingListItem(itemDescription: String, shoppingListId: String) {
         viewModelScope.launch {
             try {
-                _saveShoppingListItemState.postValue(ViewState(ViewState.Status.LOADING))
+                _saveShoppingListItemState.value = ViewState(ViewState.Status.LOADING)
                 val resultSet = saveShoppingListItemInteractor.execute(
                     itemDescription = itemDescription,
                     shoppingListId = shoppingListId
@@ -95,12 +95,12 @@ class ShoppingListItemViewModel constructor(
                     )
                 )
             } catch (error: Exception) {
-                _saveShoppingListItemState.postValue(
+                _saveShoppingListItemState.value =
                     ViewState(
                         ViewState.Status.ERROR,
                         error = error
                     )
-                )
+
             }
         }
     }
