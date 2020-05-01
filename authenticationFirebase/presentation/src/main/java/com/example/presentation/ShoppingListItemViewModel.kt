@@ -50,7 +50,14 @@ class ShoppingListItemViewModel constructor(
     ) {
         viewModelScope.launch {
             try {
-                _updateShoppingListItemState.postValue(ViewState(ViewState.Status.LOADING))
+                Timber.d(
+                    "itemDescription: %s shoppingListId %s checkStatus %b uuid %s",
+                    ItemDescription,
+                    shoppingListId,
+                    checkStatus,
+                    uuid
+                )
+                _updateShoppingListItemState.value = ViewState(ViewState.Status.LOADING)
 
                 updateShoppingListItemInteractor.updateShoppingItem(
                     description = ItemDescription,
@@ -59,20 +66,18 @@ class ShoppingListItemViewModel constructor(
                     uuid = uuid
                 )
 
-                _updateShoppingListItemState.postValue(
+                _updateShoppingListItemState.value =
                     ViewState(
                         ViewState.Status.SUCCESS
                     )
-                )
             } catch (error: Exception) {
                 Timber.e(error)
 
-                _updateShoppingListItemState.postValue(
+                _updateShoppingListItemState.value =
                     ViewState(
                         ViewState.Status.ERROR,
                         error = error
                     )
-                )
             }
         }
     }
@@ -88,13 +93,14 @@ class ShoppingListItemViewModel constructor(
                     itemDescription = itemDescription,
                     shoppingListId = shoppingListId
                 )
-                _saveShoppingListItemState.postValue(
+                _saveShoppingListItemState.value =
                     ViewState(
                         ViewState.Status.SUCCESS,
                         data = resultSet
                     )
-                )
             } catch (error: Exception) {
+                Timber.e(error)
+
                 _saveShoppingListItemState.value =
                     ViewState(
                         ViewState.Status.ERROR,
@@ -112,22 +118,22 @@ class ShoppingListItemViewModel constructor(
         viewModelScope.launch {
             try {
                 Timber.d("shopping list id = %s", shoppingListId)
-                _shoppingListItemsState.postValue(ViewState(ViewState.Status.LOADING))
+
+                _shoppingListItemsState.value = ViewState(ViewState.Status.LOADING)
 
                 val shoppingListItems =
                     getShoppingListItemsInteractor.execute(shoppingListId = shoppingListId).map {
                         it.toShoppingListItemView()
                     }
 
-                _shoppingListItemsState.postValue(
+                _shoppingListItemsState.value =
                     ViewState(
                         ViewState.Status.SUCCESS,
                         shoppingListItems
                     )
-                )
             } catch (error: Exception) {
                 Timber.e(error)
-                _shoppingListItemsState.postValue(ViewState(ViewState.Status.ERROR, error = error))
+                _shoppingListItemsState.value = ViewState(ViewState.Status.ERROR, error = error)
             }
         }
     }

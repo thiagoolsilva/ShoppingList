@@ -27,7 +27,7 @@ class ShoppingListViewModel constructor(private val getShoppingListsInteractor: 
     fun fetchShoppingList() {
         viewModelScope.launch {
             try {
-                _shoppingListState.postValue(ViewState(ViewState.Status.LOADING))
+                _shoppingListState.value = ViewState(ViewState.Status.LOADING)
 
                 val shoppingList =
                     getShoppingListsInteractor.execute().map { it.toShoppingListView() }
@@ -36,7 +36,7 @@ class ShoppingListViewModel constructor(private val getShoppingListsInteractor: 
             } catch (error: Exception) {
                 Timber.e(error)
 
-                _shoppingListState.postValue(ViewState(ViewState.Status.ERROR, error = error))
+                _shoppingListState.value = ViewState(ViewState.Status.ERROR, error = error)
             }
         }
     }
