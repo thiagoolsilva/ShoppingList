@@ -26,8 +26,10 @@ class RegistrationViewModel constructor(private val signUpInteractor: SignUpInte
     sealed class RegistrationState {
         class RegistrationCompleted(val basicUserInfoEntity: BasicUserInfoEntity) :
             RegistrationState()
+
         class RegistrationWithInvalidFields(val fields: List<Pair<String, String>>) :
             RegistrationState()
+
         object RegistrationWithBadEmail : RegistrationState()
         object RegistrationWithBadPassword : RegistrationState()
     }
@@ -57,12 +59,12 @@ class RegistrationViewModel constructor(private val signUpInteractor: SignUpInte
                         )
                     )
 
-                    _registrationState.postValue(
+                    _registrationState.value =
                         ViewState(
                             ViewState.Status.SUCCESS,
                             RegistrationState.RegistrationCompleted(loggedUser)
                         )
-                    )
+
                 }
             } catch (error: Exception) {
                 Timber.e(error)
