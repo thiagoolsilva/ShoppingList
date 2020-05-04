@@ -29,16 +29,16 @@ class NewShoppingListViewModel constructor(private val saveShoppingListNameInter
     fun saveShoppingListName(name: String) {
         viewModelScope.launch {
             try {
-                _shoppingListState.postValue(
+                _shoppingListState.value =
                     ViewState(ViewState.Status.LOADING)
-                )
+
                 val documentID = saveShoppingListNameInteractor.saveShoppingListName(name)
 
-                _shoppingListState.postValue(ViewState(ViewState.Status.SUCCESS, documentID))
+                _shoppingListState.value = ViewState(ViewState.Status.SUCCESS, documentID)
             } catch (error: Exception) {
                 Timber.e(error)
 
-                _shoppingListState.postValue(ViewState(ViewState.Status.ERROR, error = error))
+                _shoppingListState.value = ViewState(ViewState.Status.ERROR, error = error)
             }
         }
     }

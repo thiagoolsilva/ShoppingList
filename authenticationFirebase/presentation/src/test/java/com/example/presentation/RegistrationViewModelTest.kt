@@ -14,10 +14,12 @@ import com.example.presentation.rules.TestCoroutineRule
 import com.example.shared.exception.RegistrationWithBadEmail
 import com.example.shared.exception.RegistrationWithBadPassword
 import io.mockk.MockKAnnotations
+import io.mockk.clearMocks
 import io.mockk.coEvery
 import io.mockk.impl.annotations.RelaxedMockK
 import junit.framework.Assert.*
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 
@@ -45,6 +47,12 @@ class RegistrationViewModelTest {
 
     private val registrationViewModel = RegistrationViewModel(signUpInteractor)
 
+    @Before
+    fun setup() {
+        clearMocks(
+            signUpInteractor
+        )
+    }
 
     @Test
     fun should_registerUser_when_providedValidFields() = testDispacher.runBlockingTest {

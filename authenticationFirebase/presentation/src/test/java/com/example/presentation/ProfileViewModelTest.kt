@@ -13,10 +13,12 @@ import com.example.domain.models.BasicUserInfoEntity
 import com.example.presentation.model.ViewState
 import com.example.presentation.rules.TestCoroutineRule
 import io.mockk.MockKAnnotations
+import io.mockk.clearMocks
 import io.mockk.coEvery
 import io.mockk.impl.annotations.RelaxedMockK
 import junit.framework.Assert.*
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 
@@ -48,6 +50,14 @@ class ProfileViewModelTest {
     private val profileViewModel =
         ProfileViewModel(getLoggedUserInteractor, updateProfileInfoInteractor)
 
+
+    @Before
+    fun setup() {
+        clearMocks(
+            getLoggedUserInteractor,
+            updateProfileInfoInteractor
+        )
+    }
 
     @Test
     fun should_returnValidProfile_when_userIsLogged() = testDispacher.runBlockingTest {
