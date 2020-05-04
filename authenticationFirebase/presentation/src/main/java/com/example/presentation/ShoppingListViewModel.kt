@@ -32,7 +32,7 @@ class ShoppingListViewModel constructor(private val getShoppingListsInteractor: 
                 val shoppingList =
                     getShoppingListsInteractor.execute().map { it.toShoppingListView() }
 
-                _shoppingListState.postValue(ViewState(ViewState.Status.SUCCESS, shoppingList))
+                _shoppingListState.value = ViewState(ViewState.Status.SUCCESS, shoppingList)
             } catch (error: Exception) {
                 Timber.e(error)
 
