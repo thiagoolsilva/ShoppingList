@@ -24,8 +24,8 @@
     <string name="shp_list_logout">Logout</string>
 
     <!-- shopping list details -->
-    <string name="shop_list_details_add">Adicionar</string>
-    <string name="shop_list_details_item_list">Item da lista</string>
+    <string name="shop_list_details_add">Add</string>
+    <string name="shop_list_details_item_list">Shopping item</string>
     <string name="shop_list_try_again">Try again.</string>
     <string name="shop_list_empty_content">You must add a no empty text</string>
     <string name="shop_list_error_get_items">Error. Try Again.</string>
