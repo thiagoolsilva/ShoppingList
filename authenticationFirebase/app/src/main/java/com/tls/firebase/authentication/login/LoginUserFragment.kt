@@ -41,7 +41,7 @@ class LoginUserFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setHasOptionsMenu(true);
+        setHasOptionsMenu(true)
         configViews()
         configViewModel()
     }
@@ -129,28 +129,28 @@ class LoginUserFragment : Fragment() {
      * Show invalid password error message
      */
     private fun showInvalidPasswordError() {
-        Snackbar.make(parent, "Invalid login or password", Snackbar.LENGTH_SHORT).show()
+        Snackbar.make(parent, getString(R.string.login_invalid_password_message), Snackbar.LENGTH_SHORT).show()
     }
 
     /**
      * Show user not found error message
      */
     private fun showUserNotFoundMessage() {
-        Snackbar.make(parent, "User not found", Snackbar.LENGTH_SHORT).show()
+        Snackbar.make(parent, getString(R.string.login_user_not_found_message), Snackbar.LENGTH_SHORT).show()
     }
 
     /**
      * Show unauthorized error message
      */
     private fun showUnauthorizedUserMessage() {
-        Snackbar.make(parent, "Wrong login or password", Snackbar.LENGTH_SHORT).show()
+        Snackbar.make(parent, getString(R.string.login_wrong_authentication_message), Snackbar.LENGTH_SHORT).show()
     }
 
     /**
      * Show error message to user
      */
     private fun showSignErrorMessage() {
-        Snackbar.make(parent, "It was not possible to established a valid connection. Try again!", Snackbar.LENGTH_SHORT).show()
+        Snackbar.make(parent, getString(R.string.login_generic_error_message), Snackbar.LENGTH_SHORT).show()
     }
 
     /**

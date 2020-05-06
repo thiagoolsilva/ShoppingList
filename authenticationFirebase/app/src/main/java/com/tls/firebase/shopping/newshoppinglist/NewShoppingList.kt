@@ -9,7 +9,6 @@ package com.tls.firebase.shopping.newshoppinglist
 import android.os.Bundle
 import android.view.*
 import android.view.inputmethod.EditorInfo
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
@@ -95,11 +94,11 @@ class NewShoppingList : Fragment() {
      */
     private fun saveShoppingList() {
         val shoppingListName = newShoppingList.text.toString()
-        if (!shoppingListName.isEmpty()) {
+        if (shoppingListName.isNotEmpty()) {
             newShoppingListViewModel.saveShoppingListName(name = shoppingListName)
             hideKeyboard()
         } else {
-            Snackbar.make(parent, "Empty shoppping list name", Snackbar.LENGTH_SHORT ).show()
+            Snackbar.make(parent, getString(R.string.new_profile_empty_required_fields), Snackbar.LENGTH_SHORT ).show()
         }
     }
 

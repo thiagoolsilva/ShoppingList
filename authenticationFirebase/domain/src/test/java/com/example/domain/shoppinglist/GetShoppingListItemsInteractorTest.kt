@@ -14,7 +14,6 @@ import com.example.domain.util.givenValidLoggedUser
 import com.example.shared.exception.UserNotLogged
 import io.mockk.MockKAnnotations
 import io.mockk.clearMocks
-import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.impl.annotations.RelaxedMockK
 import kotlinx.coroutines.runBlocking

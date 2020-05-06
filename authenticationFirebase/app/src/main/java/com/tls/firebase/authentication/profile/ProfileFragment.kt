@@ -13,7 +13,6 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.example.presentation.ProfileViewModel
-import com.example.presentation.RegistrationViewModel
 import com.example.presentation.model.ViewState
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputLayout
@@ -112,7 +111,7 @@ class ProfileFragment : Fragment() {
      */
     private fun showGenericErrorMessage(error: Throwable?) {
         error.let { Timber.e(error) }
-        Snackbar.make(parent, "Profile not updated. Try Again!", Snackbar.LENGTH_SHORT).show()
+        Snackbar.make(parent, getString(R.string.profile_generic_error_message), Snackbar.LENGTH_SHORT).show()
     }
 
     /**

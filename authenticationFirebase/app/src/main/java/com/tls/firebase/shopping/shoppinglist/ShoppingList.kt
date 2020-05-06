@@ -100,7 +100,7 @@ class ShoppingList : Fragment() {
      * Config viewModel
      */
     private fun configViewModel() {
-        shoppingListViewModel.shoppingListState.observe(this, Observer {
+        shoppingListViewModel.shoppingListState.observe(viewLifecycleOwner, Observer {
             when (it.status) {
                 ViewState.Status.SUCCESS -> updateList(it.data)
                 ViewState.Status.ERROR -> showListErrorMessage(it.error)

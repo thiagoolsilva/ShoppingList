@@ -11,7 +11,6 @@ import com.example.domain.models.InputShoppingListItemEntity
 import com.example.domain.repository.AuthenticationRepository
 import com.example.domain.repository.ShoppingListRepository
 import com.example.shared.exception.UserNotLogged
-import java.lang.IllegalArgumentException
 
 class UpdateShoppingListItemInteractor constructor(
     private val shoppingListRepository: ShoppingListRepository,

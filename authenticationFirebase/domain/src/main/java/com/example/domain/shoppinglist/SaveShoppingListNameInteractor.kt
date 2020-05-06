@@ -6,8 +6,8 @@
 
 package com.example.domain.shoppinglist
 
-import com.example.domain.models.InputShoppingListEntity
 import com.example.domain.models.BasicUserInfoEntity
+import com.example.domain.models.InputShoppingListEntity
 import com.example.domain.repository.AuthenticationRepository
 import com.example.domain.repository.ShoppingListRepository
 import com.example.shared.exception.UserNotLogged

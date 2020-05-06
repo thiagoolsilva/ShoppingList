@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/profile"
-        android:title="Perfil" />
+        android:title="@string/shp_list_profile" />
     <item
         android:id="@+id/logout"
-        android:title="sair" />
+        android:title="@string/shp_list_logout" />
 </menu>

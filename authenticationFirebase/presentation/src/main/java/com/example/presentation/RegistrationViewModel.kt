@@ -14,7 +14,6 @@ import com.example.domain.interactor.auth.SignUpInteractor
 import com.example.domain.models.BasicUserInfoEntity
 import com.example.domain.models.LoginParameterEntity
 import com.example.presentation.model.ViewState
-import com.example.shared.exception.RegistrationNotCompleted
 import com.example.shared.exception.RegistrationWithBadEmail
 import com.example.shared.exception.RegistrationWithBadPassword
 import kotlinx.coroutines.launch

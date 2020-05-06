@@ -2,7 +2,6 @@
 
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/parent"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -14,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:text="Adicionar"
+        android:text="@string/shop_list_details_add"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -34,7 +33,7 @@
             android:id="@+id/txtInputEdtText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Item da lista"
+            android:hint="@string/shop_list_details_item_list"
             android:imeOptions="actionDone"
             android:inputType="text"
             android:maxLines="1" />

@@ -1,12 +1,56 @@
 <resources>
-    <string name="app_name">PocAuthenticationFirebase</string>
-    <string name="action_settings">Settings</string>
-    <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">First Fragment</string>
-    <string name="second_fragment_label">Second Fragment</string>
-    <string name="next">Next</string>
-    <string name="previous">Previous</string>
+    <string name="app_name">Shopping List</string>
 
-    <string name="hello_first_fragment">Hello first fragment</string>
-    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <!-- New Profile -->
+    <string name="new_profile_done">Done</string>
+    <string name="new_profile_hint_email">Email</string>
+    <string name="new_profile_password">Password</string>
+    <string name="new_profile_empty_required_fields">Empty shoppping list name</string>
+
+   <!-- New shopping list-->
+    <string name="new_list_frg_label">New shopping list</string>
+
+    <!-- Edit Profile -->
+    <string name="edt_profile_done">Done</string>
+
+    <!-- Profile -->
+    <string name="profile_frg_label">Profile</string>
+    <string name="profile_hint_name">Name</string>
+    <string name="profile_hint_email">Email</string>
+    <string name="profile_generic_error_message">Profile not updated. Try Again!</string>
+
+    <!-- shopping list-->
+    <string name="shp_list_profile">Profile</string>
+    <string name="shp_list_logout">Logout</string>
+
+    <!-- shopping list details -->
+    <string name="shop_list_details_add">Adicionar</string>
+    <string name="shop_list_details_item_list">Item da lista</string>
+    <string name="shop_list_try_again">Try again.</string>
+    <string name="shop_list_empty_content">You must add a no empty text</string>
+    <string name="shop_list_error_get_items">Error. Try Again.</string>
+    <string name="shop_list_frg_label">My shopping list</string>
+
+    <!--Login -->
+    <string name="login_hint_email">Email</string>
+    <string name="login_hint_password">Password</string>
+    <string name="login_hint_login">Login</string>
+    <string name="login_hint_register">Register</string>
+    <string name="login_invalid_password_message">Invalid login or password</string>
+    <string name="login_user_not_found_message">User not found</string>
+    <string name="login_wrong_authentication_message">Wrong login or password</string>
+    <string name="login_generic_error_message">It was not possible to established a valid connection. Try again!</string>
+    <string name="login_frg_label">Login</string>
+
+    <!-- Splash Screen -->
+    <string name="splash_start">Go</string>
+    <string name="splash_frg_label">Home</string>
+
+    <!-- registration -->
+    <string name="registration_generic_error_message">Try Again!</string>
+    <string name="registration_bad_password_pattern_message">Bad password pattern.</string>
+    <string name="registration_bad_email_message">Bad email pattern.</string>
+    <string name="registration_frg_label">Register new user</string>
+
+
 </resources>

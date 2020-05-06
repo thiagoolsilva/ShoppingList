@@ -6,4 +6,4 @@
 
 package com.example.presentation.model
 
-data class UserInfoView constructor(val name:String, val email:String) {}
+data class UserInfoView constructor(val name:String, val email:String)

@@ -8,12 +8,12 @@
     <fragment
         android:id="@+id/ProfileFragment"
         android:name="com.tls.firebase.authentication.profile.ProfileFragment"
-        android:label="Dados do usuário"
+        android:label="@string/profile_frg_label"
         tools:layout="@layout/logged_user" />
     <fragment
         android:id="@+id/LoginFragment"
         android:name="com.tls.firebase.authentication.login.LoginUserFragment"
-        android:label="Login"
+        android:label="@string/login_frg_label"
         tools:layout="@layout/sign_in">
         <action
             android:id="@+id/action_signInFragment_to_registrationFragment"
@@ -26,7 +26,7 @@
     <fragment
         android:id="@+id/splashScreen"
         android:name="com.tls.firebase.MainScreen"
-        android:label="Tela inicial"
+        android:label="@string/splash_frg_label"
         tools:layout="@layout/splash_screen">
         <action
             android:id="@+id/action_splashScreen_to_shoppingList"
@@ -39,7 +39,7 @@
     <fragment
         android:id="@+id/shoppingList"
         android:name="com.tls.firebase.shopping.shoppinglist.ShoppingList"
-        android:label="Minhas Listas"
+        android:label="@string/shop_list_frg_label"
         tools:layout="@layout/shopping_list">
         <action
             android:id="@+id/action_shoppingList_to_shoppingListDetails"
@@ -78,7 +78,7 @@
     <fragment
         android:id="@+id/newShoppingList"
         android:name="com.tls.firebase.shopping.newshoppinglist.NewShoppingList"
-        android:label="Nova Lista"
+        android:label="@string/new_list_frg_label"
         tools:layout="@layout/new_shopping_list" />
     <navigation
         android:id="@+id/registrationGraph"
@@ -86,7 +86,7 @@
         <fragment
             android:id="@+id/registrationFragment"
             android:name="com.tls.firebase.authentication.registration.RegistrationUserFragment"
-            android:label="Registrar novo usuário"
+            android:label="@string/registration_frg_label"
             tools:layout="@layout/new_account" />
     </navigation>
 </navigation>

@@ -129,21 +129,21 @@ class ShoppingListDetails : Fragment() {
      * Show save error message
      */
     private fun showSaveErrorMessage() {
-        Toast.makeText(activity, "Try again.", Toast.LENGTH_SHORT).show()
+        Snackbar.make(parent, getString(R.string.shop_list_try_again), Snackbar.LENGTH_SHORT).show()
     }
 
     /**
      * Show a snackbar displaying a error message for empty text
      */
     private fun showSnackEmptyText() {
-        Snackbar.make(parent, "You must add a no empty text", Snackbar.LENGTH_SHORT).show()
+        Snackbar.make(parent, getString(R.string.shop_list_empty_content), Snackbar.LENGTH_SHORT).show()
     }
 
     /**
      * Show get item error message
      */
     private fun showGetItemsErrorMessage() {
-        Toast.makeText(activity, "Error. Try Again.", Toast.LENGTH_SHORT).show()
+        Toast.makeText(activity, getString(R.string.shop_list_error_get_items), Toast.LENGTH_SHORT).show()
     }
 
     private fun handleInsertItemEvent() {

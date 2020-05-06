@@ -6,6 +6,7 @@
     <item
         android:id="@+id/menu_done"
         android:icon="@drawable/done"
-        app:showAsAction="ifRoom" />
+        app:showAsAction="ifRoom"
+        android:title="@string/new_profile_done" />
 
 </menu>

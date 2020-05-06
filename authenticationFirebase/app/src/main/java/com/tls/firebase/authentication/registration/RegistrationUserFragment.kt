@@ -66,21 +66,21 @@ class RegistrationUserFragment : Fragment() {
      * Show generic error message
      */
     private fun showGenericError() {
-        Snackbar.make(parent, "Try Again!", Snackbar.LENGTH_SHORT).show()
+        Snackbar.make(parent, getString(R.string.registration_generic_error_message), Snackbar.LENGTH_SHORT).show()
     }
 
     /**
      * Show bad password error message
      */
     private fun showBadPassworddMessage() {
-        Snackbar.make(parent, "Bad password pattern.", Snackbar.LENGTH_SHORT).show()
+        Snackbar.make(parent, getString(R.string.registration_bad_password_pattern_message), Snackbar.LENGTH_SHORT).show()
     }
 
     /**
      * Show Bad email error message
      */
     private fun showBadEmailErrorMessage() {
-        Snackbar.make(parent, "Bad email pattern.", Snackbar.LENGTH_SHORT).show()
+        Snackbar.make(parent, getString(R.string.registration_bad_email_message), Snackbar.LENGTH_SHORT).show()
     }
 
     /**
@@ -107,7 +107,7 @@ class RegistrationUserFragment : Fragment() {
      * Config views
      */
     private fun configViews() {
-        btnCreateAccount.setOnClickListener() {
+        btnCreateAccount.setOnClickListener {
 
             val email = txtInputEmail.text.toString()
             val password = txtInputPassword.text.toString()
@@ -127,7 +127,7 @@ class RegistrationUserFragment : Fragment() {
     /**
      * Go to MainScreen
      */
-    fun goToMainScreen() {
+    private fun goToMainScreen() {
         findNavController().popBackStack(R.id.splashScreen, false)
     }
 

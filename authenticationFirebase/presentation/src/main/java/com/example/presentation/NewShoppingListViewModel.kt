@@ -12,7 +12,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.domain.shoppinglist.SaveShoppingListNameInteractor
 import com.example.presentation.model.ViewState
-import com.example.shared.exception.UserNotLogged
 import kotlinx.coroutines.launch
 import timber.log.Timber
 
