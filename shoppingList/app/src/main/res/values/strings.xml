@@ -9,6 +9,7 @@
 
    <!-- New shopping list-->
     <string name="new_list_frg_label">New shopping list</string>
+    <string name="new_list_generic_error">Action not performed. Try again!</string>
 
     <!-- Edit Profile -->
     <string name="edt_profile_done">Done</string>
