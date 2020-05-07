@@ -26,8 +26,10 @@ import io.mockk.MockKAnnotations
 import io.mockk.clearMocks
 import io.mockk.coEvery
 import io.mockk.impl.annotations.RelaxedMockK
-import junit.framework.Assert.*
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import org.junit.Assert.assertTrue
+import org.junit.Assert.assertEquals
+import org.junit.Assert.assertNotNull
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -59,7 +61,6 @@ class ProfileViewModelTest {
 
     private val profileViewModel =
         ProfileViewModel(getLoggedUserInteractor, updateProfileInfoInteractor)
-
 
     @Before
     fun setup() {
@@ -134,7 +135,4 @@ class ProfileViewModelTest {
             ViewState.Status.ERROR
         )
     }
-
-
-
 }

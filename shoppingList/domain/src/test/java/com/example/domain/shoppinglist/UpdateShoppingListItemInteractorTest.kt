@@ -89,12 +89,10 @@ class UpdateShoppingListItemInteractorTest {
                 "shopping id"
             )
 
-            coVerifyOrder  {
+            coVerifyOrder {
                 mockAuthenticationRepository.currentUser()
                 mockShoppingListRepository.updateShoppingListItem(any())
             }
         }
-
     }
-
 }

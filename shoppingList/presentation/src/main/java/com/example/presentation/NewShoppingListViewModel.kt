@@ -51,5 +51,4 @@ class NewShoppingListViewModel constructor(private val saveShoppingListNameInter
             }
         }
     }
-
 }

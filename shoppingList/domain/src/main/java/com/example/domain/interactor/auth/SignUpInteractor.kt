@@ -29,4 +29,3 @@ class SignUpInteractor constructor(private val authenticationRepository: Authent
         )
     }
 }
-

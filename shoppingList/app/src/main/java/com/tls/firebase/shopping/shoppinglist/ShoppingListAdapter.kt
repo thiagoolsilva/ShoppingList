@@ -45,7 +45,6 @@ class ShoppingListAdapter constructor(private val navController: NavController) 
                 oldItem: ShoppingListView,
                 newItem: ShoppingListView
             ): Boolean = oldItem.shoppingListId == newItem.shoppingListId
-
         }
     }
 

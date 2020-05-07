@@ -178,6 +178,4 @@ class ShoppingListViewModelTest {
             )
             assertNull(shoppingListViewModel.shoppingListItemsState.value?.data)
         }
-
-
 }

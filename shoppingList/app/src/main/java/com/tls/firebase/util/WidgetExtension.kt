@@ -19,7 +19,6 @@ package com.tls.firebase.util
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.google.android.material.textfield.TextInputLayout
 
-
 fun SwipeRefreshLayout.disableLoading() {
     this.isRefreshing = false
 }

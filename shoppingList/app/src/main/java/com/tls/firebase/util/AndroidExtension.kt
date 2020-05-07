@@ -48,5 +48,5 @@ fun Fragment.navigateWithAnimation(@IdRes resId: Int) {
         .build()
 
     NavHostFragment.findNavController(this)
-        .navigate(resId, null,  navOptions)
+        .navigate(resId, null, navOptions)
 }

@@ -32,15 +32,16 @@ import com.example.shared.exception.UserNotLogged
 import kotlinx.coroutines.launch
 import timber.log.Timber
 
-class LoginViewModel constructor(private val signInUserInteractor: SignInUserInteractor,
-                                 private val logoutInteractor: LogoutInteractor
+class LoginViewModel constructor(
+    private val signInUserInteractor: SignInUserInteractor,
+    private val logoutInteractor: LogoutInteractor
 ) :
     ViewModel() {
 
     sealed class AuthenticationState {
         class AuthenticatedUser(val userInfoView: UserInfoView?) : AuthenticationState()
         class InvalidFields(val fields: List<Pair<String, String>>) : AuthenticationState()
-        object UserDisconnected: AuthenticationState()
+        object UserDisconnected : AuthenticationState()
         object UnauthorizedUser : AuthenticationState()
         object UserNotFound : AuthenticationState()
         object InvalidUserPassword : AuthenticationState()
@@ -52,7 +53,7 @@ class LoginViewModel constructor(private val signInUserInteractor: SignInUserInt
     }
 
     private val _currentLiveState = MutableLiveData<ViewState<AuthenticationState>>()
-    val currentLiveState:LiveData<ViewState<AuthenticationState>>
+    val currentLiveState: LiveData<ViewState<AuthenticationState>>
         get() = _currentLiveState
 
     /**
@@ -63,7 +64,7 @@ class LoginViewModel constructor(private val signInUserInteractor: SignInUserInt
     fun authenticateUser(email: String, password: String) {
         viewModelScope.launch {
             try {
-                if(validateFields(email, password)) {
+                if (validateFields(email, password)) {
                     // send loading information to view
                     _currentLiveState.value = ViewState(ViewState.Status.LOADING)
 
@@ -80,7 +81,7 @@ class LoginViewModel constructor(private val signInUserInteractor: SignInUserInt
                 when (error) {
                     is UserNotLogged -> _currentLiveState.value = ViewState(ViewState.Status.SUCCESS, data = AuthenticationState.UnauthorizedUser)
                     is UserNotFound -> _currentLiveState.value = ViewState(ViewState.Status.SUCCESS, data = AuthenticationState.UserNotFound)
-                    is InvalidUserPassword -> _currentLiveState.value = ViewState(ViewState.Status.SUCCESS,data = AuthenticationState.InvalidUserPassword)
+                    is InvalidUserPassword -> _currentLiveState.value = ViewState(ViewState.Status.SUCCESS, data = AuthenticationState.InvalidUserPassword)
                     else -> _currentLiveState.value = ViewState(ViewState.Status.ERROR, error = error)
                 }
             }
@@ -99,7 +100,7 @@ class LoginViewModel constructor(private val signInUserInteractor: SignInUserInt
                 logoutInteractor.execute()
 
                 _currentLiveState.value = ViewState(ViewState.Status.SUCCESS, AuthenticationState.UserDisconnected)
-            } catch (error:Exception) {
+            } catch (error: Exception) {
                 _currentLiveState.value = ViewState(ViewState.Status.ERROR, error = error)
             }
         }
@@ -108,23 +109,22 @@ class LoginViewModel constructor(private val signInUserInteractor: SignInUserInt
     /**
      * Validate required fields
      */
-    private fun validateFields(login:String, password:String) : Boolean {
+    private fun validateFields(login: String, password: String): Boolean {
         val invalidFields = arrayListOf<Pair<String, String>>()
 
-        if(login.isEmpty()) {
+        if (login.isEmpty()) {
             invalidFields.add(INPUT_USERNAME)
         }
 
-        if(password.isEmpty()) {
+        if (password.isEmpty()) {
             invalidFields.add(INPUT_PASSWORD)
         }
 
-        if(invalidFields.isNotEmpty()) {
+        if (invalidFields.isNotEmpty()) {
             _currentLiveState.value = ViewState(ViewState.Status.ERROR, data = AuthenticationState.InvalidFields(invalidFields))
             return false
         }
 
         return true
     }
-
 }

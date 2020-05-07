@@ -17,7 +17,12 @@
 package com.tls.firebase.shopping.shoppinglist
 
 import android.os.Bundle
-import android.view.*
+import android.view.LayoutInflater
+import android.view.Menu
+import android.view.View
+import android.view.MenuInflater
+import android.view.MenuItem
+import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -124,7 +129,7 @@ class ShoppingList : Fragment() {
     private fun showListErrorMessage(error: Throwable?) {
         error?.let {
             when (it) {
-                is UserNotLogged ->  navigateWithAnimation(R.id.LoginFragment) //findNavController().navigate(R.id.signInFragment)
+                is UserNotLogged -> navigateWithAnimation(R.id.LoginFragment) // findNavController().navigate(R.id.signInFragment)
                 else -> Toast.makeText(activity, "List not updated. Try Again!", Toast.LENGTH_SHORT).show()
             }
         }
@@ -175,5 +180,4 @@ class ShoppingList : Fragment() {
         val direction = ShoppingListDirections.actionShoppingListToProfileFragment()
         findNavController().navigate(direction)
     }
-
 }

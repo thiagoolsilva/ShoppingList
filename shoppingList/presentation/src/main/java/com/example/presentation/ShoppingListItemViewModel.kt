@@ -48,7 +48,6 @@ class ShoppingListItemViewModel constructor(
     val updateShoppingListItemState: LiveData<ViewState<Number>>
         get() = _updateShoppingListItemState
 
-
     /**
      * Update shopping list item
      */
@@ -116,7 +115,6 @@ class ShoppingListItemViewModel constructor(
                         ViewState.Status.ERROR,
                         error = error
                     )
-
             }
         }
     }

@@ -17,7 +17,12 @@
 package com.tls.firebase.authentication.profile
 
 import android.os.Bundle
-import android.view.*
+import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuItem
+import android.view.View
+import android.view.ViewGroup
+import android.view.MenuInflater
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -153,5 +158,4 @@ class ProfileFragment : Fragment() {
     private fun goToShoppingList() {
         findNavController().popBackStack()
     }
-
 }

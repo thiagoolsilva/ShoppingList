@@ -21,7 +21,7 @@ import com.example.domain.models.InputShoppingListEntity
 import com.example.domain.repository.AuthenticationRepository
 import com.example.domain.repository.ShoppingListRepository
 import com.example.shared.exception.UserNotLogged
-import java.util.*
+import java.util.UUID
 
 class SaveShoppingListNameInteractor constructor(
     private val shoppingListRepository: ShoppingListRepository,

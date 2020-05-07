@@ -18,11 +18,24 @@ package com.example.presentation.di
 
 import com.example.data.session.FirebaseAuthUserDataSource
 import com.example.data.shoppinglist.FirebaseShoppingListDataSource
-import com.example.domain.interactor.auth.*
+import com.example.domain.interactor.auth.GetLoggedUserInteractor
+import com.example.domain.interactor.auth.LogoutInteractor
+import com.example.domain.interactor.auth.SignInUserInteractor
+import com.example.domain.interactor.auth.SignUpInteractor
+import com.example.domain.interactor.auth.UpdateProfileInfoInteractor
 import com.example.domain.repository.AuthenticationRepository
 import com.example.domain.repository.ShoppingListRepository
-import com.example.domain.shoppinglist.*
-import com.example.presentation.*
+import com.example.domain.shoppinglist.GetShoppingListItemsInteractor
+import com.example.domain.shoppinglist.GetShoppingListsInteractor
+import com.example.domain.shoppinglist.SaveShoppingListItemInteractor
+import com.example.domain.shoppinglist.SaveShoppingListNameInteractor
+import com.example.domain.shoppinglist.UpdateShoppingListItemInteractor
+import com.example.presentation.LoginViewModel
+import com.example.presentation.ProfileViewModel
+import com.example.presentation.RegistrationViewModel
+import com.example.presentation.ShoppingListItemViewModel
+import com.example.presentation.ShoppingListViewModel
+import com.example.presentation.NewShoppingListViewModel
 import org.koin.android.viewmodel.dsl.viewModel
 import org.koin.dsl.bind
 import org.koin.dsl.module
@@ -100,5 +113,4 @@ val authenticationModule = module {
     viewModel {
         NewShoppingListViewModel(saveShoppingListNameInteractor = get())
     }
-
 }

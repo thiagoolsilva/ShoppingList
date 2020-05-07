@@ -88,8 +88,4 @@ class NewShoppingListViewModelTest {
             ViewState.Status.ERROR
         )
     }
-
-
-
-
 }

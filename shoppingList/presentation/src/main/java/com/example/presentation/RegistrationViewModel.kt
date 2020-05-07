@@ -73,7 +73,6 @@ class RegistrationViewModel constructor(private val signUpInteractor: SignUpInte
                             ViewState.Status.SUCCESS,
                             RegistrationState.RegistrationCompleted(loggedUser)
                         )
-
                 }
             } catch (error: Exception) {
                 Timber.e(error)

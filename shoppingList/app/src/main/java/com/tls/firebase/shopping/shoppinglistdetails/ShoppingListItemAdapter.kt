@@ -47,7 +47,6 @@ class ShoppingListItemAdapter constructor(private val itemChangedEvent: (item: S
                 oldItem: ShoppingListItemView,
                 newItem: ShoppingListItemView
             ): Boolean = oldItem.uuid == newItem.uuid
-
         }
     }
 
@@ -78,9 +77,9 @@ class ShoppingListItemAdapter constructor(private val itemChangedEvent: (item: S
             // set text description from repository
             itemName.text = item.description.toEditable()
             itemName.setOnEditorActionListener { v, actionId, event ->
-                if ((actionId == EditorInfo.IME_ACTION_DONE)
-                    || ((event.keyCode == KeyEvent.KEYCODE_ENTER)
-                            && (event.action == KeyEvent.ACTION_DOWN))
+                if ((actionId == EditorInfo.IME_ACTION_DONE) ||
+                    ((event.keyCode == KeyEvent.KEYCODE_ENTER) &&
+                            (event.action == KeyEvent.ACTION_DOWN))
                 ) {
                     handleItemChangeEvent(checkBox, itemName, item, itemChangedEvent)
                 }

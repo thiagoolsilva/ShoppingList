@@ -50,5 +50,4 @@ class ShoppingListViewModel constructor(private val getShoppingListsInteractor: 
             }
         }
     }
-
 }

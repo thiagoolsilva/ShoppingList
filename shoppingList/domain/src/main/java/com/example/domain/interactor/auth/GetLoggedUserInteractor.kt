@@ -24,6 +24,4 @@ class GetLoggedUserInteractor constructor(private val authenticationRepository: 
     suspend fun execute(): BasicUserInfoEntity? {
         return authenticationRepository.currentUser()
     }
-
 }
-

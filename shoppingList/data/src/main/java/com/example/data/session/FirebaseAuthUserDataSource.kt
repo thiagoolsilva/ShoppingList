@@ -19,11 +19,18 @@ package com.example.data.session
 import com.example.data.util.toBasicUserInfo
 import com.example.domain.models.BasicUserInfoEntity
 import com.example.domain.repository.AuthenticationRepository
-import com.example.shared.exception.*
-import com.google.firebase.auth.*
+import com.example.shared.exception.InvalidUserPassword
+import com.example.shared.exception.RegistrationNotCompleted
+import com.example.shared.exception.RegistrationWithBadPassword
+import com.example.shared.exception.UserNotFound
+import com.example.shared.exception.RegistrationWithBadEmail
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
+import com.google.firebase.auth.FirebaseAuthWeakPasswordException
+import com.google.firebase.auth.UserProfileChangeRequest
+import com.google.firebase.auth.FirebaseAuthInvalidUserException
 import kotlinx.coroutines.tasks.await
 import java.lang.Exception
-
 
 class FirebaseAuthUserDataSource :
     AuthenticationRepository<BasicUserInfoEntity> {
@@ -45,7 +52,6 @@ class FirebaseAuthUserDataSource :
                 .user?.toBasicUserInfo()
 
             if (userInfo != null) return userInfo else throw InvalidUserPassword("invalid user or password")
-
         } catch (error: Exception) {
             when (error) {
                 is FirebaseAuthInvalidUserException -> throw UserNotFound("user not found.")
@@ -86,5 +92,4 @@ class FirebaseAuthUserDataSource :
     override suspend fun logout() {
         auth.signOut()
     }
-
 }

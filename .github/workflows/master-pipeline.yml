@@ -26,14 +26,21 @@ jobs:
       with:
         java-version: 1.8
 
-     # Step 2: Decode Google services configuration file
+     # Decode Google services configuration file
     - name: Decode google-services.json
       env:
         FIREBASE_SECRET: ${{ secrets.FIREBASE_SECRET }}
       run: echo $FIREBASE_SECRET > shoppingList/app/google-services.json
+
+    - name: Run kLint check
+      run: |
+        cd shoppingList/
+        ./gradlew ktlintCheck
 
     # Run unit testing
     - name: Run unit testing
       run: |
         cd shoppingList/
         ./gradlew test
+
+    

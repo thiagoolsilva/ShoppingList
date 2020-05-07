@@ -23,7 +23,11 @@ import com.example.domain.repository.ShoppingListRepository
 import com.example.domain.util.givenDisconnectedUser
 import com.example.domain.util.givenValidLoggedUser
 import com.example.shared.exception.UserNotLogged
-import io.mockk.*
+import io.mockk.MockKAnnotations
+import io.mockk.coEvery
+import io.mockk.coVerify
+import io.mockk.coVerifyOrder
+import io.mockk.clearMocks
 import io.mockk.impl.annotations.RelaxedMockK
 import kotlinx.coroutines.runBlocking
 import org.junit.Before
@@ -77,11 +81,11 @@ class GetShoppingListsInteractorTest {
             assertFailsWith<UserNotLogged> {
                 getShoppingListItemsInteractor.execute("fake list id")
             }
-            coVerify (exactly = 1) {
+            coVerify(exactly = 1) {
                 mockAuthenticationRepository.currentUser()
             }
             coVerify(exactly = 0) {
-                mockShoppingListRepository.getShoppingListItems(any(),any())
+                mockShoppingListRepository.getShoppingListItems(any(), any())
             }
         }
     }

@@ -27,9 +27,9 @@ data class InputShoppingListEntity constructor(
 data class InputShoppingListItemEntity constructor(
     var description: String = "",
     var check: Boolean = false,
-    var uuid:String,
+    var uuid: String,
     var owner: String,
-    var shoppingListId:String
+    var shoppingListId: String
 )
 
 // out
@@ -42,5 +42,5 @@ data class ShoppingListEntity constructor(
 data class ShoppingListItemEntity constructor(
     var description: String = "",
     var check: Boolean = false,
-    var uuid:String = ""
+    var uuid: String = ""
 )

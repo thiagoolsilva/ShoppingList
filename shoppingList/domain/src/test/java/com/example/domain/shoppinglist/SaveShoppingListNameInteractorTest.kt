@@ -35,7 +35,7 @@ import kotlin.test.assertFailsWith
 
 class SaveShoppingListNameInteractorTest {
 
-    private companion object  {
+    private companion object {
         const val SHOPPING_LIST_ID = "ab339e13-d293-4cc7-945b-ccc913a3a62a"
         const val SHOPPING_LIST_NAME = "fake shopping name"
     }
@@ -66,7 +66,8 @@ class SaveShoppingListNameInteractorTest {
 
         runBlocking {
             val shoppinglistId = saveShoppingListNameInteractor.saveShoppingListName(
-                SHOPPING_LIST_NAME)
+                SHOPPING_LIST_NAME
+            )
 
             coVerify(exactly = 1) {
                 mockAuthenticationRepository.currentUser()
@@ -83,9 +84,9 @@ class SaveShoppingListNameInteractorTest {
         givenDisconnectedUser(mockAuthenticationRepository)
 
         runBlocking {
-           assertFailsWith <UserNotLogged> {
-               saveShoppingListNameInteractor.saveShoppingListName(SHOPPING_LIST_NAME)
-           }
+            assertFailsWith<UserNotLogged> {
+                saveShoppingListNameInteractor.saveShoppingListName(SHOPPING_LIST_NAME)
+            }
 
             coVerify(exactly = 1) {
                 mockAuthenticationRepository.currentUser()
@@ -102,5 +103,4 @@ class SaveShoppingListNameInteractorTest {
             mockShoppingListRepository.saveShoppingList(any())
         } returns SHOPPING_LIST_ID
     }
-
 }

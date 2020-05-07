@@ -26,7 +26,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var navController:NavController
+    private lateinit var navController: NavController
     private lateinit var appBarConfiguration: AppBarConfiguration
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -43,7 +43,7 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
 
         navController = findNavController(R.id.nav_host_fragment)
-        appBarConfiguration= AppBarConfiguration(setOf(R.id.splashScreen))
+        appBarConfiguration = AppBarConfiguration(setOf(R.id.splashScreen))
 
         setupActionBarWithNavController(navController, appBarConfiguration)
     }
@@ -51,5 +51,4 @@ class MainActivity : AppCompatActivity() {
     override fun onSupportNavigateUp(): Boolean {
         return (navController.popBackStack() || super.onSupportNavigateUp())
     }
-
 }

@@ -21,7 +21,6 @@ import com.example.domain.models.ShoppingListItemEntity
 import com.example.presentation.model.ShoppingListItemView
 import com.example.presentation.model.ShoppingListView
 
-
 fun ShoppingListEntity.toShoppingListView(): ShoppingListView =
     ShoppingListView(name = this.name, shoppingListId = this.uuid)
 

@@ -24,10 +24,9 @@ interface AuthenticationRepository<T> {
 
     suspend fun updateProfile(name: String)
 
-    suspend fun authenticateUser(email: String, password: String):T
+    suspend fun authenticateUser(email: String, password: String): T
 
     suspend fun signUp(email: String, password: String): T
 
     suspend fun logout()
-
 }

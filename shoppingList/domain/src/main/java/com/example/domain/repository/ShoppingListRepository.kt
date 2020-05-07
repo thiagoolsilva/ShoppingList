@@ -23,7 +23,7 @@ import com.example.domain.models.ShoppingListItemEntity
 
 interface ShoppingListRepository {
 
-    suspend fun isShoppingListOwner(shoppingListId: String, owner: String) : Boolean
+    suspend fun isShoppingListOwner(shoppingListId: String, owner: String): Boolean
 
     suspend fun getShoppingLists(owner: String): List<ShoppingListEntity>
 
@@ -37,5 +37,4 @@ interface ShoppingListRepository {
     suspend fun saveShoppingListItem(inputShoppingListItemEntity: InputShoppingListItemEntity): String
 
     suspend fun updateShoppingListItem(inputShoppingListItemEntity: InputShoppingListItemEntity)
-
 }

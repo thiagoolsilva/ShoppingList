@@ -36,7 +36,6 @@ import kotlinx.android.synthetic.main.shopping_list_details.*
 import org.koin.android.ext.android.inject
 import timber.log.Timber
 
-
 class ShoppingListDetails : Fragment() {
 
     private val shoppingListItemViewModel: ShoppingListItemViewModel by inject()
@@ -69,9 +68,9 @@ class ShoppingListDetails : Fragment() {
      */
     private fun configViews() {
         txtInputEdtText.setOnEditorActionListener { v, actionId, event ->
-            if ((actionId == EditorInfo.IME_ACTION_DONE)
-                || ((event.keyCode == KeyEvent.KEYCODE_ENTER)
-                        && (event.action == KeyEvent.ACTION_DOWN))
+            if ((actionId == EditorInfo.IME_ACTION_DONE) ||
+                ((event.keyCode == KeyEvent.KEYCODE_ENTER) &&
+                        (event.action == KeyEvent.ACTION_DOWN))
             ) {
                 handleInsertItemEvent()
             }
@@ -182,5 +181,4 @@ class ShoppingListDetails : Fragment() {
     private fun reloadAdapter(data: List<ShoppingListItemView>?) {
         adapter.submitList(data)
     }
-
 }

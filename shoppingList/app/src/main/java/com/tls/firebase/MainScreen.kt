@@ -43,5 +43,4 @@ class MainScreen : Fragment() {
     ): View? {
         return inflater.inflate(R.layout.splash_screen, container, false)
     }
-
 }
