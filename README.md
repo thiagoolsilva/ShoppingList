@@ -20,7 +20,7 @@ This project brings to table set of best practices, tools, and solutions:
 * A single-activity architecture, using the [Navigation component](https://developer.android.com/guide/navigation/navigation-getting-started)
 * Testing
 * Dependency Injection
-* Material design
+* Static code analyse
 * [Firebase](https://firebase.google.com/) (Authentication and Firestone)
 
 ## App Screenshot
@@ -54,7 +54,10 @@ This project brings to table set of best practices, tools, and solutions:
     * [core-testing](https://androidx.tech/artifacts/arch.core/core-testing/) - used to sync background tasks
     * [kotlinx-coroutines-test](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-test/) - used to sync coroutines jobs
 	* [mockk](https://mockk.io/) - mock objects using kotlin's style
+* Static code Analyse
+    * [Klint](https://ktlint.github.io/#getting-started) - An anti-bikeshedding Kotlin linter with built-in formatter.
 * Gradle
+
 
 ## Architecture
 

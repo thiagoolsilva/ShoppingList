@@ -20,7 +20,7 @@ jobs:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
 
-    # Step 1: config java sdk version
+    # config java sdk version
     - name: Set up JDK 1.8
       uses: actions/setup-java@v1
       with:
