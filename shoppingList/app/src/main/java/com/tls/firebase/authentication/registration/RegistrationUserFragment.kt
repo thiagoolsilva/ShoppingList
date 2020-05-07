@@ -1,7 +1,17 @@
 /*
  * Copyright (c) 2020  Thiago Lopes da Silva
- * All Rights Reserved.
  *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 
 package com.tls.firebase.authentication.registration
@@ -50,7 +60,7 @@ class RegistrationUserFragment : Fragment() {
         registrationViewModel.registrationState.observe(viewLifecycleOwner, Observer {
             when (it.status) {
                 ViewState.Status.SUCCESS -> {
-                    when(it.data) {
+                    when (it.data) {
                         is RegistrationViewModel.RegistrationState.RegistrationWithInvalidFields -> handleErrorFields(it.data as RegistrationViewModel.RegistrationState.RegistrationWithInvalidFields)
                         is RegistrationViewModel.RegistrationState.RegistrationCompleted -> goToMainScreen()
                         is RegistrationViewModel.RegistrationState.RegistrationWithBadEmail -> showBadEmailErrorMessage()
@@ -87,7 +97,7 @@ class RegistrationUserFragment : Fragment() {
      * Handle error fields events
      */
     private fun handleErrorFields(data: RegistrationViewModel.RegistrationState.RegistrationWithInvalidFields) {
-        val validationFields:Map<String, TextInputLayout> = initValidationFields()
+        val validationFields: Map<String, TextInputLayout> = initValidationFields()
 
         data.fields.forEach {
             validationFields[it.first]?.error = it.second
@@ -98,7 +108,7 @@ class RegistrationUserFragment : Fragment() {
     /**
      * Map ViewModel schema with views
      */
-    private fun initValidationFields()  = mapOf(
+    private fun initValidationFields() = mapOf(
         RegistrationViewModel.INPUT_PASSWORD.first to txtFieldPassword,
         RegistrationViewModel.INPUT_USERNAME.first to txtFieldEmail
     )
@@ -137,5 +147,4 @@ class RegistrationUserFragment : Fragment() {
     private fun createNewUser(email: String, password: String) {
         registrationViewModel.registrateUser(email = email, password = password)
     }
-
 }

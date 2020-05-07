@@ -1,13 +1,29 @@
 /*
  * Copyright (c) 2020  Thiago Lopes da Silva
- * All Rights Reserved.
  *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 
 package com.tls.firebase.shopping.newshoppinglist
 
 import android.os.Bundle
-import android.view.*
+import android.view.KeyEvent
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
+import android.view.LayoutInflater
+import android.view.ViewGroup
+import android.view.View
 import android.view.inputmethod.EditorInfo
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -20,7 +36,6 @@ import com.tls.firebase.R
 import com.tls.firebase.util.hideKeyboard
 import kotlinx.android.synthetic.main.new_shopping_list.*
 import org.koin.android.ext.android.inject
-
 
 class NewShoppingList : Fragment() {
 
@@ -49,9 +64,9 @@ class NewShoppingList : Fragment() {
      */
     private fun configViews() {
         newShoppingList.setOnEditorActionListener { v, actionId, event ->
-            if ((actionId == EditorInfo.IME_ACTION_DONE)
-                || ((event.keyCode == KeyEvent.KEYCODE_ENTER)
-                        && (event.action == KeyEvent.ACTION_DOWN))
+            if ((actionId == EditorInfo.IME_ACTION_DONE) ||
+                ((event.keyCode == KeyEvent.KEYCODE_ENTER) &&
+                        (event.action == KeyEvent.ACTION_DOWN))
             ) {
                 saveShoppingList()
             }
@@ -86,7 +101,7 @@ class NewShoppingList : Fragment() {
      * Show generic error message
      */
     private fun showGenericErrorMessage() {
-        Snackbar.make(parent, "Action not performed. Try again!", Snackbar.LENGTH_SHORT ).show()
+        Snackbar.make(parent, "Action not performed. Try again!", Snackbar.LENGTH_SHORT).show()
     }
 
     /**
@@ -98,7 +113,7 @@ class NewShoppingList : Fragment() {
             newShoppingListViewModel.saveShoppingListName(name = shoppingListName)
             hideKeyboard()
         } else {
-            Snackbar.make(parent, getString(R.string.new_profile_empty_required_fields), Snackbar.LENGTH_SHORT ).show()
+            Snackbar.make(parent, getString(R.string.new_profile_empty_required_fields), Snackbar.LENGTH_SHORT).show()
         }
     }
 
@@ -127,5 +142,4 @@ class NewShoppingList : Fragment() {
     private fun goToMainScreen() {
         findNavController().popBackStack(R.id.splashScreen, false)
     }
-
 }

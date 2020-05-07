@@ -1,0 +1,46 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI
+
+# Every new pull request to develop branch must fire CI check
+on:
+  pull_request:
+    branches:
+      - develop
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+    - uses: actions/checkout@v2
+
+    # config java sdk version
+    - name: Set up JDK 1.8
+      uses: actions/setup-java@v1
+      with:
+        java-version: 1.8
+
+     # Decode Google services configuration file
+    - name: Decode google-services.json
+      env:
+        FIREBASE_SECRET: ${{ secrets.FIREBASE_SECRET }}
+      run: echo $FIREBASE_SECRET > shoppingList/app/google-services.json
+
+    - name: Run kLint check
+      run: |
+        cd shoppingList/
+        ./gradlew ktlintCheck
+
+    # Run unit testing
+    - name: Run unit testing
+      run: |
+        cd shoppingList/
+        ./gradlew test
+
+    
