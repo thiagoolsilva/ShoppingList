@@ -4,6 +4,12 @@ It is a shopping list app that will help user to create its shopping list using 
 
 The goal of the project is to demonstrate best practices by using up to date tech-stack and presenting modern Android application.
 
+[![License Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg?style=true)](http://www.apache.org/licenses/LICENSE-2.0)
+![minSdkVersion 22](https://img.shields.io/badge/minSdkVersion-22-brightgreen?style=true)
+![compileSdkVersion 29](https://img.shields.io/badge/compileSdkVersion-29-brightgreen)
+
+![CI](https://github.com/thiagoolsilva/ShoppingList/workflows/CI/badge.svg)
+
 ## Project characteristics
 
 This project brings to table set of best practices, tools, and solutions:
@@ -95,5 +101,16 @@ Follow me
 ## License
 ```
 Copyright (c) 2020  Thiago Lopes da Silva
-All Rights Reserved.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
 `
