@@ -29,8 +29,8 @@ jobs:
      # Step 2: Decode Google services configuration file
     - name: Decode google-services.json
       env:
-        FIREBASE_CONFIG: ${{ secrets.FIREBASE_CONFIG }}
-      run: echo $FIREBASE_CONFIG > app/google-services.json
+        FIREBASE_SECRET: ${{ secrets.FIREBASE_SECRET }}
+      run: echo $FIREBASE_SECRET > app/google-services.json
 
     # Run unit testing
     - name: Run unit testing
