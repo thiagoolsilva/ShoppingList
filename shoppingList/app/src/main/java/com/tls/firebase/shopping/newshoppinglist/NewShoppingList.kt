@@ -101,7 +101,7 @@ class NewShoppingList : Fragment() {
      * Show generic error message
      */
     private fun showGenericErrorMessage() {
-        Snackbar.make(parent, "Action not performed. Try again!", Snackbar.LENGTH_SHORT).show()
+        Snackbar.make(parent, R.string.new_list_generic_error, Snackbar.LENGTH_SHORT).show()
     }
 
     /**
