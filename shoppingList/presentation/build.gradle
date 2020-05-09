@@ -27,29 +27,28 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-
-    implementation "androidx.appcompat:appcompat:$app_compat_version"
-    implementation "androidx.core:core-ktx:$kotlin_core_ktx_version"
-
-    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
-
-    implementation "org.koin:koin-core:$koin_version"
-    implementation "org.koin:koin-android:$koin_version"
-    implementation "org.koin:koin-android-viewmodel:$koin_version"
-
-    implementation "com.jakewharton.timber:timber:$timber_version"
-
-    testImplementation "junit:junit:$junit_version"
-    // used to sync background tasks on tests
-    testImplementation "androidx.arch.core:core-testing:$arch_core_testing_version"
-    // used to test coroutines tasks
-    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$kotlinx_coroutines_test_version"
-    // used to mock dependencies
-    testImplementation "io.mockk:mockk:$mockk_version"
-
-
     implementation project(path: ':domain')
     implementation project(path: ':data')
     api project(path : ':shared')
+
+    def presentationDependencies = rootProject.ext.presentationDependencies
+    def presentationTestDependencies = rootProject.ext.presentationTestDependencies
+
+    implementation presentationDependencies.kotlin
+    implementation presentationDependencies.appCompat
+    implementation presentationDependencies.kotlinCoreKtx
+    implementation presentationDependencies.viewModel
+    implementation presentationDependencies.koinCore
+    implementation presentationDependencies.koinAndroid
+    implementation presentationDependencies.koinViewModel
+    implementation presentationDependencies.timber
+
+    testImplementation presentationTestDependencies.junit
+    // used to sync background tasks on tests
+    testImplementation presentationTestDependencies.coreTesting
+    // used to test coroutines tasks
+    testImplementation presentationTestDependencies.coroutineTest
+    // used to mock dependencies
+    testImplementation presentationTestDependencies.mockk
+
 }
