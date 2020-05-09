@@ -27,10 +27,11 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+ 
     implementation project(path: ':domain')
     implementation project(path: ':data')
     api project(path : ':shared')
-
+ 
     def presentationDependencies = rootProject.ext.presentationDependencies
     def presentationTestDependencies = rootProject.ext.presentationTestDependencies
 
@@ -43,6 +44,7 @@ dependencies {
     implementation presentationDependencies.koinViewModel
     implementation presentationDependencies.timber
 
+ 
     testImplementation presentationTestDependencies.junit
     // used to sync background tasks on tests
     testImplementation presentationTestDependencies.coreTesting
@@ -50,5 +52,4 @@ dependencies {
     testImplementation presentationTestDependencies.coroutineTest
     // used to mock dependencies
     testImplementation presentationTestDependencies.mockk
-
 }

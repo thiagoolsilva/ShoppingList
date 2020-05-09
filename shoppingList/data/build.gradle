@@ -28,10 +28,12 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
+ 
     implementation project(path: ':domain')
 
     def dataDependencies = rootProject.ext.dataDependencies
     def dataTestDependencies = rootProject.ext.dataTestDependencies
+ 
 
     implementation dataDependencies.kotlin
     implementation dataDependencies.appCompat
@@ -42,4 +44,4 @@ dependencies {
     implementation dataDependencies.timber
 
     testImplementation dataTestDependencies.junit
-}
+ }

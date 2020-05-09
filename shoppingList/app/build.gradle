@@ -62,4 +62,5 @@ dependencies {
     implementation appDependencies.koinViewModel
 
     testImplementation appTestDependencies.junit
+
 }

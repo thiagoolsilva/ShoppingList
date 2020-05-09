@@ -31,6 +31,7 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+ 
     api project(path: ':shared')
 
     def domainDependencies = rootProject.ext.domainDependencies
@@ -45,4 +46,4 @@ dependencies {
     testImplementation domainTestDependencies.junit
     testImplementation domainTestDependencies.kotlinTestJunit
     testImplementation domainTestDependencies.mockk
-}
+ }
