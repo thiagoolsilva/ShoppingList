@@ -44,33 +44,23 @@ dependencies {
     implementation project(path: ':presentation')
     api project(path : ':shared')
 
-    // kotlin
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation "androidx.core:core-ktx:$kotlin_core_ktx_version"
+    def appDependencies = rootProject.ext.appDependencies
+    def appTestDependencies = rootProject.ext.appTestDependencies
 
-    implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
-    implementation "androidx.appcompat:appcompat:$app_compat_version"
+    implementation appDependencies.kotlin
+    implementation appDependencies.kotlinCoreKtx
+    implementation appDependencies.lifeCycleEtx
+    implementation appDependencies.appCompat
+    implementation appDependencies.swipeRefreshLayout
+    implementation appDependencies.constraintLayout
+    implementation appDependencies.cardView
+    implementation appDependencies.timber
+    implementation appDependencies.navigationFragment
+    implementation appDependencies.navigationUiKtx
+    implementation appDependencies.koinCore
+    implementation appDependencies.koinAndroid
+    implementation appDependencies.koinViewModel
 
-    //layout
-    implementation "androidx.swiperefreshlayout:swiperefreshlayout:$swiperefreshlayout_version"
-    implementation "androidx.constraintlayout:constraintlayout:$constraintlayout_version"
-    implementation "androidx.cardview:cardview:$cardview_version"
-
-    // logging
-    implementation "com.jakewharton.timber:timber:$timber_version"
-
-    // navigation feature
-    implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
-    implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
-
-    // dependency injection
-    implementation "org.koin:koin-core:$koin_version"
-    implementation "org.koin:koin-android:$koin_version"
-    implementation "org.koin:koin-android-viewmodel:$koin_version"
-
-    // test
-    testImplementation "junit:junit:$junit_version"
-    androidTestImplementation "androidx.test.ext:junit:$junit_test_ext_version"
-//    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    testImplementation appTestDependencies.junit
 
 }

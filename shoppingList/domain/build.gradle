@@ -31,21 +31,19 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-
-    implementation "androidx.appcompat:appcompat:$app_compat_version"
-    implementation "androidx.core:core-ktx:$kotlin_core_ktx_version"
-
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-play-services:$kotlinx_coroutines_play_services_version"
-
+ 
     api project(path: ':shared')
 
-    // logging
-    implementation "com.jakewharton.timber:timber:$timber_version"
+    def domainDependencies = rootProject.ext.domainDependencies
+    def domainTestDependencies = rootProject.ext.domainTestDependencies
 
-    // unit testing
-    testImplementation "junit:junit:$junit_version"
-    testImplementation "org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version"
-    testImplementation "io.mockk:mockk:$mockk_version"
-}
+    implementation domainDependencies.kotlin
+    implementation domainDependencies.appCompat
+    implementation domainDependencies.kotlinCoreKtx
+    implementation domainDependencies.kotlinCorountines
+    implementation domainDependencies.timber
+
+    testImplementation domainTestDependencies.junit
+    testImplementation domainTestDependencies.kotlinTestJunit
+    testImplementation domainTestDependencies.mockk
+ }

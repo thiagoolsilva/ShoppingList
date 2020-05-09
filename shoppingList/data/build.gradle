@@ -28,20 +28,20 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-
-    implementation "androidx.appcompat:appcompat:$app_compat_version"
-    implementation "androidx.core:core-ktx:$kotlin_core_ktx_version"
-
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-play-services:$kotlinx_coroutines_play_services_version"
-
-    implementation "com.google.firebase:firebase-auth:$firebase_auth_version"
-    implementation "com.google.firebase:firebase-firestore-ktx:$firebase_firestone_ktx_version"
-
-    implementation "com.jakewharton.timber:timber:$timber_version"
-
-    testImplementation "junit:junit:$junit_version"
-//    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
-//    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+ 
     implementation project(path: ':domain')
-}
+
+    def dataDependencies = rootProject.ext.dataDependencies
+    def dataTestDependencies = rootProject.ext.dataTestDependencies
+ 
+
+    implementation dataDependencies.kotlin
+    implementation dataDependencies.appCompat
+    implementation dataDependencies.kotlinCoreKtx
+    implementation dataDependencies.kotlinxCoroutinePlayService
+    implementation dataDependencies.firebaseAuth
+    implementation dataDependencies.firebaseFirestone
+    implementation dataDependencies.timber
+
+    testImplementation dataTestDependencies.junit
+ }
