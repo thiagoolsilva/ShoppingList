@@ -120,8 +120,9 @@ class LoginUserFragment : Fragment() {
         val validationFields: Map<String, TextInputLayout> = initValidationFields()
 
         data.fields.forEach {
-            validationFields[it.first]?.error = it.second
-            Timber.d("Error message [%s]", it.second)
+            val stringErrorMessage = getString(it.second)
+            validationFields[it.first]?.error = stringErrorMessage
+            Timber.d("Error message [%s]", stringErrorMessage)
         }
     }
 

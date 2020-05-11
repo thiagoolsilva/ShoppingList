@@ -36,7 +36,7 @@ class RegistrationViewModel constructor(private val signUpInteractor: SignUpInte
         class RegistrationCompleted(val basicUserInfoEntity: BasicUserInfoEntity) :
             RegistrationState()
 
-        class RegistrationWithInvalidFields(val fields: List<Pair<String, String>>) :
+        class RegistrationWithInvalidFields(val fields: List<Pair<String, Int>>) :
             RegistrationState()
 
         object RegistrationWithBadEmail : RegistrationState()
@@ -44,8 +44,8 @@ class RegistrationViewModel constructor(private val signUpInteractor: SignUpInte
     }
 
     companion object {
-        val INPUT_USERNAME = "INPUT_USERNAME" to "empty username"
-        val INPUT_PASSWORD = "INPUT_PASSWORD" to "empty password"
+        val INPUT_USERNAME = "INPUT_USERNAME" to R.string.registration_invalid_login_fields
+        val INPUT_PASSWORD = "INPUT_PASSWORD" to R.string.registration_invalid_password_fields
     }
 
     private val _registrationState = MutableLiveData<ViewState<RegistrationState>>()
@@ -97,7 +97,7 @@ class RegistrationViewModel constructor(private val signUpInteractor: SignUpInte
      * Validate required fields
      */
     private fun validateFields(login: String, password: String): Boolean {
-        val invalidFields = arrayListOf<Pair<String, String>>()
+        val invalidFields = arrayListOf<Pair<String, Int>>()
 
         if (login.isEmpty()) {
             invalidFields.add(INPUT_USERNAME)

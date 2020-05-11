@@ -40,7 +40,7 @@ class LoginViewModel constructor(
 
     sealed class AuthenticationState {
         class AuthenticatedUser(val userInfoView: UserInfoView?) : AuthenticationState()
-        class InvalidFields(val fields: List<Pair<String, String>>) : AuthenticationState()
+        class InvalidFields(val fields: List<Pair<String, Int>>) : AuthenticationState()
         object UserDisconnected : AuthenticationState()
         object UnauthorizedUser : AuthenticationState()
         object UserNotFound : AuthenticationState()
@@ -48,8 +48,8 @@ class LoginViewModel constructor(
     }
 
     companion object {
-        val INPUT_USERNAME = "INPUT_USERNAME" to "empty username"
-        val INPUT_PASSWORD = "INPUT_PASSWORD" to "empty password"
+        val INPUT_USERNAME = "INPUT_USERNAME" to R.string.login_invalid_login_fields
+        val INPUT_PASSWORD = "INPUT_PASSWORD" to R.string.login_invalid_password_fields
     }
 
     private val _currentLiveState = MutableLiveData<ViewState<AuthenticationState>>()
@@ -108,9 +108,12 @@ class LoginViewModel constructor(
 
     /**
      * Validate required fields
+     * @param login user login
+     * @param password user password
+     * @return true if all required fields are valid
      */
     private fun validateFields(login: String, password: String): Boolean {
-        val invalidFields = arrayListOf<Pair<String, String>>()
+        val invalidFields = arrayListOf<Pair<String, Int>>()
 
         if (login.isEmpty()) {
             invalidFields.add(INPUT_USERNAME)

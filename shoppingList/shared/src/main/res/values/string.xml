@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+
+    <!-- Login -->
+    <string name="login_invalid_login_fields">empty username</string>
+    <string name="login_invalid_password_fields">empty password</string>
+
+    <!-- Profile -->
+    <string name="profile_invalid_login_field">empty username</string>
+
+    <!-- Registration -->
+    <string name="registration_invalid_login_fields">empty username</string>
+    <string name="registration_invalid_password_fields">empty password</string>
+
+
+</resources>
