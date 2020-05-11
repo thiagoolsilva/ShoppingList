@@ -36,11 +36,11 @@ class ProfileViewModel constructor(
     sealed class UserPofileState {
         class CollectedProfileState(val userInfoView: UserInfoView?) : UserPofileState()
         object UpdatedProfileState : UserPofileState()
-        class InvalidProfileFieldsState(val fields: List<Pair<String, String>>) : UserPofileState()
+        class InvalidProfileFieldsState(val fields: List<Pair<String, Int>>) : UserPofileState()
     }
 
     companion object {
-        val INPUT_USERNAME = "INPUT_USERNAME" to "empty username"
+        val INPUT_USERNAME = "INPUT_USERNAME" to R.string.profile_invalid_login_field
     }
 
     private val _currentUserState = MutableLiveData<ViewState<UserPofileState>>()
@@ -99,7 +99,7 @@ class ProfileViewModel constructor(
      * Validate required fields
      */
     private fun validateFields(login: String): Boolean {
-        val invalidFields = arrayListOf<Pair<String, String>>()
+        val invalidFields = arrayListOf<Pair<String, Int>>()
 
         if (login.isEmpty()) {
             invalidFields.add(INPUT_USERNAME)
