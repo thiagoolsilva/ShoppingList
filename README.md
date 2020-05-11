@@ -22,6 +22,7 @@ This project brings to table set of best practices, tools, and solutions:
 * Dependency Injection
 * Static code analyse
 * [Firebase](https://firebase.google.com/) (Authentication and Firestone)
+* CI integration by gihub actions
 
 ## App Screenshot
 
