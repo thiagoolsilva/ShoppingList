@@ -8,9 +8,20 @@
 
 </br>
 
+## Description
+
+It is a shopping list app that will help user to create its shopping list using online/offline feature by firebase.
+
+The goal of the project is to demonstrate best practices by using up to date tech-stack and presenting modern Android application.
+
+[![License Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg?style=flat-square)](http://www.apache.org/licenses/LICENSE-2.0)
+![minSdkVersion 22](https://img.shields.io/badge/minSdkVersion-22-brightgreen?style=flat-square)
+![compileSdkVersion 29](https://img.shields.io/badge/compileSdkVersion-29-brightgreen?style=flat-square)
+
+![CI](https://github.com/thiagoolsilva/ShoppingList/workflows/CI/badge.svg)
+
 ## Table of contents
 
-- [Description](#description)
 - [Characteristics](#characteristics)
 - [App Screenshot](#app-screenshot)
 - [Tech-stack](#tech-stack)
@@ -27,19 +38,6 @@
 - [Author](#author)
 - [License](#license)
 
-
-
-## Description
-
-It is a shopping list app that will help user to create its shopping list using online/offline feature by firebase.
-
-The goal of the project is to demonstrate best practices by using up to date tech-stack and presenting modern Android application.
-
-[![License Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg?style=flat-square)](http://www.apache.org/licenses/LICENSE-2.0)
-![minSdkVersion 22](https://img.shields.io/badge/minSdkVersion-22-brightgreen?style=flat-square)
-![compileSdkVersion 29](https://img.shields.io/badge/compileSdkVersion-29-brightgreen?style=flat-square)
-
-![CI](https://github.com/thiagoolsilva/ShoppingList/workflows/CI/badge.svg)
 
 ## Characteristics
 
