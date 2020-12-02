@@ -6,6 +6,11 @@
 ![](https://img.shields.io/badge/-Kotlin-EF6C00.svg?style=for-the-badge&logo=Kotlin&logoColor=white)
 ![](https://img.shields.io/badge/-Firebase-BF360C.svg?style=for-the-badge&logo=Firebase&logoColor=white)
 
+[![License Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-0D47A1.svg?style=flat-square)](http://www.apache.org/licenses/LICENSE-2.0)
+![minSdkVersion 22](https://img.shields.io/badge/minSdkVersion-22-1B5E20?style=flat-square)
+![compileSdkVersion 29](https://img.shields.io/badge/compileSdkVersion-29-1B5E20?style=flat-square)
+![CI](https://github.com/thiagoolsilva/ShoppingList/workflows/CI/badge.svg)
+
 </br>
 
 ## Description
@@ -14,11 +19,7 @@ It is a shopping list app that will help user to create its shopping list using 
 
 The goal of the project is to demonstrate best practices by using up to date tech-stack and presenting modern Android application.
 
-[![License Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg?style=flat-square)](http://www.apache.org/licenses/LICENSE-2.0)
-![minSdkVersion 22](https://img.shields.io/badge/minSdkVersion-22-brightgreen?style=flat-square)
-![compileSdkVersion 29](https://img.shields.io/badge/compileSdkVersion-29-brightgreen?style=flat-square)
 
-![CI](https://github.com/thiagoolsilva/ShoppingList/workflows/CI/badge.svg)
 
 ## Table of contents
 
