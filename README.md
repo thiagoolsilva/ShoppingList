@@ -1,5 +1,6 @@
 <img alt="Icon" src="shoppingList/app/src/main/res/mipmap-xxhdpi/ic_launcher.png?raw=true" align="left" hspace="1" vspace="1">
 
+
 # Shopping List
 
 ![](https://img.shields.io/badge/-Android-1B5E20.svg?style=for-the-badge&logo=Android&logoColor=white)
@@ -12,6 +13,8 @@
 ![CI](https://github.com/thiagoolsilva/ShoppingList/workflows/CI/badge.svg)
 
 </br>
+
+<a href="https://www.buymeacoffee.com/thiagoolsilva" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Me A Coffee" style="height: 41px !important;width: 174px !important;box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;-webkit-box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;" ></a>
 
 ## Description
 
